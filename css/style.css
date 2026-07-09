@@ -1,0 +1,193 @@
+:root {
+  --bg: #f4f7f5;
+  --card: #ffffff;
+  --text: #1f2933;
+  --muted: #64748b;
+  --line: #d8e0dc;
+  --primary: #256f63;
+  --primary-dark: #19564c;
+  --accent: #d97706;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--bg);
+}
+
+button {
+  font: inherit;
+}
+
+.app-shell {
+  width: 100%;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px 16px;
+}
+
+.card {
+  width: min(100%, 760px);
+  padding: 28px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 16px 40px rgba(31, 41, 51, 0.08);
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: var(--accent);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  line-height: 1.35;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.45rem;
+}
+
+p {
+  line-height: 1.8;
+}
+
+.lead,
+.muted {
+  color: var(--muted);
+}
+
+.primary-button,
+.choice-button,
+.secondary-button {
+  width: 100%;
+  min-height: 48px;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.primary-button,
+.secondary-button {
+  margin-top: 18px;
+  color: #ffffff;
+  font-weight: 700;
+  background: var(--primary);
+}
+
+.primary-button:hover,
+.secondary-button:hover,
+.choice-button:hover {
+  background: var(--primary-dark);
+}
+
+.question-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.choices {
+  display: grid;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.choice-button {
+  padding: 14px 16px;
+  color: var(--text);
+  text-align: left;
+  background: #eef5f2;
+  border: 1px solid var(--line);
+}
+
+.choice-button:hover {
+  color: #ffffff;
+}
+
+.top-list,
+.score-grid {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.result-card,
+.score-row {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfcfb;
+}
+
+.result-card strong,
+.score-row strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.score-table {
+  width: 100%;
+  margin-top: 18px;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.score-table th,
+.score-table td {
+  padding: 10px 8px;
+  border-bottom: 1px solid var(--line);
+  text-align: right;
+}
+
+.score-table th:first-child,
+.score-table td:first-child {
+  text-align: left;
+}
+
+.loading,
+.error {
+  margin: 0;
+}
+
+.error {
+  color: #b42318;
+}
+
+@media (max-width: 560px) {
+  .card {
+    padding: 22px 18px;
+  }
+
+  h1 {
+    font-size: 1.65rem;
+  }
+
+  .score-table {
+    font-size: 0.84rem;
+  }
+
+  .score-table th,
+  .score-table td {
+    padding: 8px 4px;
+  }
+}
