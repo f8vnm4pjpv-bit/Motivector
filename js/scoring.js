@@ -1,4 +1,4 @@
-(function () {
+﻿(function () {
   "use strict";
 
   function createScoreMap(desires, initialValue) {
@@ -12,9 +12,11 @@
     var maxScores = createScoreMap(desires, 0);
 
     questions.forEach(function (question) {
+      var choices = Array.isArray(question.choices) ? question.choices : [];
       desires.forEach(function (desire) {
-        var questionMax = question.choices.reduce(function (max, choice) {
-          var score = choice.scores[desire.id] || 0;
+        var questionMax = choices.reduce(function (max, choice) {
+          var scores = choice.scores || {};
+          var score = Number(scores[desire.id]) || 0;
           return Math.max(max, score);
         }, 0);
         maxScores[desire.id] += questionMax;
@@ -28,9 +30,10 @@
     var rawScores = createScoreMap(desires, 0);
 
     answers.forEach(function (choice) {
-      Object.keys(choice.scores).forEach(function (desireId) {
+      var scores = choice.scores || {};
+      Object.keys(scores).forEach(function (desireId) {
         if (Object.prototype.hasOwnProperty.call(rawScores, desireId)) {
-          rawScores[desireId] += choice.scores[desireId];
+          rawScores[desireId] += Number(scores[desireId]) || 0;
         }
       });
     });

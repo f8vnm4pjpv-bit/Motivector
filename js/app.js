@@ -9,6 +9,7 @@
     currentIndex: 0
   };
 
+  // file://でJSON fetchが制限される環境向けの最小フォールバックである。GitHub Pagesではdata/*.jsonを読み込む。
   var fallbackData = {
     desires: [
       { id: "stability", name: "安定欲求", description: "不安定さや喪失を避け、安心していられる状態を保ちたい欲求である。" },
@@ -96,6 +97,7 @@
 
   function loadData() {
     if (window.location.protocol === "file:") {
+      console.info("file://直開きのため、フォールバックデータを使う状態である。");
       return Promise.resolve(fallbackData);
     }
 
@@ -108,6 +110,25 @@
         questions: results[1]
       };
     });
+  }
+
+  function runValidation(data) {
+    if (!window.MotivectorValidation) {
+      return;
+    }
+
+    var report = window.MotivectorValidation.validateData(data.desires, data.questions);
+    console.groupCollapsed("Motivector data validation");
+    console.log(report.summary);
+    if (report.warnings.length) {
+      console.warn(report.warnings);
+    }
+    if (report.errors.length) {
+      console.error(report.errors);
+    } else {
+      console.info("検証エラーはない状態である。");
+    }
+    console.groupEnd();
   }
 
   function renderTitle() {
@@ -201,6 +222,7 @@
 
   loadData()
     .then(function (data) {
+      runValidation(data);
       state.desires = data.desires;
       state.questions = data.questions;
       renderTitle();

@@ -14,6 +14,20 @@ HTML、CSS、JavaScriptのみで動く初期構成である。質問と欲求定
 
 GitHub Pagesで公開予定である。自前サーバーやサーバーサイド処理は使わない方針である。
 
+## データファイルの役割
+
+`data/desires.json` は11欲求の定義を管理するファイルである。`id`、`name`、`description`を持つ。`id`は採点と表示の接続点であるため、変更時は質問データも同時に確認する必要がある。
+
+`data/questions.json` は質問と選択肢を管理するファイルである。各質問は `id`、`text`、`choices`を持ち、各選択肢は `text` と `scores` を持つ。`scores` のキーは `desires.json` の `id` と一致する必要がある。
+
+## 採点方式
+
+`raw_score` は回答で得た点数の合計である。`max_possible_score` は各欲求が理論上取りうる最大点である。`normalized_score` は `raw_score / max_possible_score` である。`component_ratio` は `normalized_score / sum(normalized_score)` であり、最終的なメイン表示の想定値である。
+
+## 検証方針
+
+本番質問を投入する前に、`js/validation.js` でデータ構造、未定義の欲求id、選択肢ごとの配点先数、合計配点、`max_possible_score` の偏りを確認する必要がある。現在は起動時にコンソールへ検証結果を出力する。
+
 ## ディレクトリ構成
 
 ```text
@@ -26,6 +40,7 @@ js/
   app.js
   scoring.js
   resultText.js
+  validation.js
 data/
   desires.json
   questions.json
