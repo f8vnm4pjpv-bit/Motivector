@@ -390,11 +390,27 @@
     });
   }
 
+  function buildSelectedAnswers() {
+    return state.answers.map(function (choiceIndex, questionIndex) {
+      var question = state.questions[questionIndex];
+      return question && question.choices[choiceIndex];
+    }).filter(Boolean);
+  }
+
   function renderQuestion() {
     var question = state.questions[state.currentIndex];
+    var selectedAnswerIndex = state.answers[state.currentIndex];
     var choiceHtml = question.choices.map(function (choice, index) {
-      return '<button class="choice-button" type="button" data-choice-index="' + index + '">' + escapeHtml(choice.text) + "</button>";
+      var isSelected = selectedAnswerIndex === index;
+      var selectedLabel = isSelected ? '<span class="selected-label">選択中</span>' : "";
+      return [
+        '<button class="choice-button' + (isSelected ? " is-selected" : "") + '" type="button" data-choice-index="' + index + '" aria-pressed="' + (isSelected ? "true" : "false") + '">',
+        selectedLabel,
+        "<span>" + escapeHtml(choice.text) + "</span>",
+        "</button>"
+      ].join("");
     }).join("");
+    var canGoBack = state.currentIndex > 0;
     resetAppClass();
     app.innerHTML = [
       renderStatus(),
@@ -403,11 +419,18 @@
       "<span>" + escapeHtml(question.id) + "</span>",
       "</div>",
       "<h2>" + escapeHtml(question.text) + "</h2>",
+      '<div class="question-actions"><button class="back-button" type="button" id="back-button"' + (canGoBack ? "" : " disabled") + ">前の問題へ戻る</button></div>",
       '<div class="choices">' + choiceHtml + "</div>"
     ].join("");
+    document.getElementById("back-button").addEventListener("click", function () {
+      if (state.currentIndex > 0) {
+        state.currentIndex -= 1;
+        renderQuestion();
+      }
+    });
     app.querySelectorAll(".choice-button").forEach(function (button) {
       button.addEventListener("click", function () {
-        state.answers.push(question.choices[Number(button.getAttribute("data-choice-index"))]);
+        state.answers[state.currentIndex] = Number(button.getAttribute("data-choice-index"));
         state.currentIndex += 1;
         if (state.currentIndex >= state.questions.length) {
           renderResult();
@@ -417,7 +440,6 @@
       });
     });
   }
-
   function renderTopNeeds(topThree) {
     return topThree.map(function (need, index) {
       return [
@@ -472,7 +494,7 @@
   }
 
   function renderResult() {
-    var scores = window.MotivectorScoring.scoreAnswers(state.desires, state.questions, state.answers);
+    var scores = window.MotivectorScoring.scoreAnswers(state.desires, state.questions, buildSelectedAnswers());
     var model = window.MotivectorScoring.buildResultModel(state.desires, scores);
     app.className = "card result-view";
     app.innerHTML = [

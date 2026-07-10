@@ -147,6 +147,7 @@ p {
 
 .primary-button:focus-visible,
 .secondary-button:focus-visible,
+.back-button:focus-visible,
 .choice-button:focus-visible,
 summary:focus-visible {
   outline: 3px solid rgba(180, 83, 9, 0.35);
@@ -181,6 +182,65 @@ summary:focus-visible {
   color: #ffffff;
   background: var(--primary-dark);
   border-color: var(--primary-dark);
+}
+
+.question-actions {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 18px;
+}
+
+.back-button {
+  min-height: 42px;
+  padding: 9px 14px;
+  color: var(--primary-dark);
+  font-weight: 700;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.back-button:hover:not(:disabled) {
+  color: #ffffff;
+  background: var(--primary-dark);
+  border-color: var(--primary-dark);
+}
+
+.back-button:disabled {
+  color: var(--muted);
+  cursor: not-allowed;
+  opacity: 0.62;
+}
+
+.choice-button.is-selected {
+  background: #ffffff;
+  border-color: var(--primary);
+  box-shadow: inset 4px 0 0 var(--primary);
+}
+
+.choice-button.is-selected:hover {
+  color: #ffffff;
+  background: var(--primary-dark);
+  border-color: var(--primary-dark);
+}
+
+.selected-label {
+  display: inline-block;
+  margin: 0 8px 6px 0;
+  padding: 2px 7px;
+  color: var(--primary-dark);
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.4;
+  background: var(--primary-soft);
+  border-radius: 4px;
+}
+
+.choice-button:hover .selected-label,
+.choice-button.is-selected:hover .selected-label {
+  color: var(--primary-dark);
+  background: #ffffff;
 }
 
 .result-header {
