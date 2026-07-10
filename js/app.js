@@ -3,7 +3,8 @@
 
   var app = document.getElementById("app");
   var DATASETS = {
-    sample: "data/questions.json",
+    production: "data/questions.json",
+    sample: "data/questions_sample.json",
     draft: "data/questions_draft_v1.json"
   };
   var state = {
@@ -11,13 +12,13 @@
     questions: [],
     answers: [],
     currentIndex: 0,
-    dataset: "sample",
-    requestedDataset: "sample",
+    dataset: "production",
+    requestedDataset: "production",
     validationReport: null,
     dataWarning: ""
   };
 
-  // file://でJSON fetchが制限される環境向けのsampleフォールバックである。draftの30問は二重管理しない。
+  // file://でJSON fetchが制限される環境向けのsampleフォールバックである。productionとdraftの30問は二重管理しない。
   var fallbackData = {
   "desires": [
     {
@@ -273,15 +274,17 @@
     return Number(value || 0).toFixed(3);
   }
 
+  function formatPercent(value) {
+    return Math.round(Math.max(0, Number(value) || 0) * 100) + "%";
+  }
+
   function getRequestedDataset() {
     var params = new URLSearchParams(window.location.search);
-    var dataset = params.get("dataset") || "sample";
-
+    var dataset = params.get("dataset") || "production";
     if (!Object.prototype.hasOwnProperty.call(DATASETS, dataset)) {
-      console.warn("Unknown dataset '" + dataset + "'. Falling back to sample.");
-      return "sample";
+      console.warn("Unknown dataset '" + dataset + "'. Falling back to production.");
+      return "production";
     }
-
     return dataset;
   }
 
@@ -296,11 +299,9 @@
 
   function loadData() {
     var requestedDataset = getRequestedDataset();
-    var questionsPath = DATASETS[requestedDataset];
-
     return Promise.all([
       fetchJson("data/desires.json"),
-      fetchJson(questionsPath)
+      fetchJson(DATASETS[requestedDataset])
     ]).then(function (results) {
       return {
         desires: results[0],
@@ -311,14 +312,11 @@
       };
     }).catch(function (error) {
       var warning = "質問データのfetchに失敗したため、sampleフォールバックを使う状態である。";
-      if (requestedDataset === "draft") {
-        warning = "dataset=draftはfile://直開きでは読めない場合があるため、sampleフォールバックを使う状態である。";
-      }
       console.warn(warning, error);
       return {
         desires: fallbackData.desires,
         questions: fallbackData.questions,
-        dataset: "sample",
+        dataset: "sample fallback",
         requestedDataset: requestedDataset,
         warning: warning
       };
@@ -329,7 +327,6 @@
     if (!window.MotivectorValidation) {
       return null;
     }
-
     var report = window.MotivectorValidation.validateData(data.desires, data.questions);
     console.groupCollapsed("Motivector data validation");
     console.log(report.summary);
@@ -348,30 +345,40 @@
   function renderStatus() {
     var errors = state.validationReport ? state.validationReport.errors.length : 0;
     var warnings = state.validationReport ? state.validationReport.warnings.length : 0;
-    var datasetText = "Dataset: " + state.dataset;
-    if (state.requestedDataset !== state.dataset) {
-      datasetText += " (requested: " + state.requestedDataset + ")";
-    }
-
-    var warningHtml = state.dataWarning ? '<span class="status-warning">' + escapeHtml(state.dataWarning) + '</span>' : "";
+    var requestedHtml = state.requestedDataset !== state.dataset
+      ? "<span>Requested: " + escapeHtml(state.requestedDataset) + "</span>"
+      : "";
+    var warningHtml = state.dataWarning
+      ? '<span class="status-warning">' + escapeHtml(state.dataWarning) + "</span>"
+      : "";
     return [
       '<div class="status-strip">',
-      '<span>' + escapeHtml(datasetText) + '</span>',
-      '<span>Validation: ' + errors + ' errors, ' + warnings + ' warnings</span>',
+      "<span>Dataset: " + escapeHtml(state.dataset) + "</span>",
+      requestedHtml,
+      "<span>Validation: " + errors + " errors, " + warnings + " warnings</span>",
       warningHtml,
-      '</div>'
+      "</div>"
     ].join("");
   }
 
+  function resetAppClass() {
+    app.className = "card";
+  }
+
   function renderTitle() {
+    var isSample = state.dataset === "sample" || state.dataset === "sample fallback";
+    var questionLabel = (isSample ? "動作確認用" : "全") + state.questions.length + "問";
+    var timeHtml = isSample ? "" : '<span class="intro-fact">所要時間の目安: 約10〜15分</span>';
+    resetAppClass();
     app.innerHTML = [
       renderStatus(),
       '<p class="eyebrow">Motivector</p>',
       "<h1>ココロの成分表</h1>",
-      '<p class="lead">行動の選び方から、今どの欲求が表れやすいかを仮に見るための初期版である。</p>',
+      '<div class="intro-facts"><span class="intro-fact">' + escapeHtml(questionLabel) + "</span>" + timeHtml + "</div>",
+      '<p class="lead">深く考えすぎず、今の自分に近い選択肢を選んでください。</p>',
+      '<p class="notice">この結果は性格や能力を断定するものではなく、今回の回答から欲求の表れ方を整理したものである。</p>',
       '<button class="primary-button" type="button" id="start-button">診断を開始する</button>'
     ].join("");
-
     document.getElementById("start-button").addEventListener("click", function () {
       state.answers = [];
       state.currentIndex = 0;
@@ -384,7 +391,7 @@
     var choiceHtml = question.choices.map(function (choice, index) {
       return '<button class="choice-button" type="button" data-choice-index="' + index + '">' + escapeHtml(choice.text) + "</button>";
     }).join("");
-
+    resetAppClass();
     app.innerHTML = [
       renderStatus(),
       '<div class="question-meta">',
@@ -394,13 +401,10 @@
       "<h2>" + escapeHtml(question.text) + "</h2>",
       '<div class="choices">' + choiceHtml + "</div>"
     ].join("");
-
     app.querySelectorAll(".choice-button").forEach(function (button) {
       button.addEventListener("click", function () {
-        var choiceIndex = Number(button.getAttribute("data-choice-index"));
-        state.answers.push(question.choices[choiceIndex]);
+        state.answers.push(question.choices[Number(button.getAttribute("data-choice-index"))]);
         state.currentIndex += 1;
-
         if (state.currentIndex >= state.questions.length) {
           renderResult();
         } else {
@@ -410,60 +414,99 @@
     });
   }
 
+  function renderTopNeeds(topThree) {
+    return topThree.map(function (need, index) {
+      return [
+        '<article class="top-need-card">',
+        '<div class="need-heading"><span class="rank-badge">' + (index + 1) + "位</span>",
+        "<h3>" + escapeHtml(need.name) + "</h3>",
+        '<strong class="need-score">今回の回答での表れ方: ' + formatPercent(need.normalized_score) + "</strong></div>",
+        '<p class="need-description">' + escapeHtml(need.description) + "</p>",
+        '<p class="need-result-text">' + escapeHtml(window.MotivectorResultText.buildTopNeedText(need)) + "</p>",
+        "</article>"
+      ].join("");
+    }).join("");
+  }
+
+  function renderBottomNeeds(bottomTwo) {
+    return bottomTwo.map(function (need) {
+      return [
+        '<article class="low-need-item">',
+        '<div class="need-heading compact"><h3>' + escapeHtml(need.name) + "</h3>",
+        '<strong class="need-score">今回の回答での表れ方: ' + formatPercent(need.normalized_score) + "</strong></div>",
+        '<p class="need-description">' + escapeHtml(need.description) + "</p>",
+        '<p class="need-result-text">' + escapeHtml(window.MotivectorResultText.buildBottomNeedText(need)) + "</p>",
+        "</article>"
+      ].join("");
+    }).join("");
+  }
+
+  function renderBalanceBars(rankedNeeds) {
+    return rankedNeeds.map(function (need) {
+      var percent = Math.max(0, Math.min(100, need.normalized_score * 100));
+      var percentText = formatPercent(need.normalized_score);
+      return [
+        '<div class="balance-row">',
+        '<div class="balance-label"><span>' + escapeHtml(need.name) + "</span><strong>" + percentText + "</strong></div>",
+        '<div class="balance-track" role="img" aria-label="' + escapeHtml(need.name + " " + percentText) + '">',
+        '<span class="balance-fill" style="width: ' + percent.toFixed(1) + '%"></span></div></div>'
+      ].join("");
+    }).join("");
+  }
+
+  function renderScoreDetails(rankedNeeds) {
+    return rankedNeeds.map(function (need) {
+      return [
+        '<div class="score-detail-item"><h3>' + escapeHtml(need.name) + "</h3><dl>",
+        "<div><dt>raw_score</dt><dd>" + formatDecimal(need.raw_score) + "</dd></div>",
+        "<div><dt>max_possible_score</dt><dd>" + formatDecimal(need.max_possible_score) + "</dd></div>",
+        "<div><dt>normalized_score</dt><dd>" + formatDecimal(need.normalized_score) + "</dd></div>",
+        "<div><dt>component_ratio</dt><dd>" + formatDecimal(need.component_ratio) + " (" + formatPercent(need.component_ratio) + ")</dd></div>",
+        "</dl></div>"
+      ].join("");
+    }).join("");
+  }
+
   function renderResult() {
-    var result = window.MotivectorScoring.scoreAnswers(state.desires, state.questions, state.answers);
-    var resultText = window.MotivectorResultText.buildResultText(result.top_desires);
-
-    var topHtml = result.top_desires.map(function (desire, index) {
-      return [
-        '<div class="result-card">',
-        "<strong>" + (index + 1) + ". " + escapeHtml(desire.name) + " " + formatDecimal(desire.component_ratio * 100) + "%</strong>",
-        "<span>" + escapeHtml(desire.description) + "</span>",
-        "</div>"
-      ].join("");
-    }).join("");
-
-    var scoreRows = state.desires.map(function (desire) {
-      return [
-        "<tr>",
-        "<td>" + escapeHtml(desire.name) + "</td>",
-        "<td>" + formatDecimal(result.raw_score[desire.id]) + "</td>",
-        "<td>" + formatDecimal(result.max_possible_score[desire.id]) + "</td>",
-        "<td>" + formatDecimal(result.normalized_score[desire.id]) + "</td>",
-        "<td>" + formatDecimal(result.component_ratio[desire.id]) + "</td>",
-        "</tr>"
-      ].join("");
-    }).join("");
-
+    var scores = window.MotivectorScoring.scoreAnswers(state.desires, state.questions, state.answers);
+    var model = window.MotivectorScoring.buildResultModel(state.desires, scores);
+    app.className = "card result-view";
     app.innerHTML = [
       renderStatus(),
-      '<p class="eyebrow">結果</p>',
-      "<h1>ココロの成分表</h1>",
-      '<p class="lead">' + escapeHtml(resultText) + "</p>",
-      '<div class="top-list">' + topHtml + "</div>",
-      '<table class="score-table">',
-      "<thead><tr><th>欲求</th><th>raw</th><th>max</th><th>normalized</th><th>ratio</th></tr></thead>",
-      "<tbody>" + scoreRows + "</tbody>",
-      "</table>",
-      '<button class="secondary-button" type="button" id="restart-button">もう一度診断する</button>'
+      '<header class="result-header"><p class="eyebrow">診断結果</p><h1>今回のココロの成分表</h1>',
+      '<p class="lead">' + escapeHtml(window.MotivectorResultText.buildTopIntroduction(model.topThree)) + "</p></header>",
+      '<section class="result-section" aria-labelledby="top-needs-title"><h2 id="top-needs-title">あなたを動かしやすい3つの成分</h2>',
+      '<div class="top-needs">' + renderTopNeeds(model.topThree) + "</div></section>",
+      '<section class="result-section low-needs-section" aria-labelledby="low-needs-title"><h2 id="low-needs-title">今回、前面には出にくかった成分</h2>',
+      '<p class="section-note">' + escapeHtml(window.MotivectorResultText.buildBottomIntroduction()) + "</p>",
+      '<div class="low-needs">' + renderBottomNeeds(model.bottomTwo) + "</div></section>",
+      '<section class="result-section" aria-labelledby="balance-title"><h2 id="balance-title">11成分のバランス</h2>',
+      '<p class="section-note">棒の長さは、今回の設問の中で各成分がどの程度表れたかを示す。ほかの人との比較ではなく、回答をこの診断内で整理した値である。</p>',
+      '<div class="balance-chart">' + renderBalanceBars(model.rankedNeeds) + "</div></section>",
+      '<details class="score-details"><summary>詳しいスコアを見る</summary>',
+      '<p class="section-note">成分比率は、11成分のnormalized_scoreを合計1として見たときの相対的な割合である。</p>',
+      '<div class="score-detail-list">' + renderScoreDetails(model.rankedNeeds) + "</div></details>",
+      '<button class="secondary-button restart-button" type="button" id="restart-button">もう一度診断する</button>'
     ].join("");
-
-    document.getElementById("restart-button").addEventListener("click", renderTitle);
+    document.getElementById("restart-button").addEventListener("click", function () {
+      state.answers = [];
+      state.currentIndex = 0;
+      renderTitle();
+    });
   }
 
   function renderError(error) {
+    resetAppClass();
     app.innerHTML = '<p class="error">データの読み込みに失敗した状態である。' + escapeHtml(error.message) + "</p>";
   }
 
-  loadData()
-    .then(function (data) {
-      state.dataset = data.dataset;
-      state.requestedDataset = data.requestedDataset;
-      state.dataWarning = data.warning;
-      state.validationReport = runValidation(data);
-      state.desires = data.desires;
-      state.questions = data.questions;
-      renderTitle();
-    })
-    .catch(renderError);
+  loadData().then(function (data) {
+    state.dataset = data.dataset;
+    state.requestedDataset = data.requestedDataset;
+    state.dataWarning = data.warning;
+    state.validationReport = runValidation(data);
+    state.desires = data.desires;
+    state.questions = data.questions;
+    renderTitle();
+  }).catch(renderError);
 })();

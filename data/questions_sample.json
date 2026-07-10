@@ -1,0 +1,182 @@
+[
+  {
+    "id": "q001",
+    "text": "休日の午前中に予定が空いたとき、まず何をするか。",
+    "choices": [
+      {
+        "text": "部屋や持ち物を整えて、落ち着いて過ごせる状態にする。",
+        "scores": {
+          "stability": 0.6,
+          "order": 0.4
+        }
+      },
+      {
+        "text": "気になっていた場所へ行き、初めての店や道を試す。",
+        "scores": {
+          "stimulation": 0.6,
+          "exploration": 0.4
+        }
+      },
+      {
+        "text": "作りかけの文章、絵、音楽、企画などに手を入れる。",
+        "scores": {
+          "creation": 0.7,
+          "meaning": 0.3
+        }
+      },
+      {
+        "text": "家族や友人に連絡して、一緒に過ごす予定を軽く相談する。",
+        "scores": {
+          "relationship": 0.6,
+          "autonomy": 0.2,
+          "stability": 0.2
+        }
+      }
+    ]
+  },
+  {
+    "id": "q002",
+    "text": "新しいプロジェクトに参加した直後、最初に取りたい行動はどれか。",
+    "choices": [
+      {
+        "text": "目的、期限、役割を確認して、全体の流れを整理する。",
+        "scores": {
+          "order": 0.6,
+          "stability": 0.2,
+          "influence": 0.2
+        }
+      },
+      {
+        "text": "自分が伸ばせそうな技術や知識を見つけ、練習の予定を作る。",
+        "scores": {
+          "growth": 0.7,
+          "exploration": 0.3
+        }
+      },
+      {
+        "text": "一緒に進める人に声をかけ、互いの得意なことを聞く。",
+        "scores": {
+          "relationship": 0.7,
+          "recognition": 0.3
+        }
+      },
+      {
+        "text": "関係者に小さな改善案を出し、まず一つ試してみる。",
+        "scores": {
+          "influence": 0.6,
+          "creation": 0.2,
+          "growth": 0.2
+        }
+      }
+    ]
+  },
+  {
+    "id": "q003",
+    "text": "意見が分かれた会議で、自分が自然にしやすいことはどれか。",
+    "choices": [
+      {
+        "text": "判断材料を集め、なぜ違いが出ているのかを確認する。",
+        "scores": {
+          "exploration": 0.6,
+          "order": 0.4
+        }
+      },
+      {
+        "text": "自分の案がどう役立つかを説明し、場を前に進める。",
+        "scores": {
+          "influence": 0.7,
+          "recognition": 0.3
+        }
+      },
+      {
+        "text": "それぞれの不安や期待を聞き、話しやすい空気を作る。",
+        "scores": {
+          "relationship": 0.6,
+          "stability": 0.4
+        }
+      },
+      {
+        "text": "いったん自分の考えを持ち帰り、納得できる形に整理する。",
+        "scores": {
+          "autonomy": 0.5,
+          "meaning": 0.3,
+          "order": 0.2
+        }
+      }
+    ]
+  },
+  {
+    "id": "q004",
+    "text": "まとまった時間を使って何かを改善できるなら、どれを選ぶか。",
+    "choices": [
+      {
+        "text": "毎日の作業手順を見直し、迷わず進められる形にする。",
+        "scores": {
+          "order": 0.5,
+          "growth": 0.3,
+          "stability": 0.2
+        }
+      },
+      {
+        "text": "自分で決めたテーマを深掘りし、納得できるまで調べる。",
+        "scores": {
+          "autonomy": 0.4,
+          "exploration": 0.4,
+          "meaning": 0.2
+        }
+      },
+      {
+        "text": "人に見せられる成果物として、形や表現を磨き込む。",
+        "scores": {
+          "creation": 0.5,
+          "recognition": 0.3,
+          "growth": 0.2
+        }
+      },
+      {
+        "text": "新しい道具や表現方法を試して、作業に変化を入れる。",
+        "scores": {
+          "stimulation": 0.4,
+          "creation": 0.4,
+          "exploration": 0.2
+        }
+      }
+    ]
+  },
+  {
+    "id": "q005",
+    "text": "次の一週間を自分らしく過ごすために、最も近い行動はどれか。",
+    "choices": [
+      {
+        "text": "予定を詰め込みすぎず、休む時間と安心できる場所を確保する。",
+        "scores": {
+          "stability": 0.7,
+          "autonomy": 0.3
+        }
+      },
+      {
+        "text": "誰かの役に立つ小さな働きかけを決め、実際に動いてみる。",
+        "scores": {
+          "influence": 0.5,
+          "relationship": 0.3,
+          "meaning": 0.2
+        }
+      },
+      {
+        "text": "普段選ばない予定を一つ入れ、気分が動く体験を作る。",
+        "scores": {
+          "stimulation": 0.7,
+          "autonomy": 0.3
+        }
+      },
+      {
+        "text": "一週間の中で、自分の考えや気持ちを形にする時間を作る。",
+        "scores": {
+          "creation": 0.5,
+          "meaning": 0.3,
+          "autonomy": 0.2
+        }
+      }
+    ]
+  }
+]

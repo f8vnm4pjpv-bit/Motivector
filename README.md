@@ -1,39 +1,112 @@
 # Motivector / ココロの成分表
 
-Motivectorは、行動の選び方から欲求の傾向を仮に可視化する静的Webアプリである。
+Motivectorは、行動の選び方から11の欲求成分の表れ方を整理する静的Webアプリである。
 
 ## 現在の開発段階
 
-HTML、CSS、JavaScriptのみで動く初期構成である。質問と欲求定義は仮データであり、診断精度を検証する段階ではない。
+HTML、CSS、JavaScriptのみで動く本番候補版である。通常版には、試験回答と文面レビューを経た30問・各4択を反映している。診断結果は性格、能力、人口平均との差を断定するものではなく、今回の回答を診断内で整理した値である。
+
+キャラクターやタイプ名を使った表示は将来候補であり、現時点では未実装である。
 
 ## 実行方法
 
-`index.html` をブラウザで開くと実行できる。GitHub Pages上では `data/` 配下のJSONを読み込む構成である。
+GitHub Pages上では `data/` 配下のJSONを読み込む。ローカルでは、ブラウザのfetch制限を避けるためHTTPサーバーを使う。
+
+```bash
+python -m http.server 8000
+```
+
+この環境で `python` が使えない場合は、`py`、`python3`、または利用可能なPython実行ファイルへ置き換える。
+
+通常版は以下で確認する。
+
+```text
+http://localhost:8000/index.html
+http://localhost:8000/index.html?dataset=production
+```
 
 ## 公開方針
 
-GitHub Pagesで公開予定である。自前サーバーやサーバーサイド処理は使わない方針である。
+GitHub Pagesで公開予定である。自前サーバーやサーバーサイド処理、npm、外部ビルドツールは使用しない。
 
 ## データファイルの役割
 
-`data/desires.json` は11欲求の定義を管理するファイルである。`id`、`name`、`description`を持つ。`id`は採点と表示の接続点であるため、変更時は質問データも同時に確認する必要がある。
+- `data/desires.json`: 11欲求の `id`、名称、説明を管理する。
+- `data/questions.json`: 通常版の30問・120選択肢である。
+- `data/questions_sample.json`: UIと動作確認用の5問・20選択肢である。
+- `data/questions_draft_v1.json`: 元CSVから再生成した本番候補の確認用データである。
 
-`data/questions.json` は質問と選択肢を管理するファイルである。各質問は `id`、`text`、`choices`を持ち、各選択肢は `text` と `scores` を持つ。`scores` のキーは `desires.json` の `id` と一致する必要がある。
+各質問は `id`、`text`、`choices` を持つ。各選択肢は `text` と `scores` を持ち、`scores` のキーは `desires.json` の欲求idと一致する必要がある。
+
+## データセット切り替え
+
+| URL | dataset | 読み込み先 | 内容 |
+| --- | --- | --- | --- |
+| `index.html` | production | `data/questions.json` | 通常版30問 |
+| `index.html?dataset=production` | production | `data/questions.json` | 通常版30問 |
+| `index.html?dataset=sample` | sample | `data/questions_sample.json` | 動作確認用5問 |
+| `index.html?dataset=draft` | draft | `data/questions_draft_v1.json` | CSV再生成後の確認用30問 |
+
+未知の `dataset` はproductionへフォールバックし、コンソールへ警告を出す。`file://` 直開きでJSONのfetchに失敗した場合は、`js/app.js` 内の5問sampleフォールバックを使う。この場合、画面には実際のdatasetと要求されたdatasetを表示する。productionとdraftの30問は `app.js` へ埋め込まない。
 
 ## 採点方式
 
-`raw_score` は回答で得た点数の合計である。`max_possible_score` は各欲求が理論上取りうる最大点である。`normalized_score` は `raw_score / max_possible_score` である。`component_ratio` は `normalized_score / sum(normalized_score)` であり、最終的なメイン表示の想定値である。
+- `raw_score`: 回答で得た点数の合計である。
+- `max_possible_score`: 各欲求が理論上取りうる最大点である。
+- `normalized_score`: `raw_score / max_possible_score` である。
+- `component_ratio`: `normalized_score / sum(normalized_score)` である。
 
-## 検証方針
+一般利用者向けの主要表示と11成分の横棒には `normalized_score` を使う。`component_ratio` は、11成分のnormalized scoreを合計1として見た相対比率として、折りたたみ式の詳細スコア内だけに補助表示する。
 
-本番質問を投入する前に、`js/validation.js` でデータ構造、未定義の欲求id、選択肢ごとの配点先数、合計配点、`max_possible_score` の偏りを確認する必要がある。現在は起動時にコンソールへ検証結果を出力する。
+結果画面は、上位3成分、相対的に前面へ出にくかった2成分、11成分すべての横棒、折りたたみ式の詳細スコアの順で表示する。11成分は値が近くなりやすいため、円グラフは採用していない。
+
+上位3と下位2は `normalized_score` で選出する。同点の場合は `data/desires.json` の定義順を優先し、上位と下位が重複しないようにする。
+
+## 本番質問への昇格
+
+`tools/promote_questions.py` は、`data/questions_draft_v1.json` を `data/desires.json` と照合し、質問構造と配点を検証する。エラーがない場合だけ `data/questions.json` へコピーし、質問数、選択肢数、出力一致を報告する。
+
+```bash
+python tools/promote_questions.py
+```
+
+`data/questions_sample.json` は昇格対象ではなく、動作確認用として保持する。
+
+## 質問候補データの生成
+
+`tools/convert_questions_csv_to_json.py` は、正本である `docs/motivector_question_draft_v1_long.csv` を読み込み、`data/questions_draft_v1.json` を生成する。
+
+```bash
+python tools/convert_questions_csv_to_json.py
+```
+
+生成後は検証とブラウザ確認を行い、問題がなければ昇格スクリプトを実行する。
+
+## 質問候補データの検証
+
+`tools/validate_questions_json.py` は、質問数、選択肢数、必須フィールド、未定義の欲求id、配点先数、合計配点、`max_possible_score` の偏りを検証する。エラーがある場合は終了コード1を返す。
+
+```bash
+python tools/validate_questions_json.py
+```
+
+アプリ起動時にも `js/validation.js` が読み込んだdatasetを検証し、結果を画面とコンソールへ出力する。
+
+## draft質問レビュー
+
+`docs/question_review_notes.md` は、人がブラウザで確認して見つけた文面上の違和感と反映状況を記録する。`data/questions_draft_v1.json` は生成物であるため直接修正せず、正本のCSVへ反映して再生成する。
+
+`tools/generate_question_review_sheet.py` は、元CSVから全30問のレビュー用 `docs/question_review_sheet.md` を生成する。
+
+```bash
+python tools/generate_question_review_sheet.py
+```
 
 ## ディレクトリ構成
 
 ```text
 index.html
 README.md
-.gitignore
 css/
   style.css
 js/
@@ -44,80 +117,20 @@ js/
 data/
   desires.json
   questions.json
+  questions_sample.json
+  questions_draft_v1.json
+tools/
+  convert_questions_csv_to_json.py
+  generate_question_review_sheet.py
+  promote_questions.py
+  validate_questions_json.py
 docs/
-  仕様書、CSV、Excel資料
+  元CSV、Excel、仕様書、レビュー記録
 ```
 
 ## 今後の作業候補
 
-- 仕様書に基づく本番用質問への置き換え
-- 欲求ごとの説明文と結果文の調整
-- 採点ロジックの検証用テストデータ作成
+- 回答サンプルを増やした質問・配点バランスの検証
+- 欲求説明と結果文の継続的な文面調整
+- 上位・下位の組み合わせを使うキャラクター機能の設計
 - GitHub Pages公開設定
-- レーダーチャートなどの可視化追加
-
-## 質問候補データの生成
-
-`tools/convert_questions_csv_to_json.py` は、`docs/motivector_question_draft_v1_long.csv` を読み込み、`data/questions_draft_v1.json` を生成する変換スクリプトである。`question_id` ごとに選択肢をまとめ、`data/questions.json` と互換のある構造へ変換する。CSV内の日本語欲求名は、スクリプト内の固定マッピングで `data/desires.json` の英語idへ変換する。
-
-実行例は以下である。
-
-```bash
-python tools/convert_questions_csv_to_json.py
-```
-
-この環境で `python` が使えない場合は、利用可能なPython実行ファイルに置き換える。
-
-## 質問候補データの検証
-
-`tools/validate_questions_json.py` は、`data/questions_draft_v1.json` を読み込み、質問数、選択肢数、必須フィールド、未定義の欲求id、配点先数、合計配点、`max_possible_score`、欲求間の偏りを検証するスクリプトである。エラーがある場合は終了コード1を返す。警告のみの場合は終了コード0である。
-
-実行例は以下である。
-
-```bash
-python tools/validate_questions_json.py
-```
-
-`data/questions_draft_v1.json` は本番投入前の候補データである。アプリ本体が読み込む `data/questions.json` へ反映する前に、必ず変換結果と検証結果を確認する必要がある。
-
-## データセット切り替え
-
-通常確認では `index.html` または `index.html?dataset=sample` を開く。これは `data/questions.json` を読み込む確認方法である。
-
-本番質問候補を確認する場合は `index.html?dataset=draft` を開く。これは `data/questions_draft_v1.json` を読み込む開発用モードである。未知の `dataset` が指定された場合は `sample` にフォールバックする。
-
-`file://` 直開きでは、ブラウザの制限によってdraftデータを読み込めない場合がある。その場合はsampleフォールバックに落ちるため、draft確認はローカルサーバーまたはGitHub Pages上で行う必要がある。
-
-Pythonが使える環境では、以下のようにローカルサーバーを起動できる。
-
-```bash
-python -m http.server 8000
-```
-
-この環境では `python` コマンドが未検出の場合があるため、必要に応じて `py`、`python3`、またはバンドル済みPython実行ファイルに置き換える。
-
-## draft質問文面レビュー
-
-`docs/question_review_notes.md` は、draft質問をブラウザで確認して見つけた違和感を記録する場所である。直接 `data/questions_draft_v1.json` を修正する前に、このファイルへ修正候補を残す。
-
-`data/questions_draft_v1.json` はCSVから再生成される可能性があるため、修正元をCSV、変換スクリプト、生成後JSONのどれにするかを決めてから反映する必要がある。
-
-## draft質問レビューシート
-
-`tools/generate_question_review_sheet.py` は、`docs/motivector_question_draft_v1_long.csv` から全30問のレビュー用Markdownを生成するスクリプトである。出力先は `docs/question_review_sheet.md` である。
-
-実行例は以下である。
-
-```bash
-python tools/generate_question_review_sheet.py
-```
-
-`docs/question_review_sheet.md` は、質問文と選択肢の粒度、文体、抽象度、主配点との対応を確認するためのレビュー支援ファイルである。レビュー後は `docs/question_review_notes.md` に修正候補を集約し、修正元を決めた上で元CSVへ反映する流れである。
-
-`data/questions_draft_v1.json` は生成物であるため、直接修正しない。
-
-## sampleデータの確認
-
-`data/questions.json` のsampleデータは、UI確認でdraftと比較しやすいように5問すべてを4択に揃えている。本番候補データは `data/questions_draft_v1.json` である。
-
-通常確認は `index.html`、draft確認は `index.html?dataset=draft` を使う。

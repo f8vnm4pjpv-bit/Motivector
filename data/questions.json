@@ -1,182 +1,3692 @@
 [
   {
     "id": "q001",
-    "text": "休日の午前中に予定が空いたとき、まず何をするか。",
+    "text": "予定のない休日、時間と体力に少し余裕があるとき、最初にしがちなことは？",
     "choices": [
       {
-        "text": "部屋や持ち物を整えて、落ち着いて過ごせる状態にする。",
+        "text": "体力や予算を見て、無理なく過ごせる範囲を決める",
         "scores": {
-          "stability": 0.6,
-          "order": 0.4
+          "stability": 0.7,
+          "autonomy": 0.1,
+          "order": 0.2
+        },
+        "meta": {
+          "choice_label": "A",
+          "score_total": 1.0,
+          "source_id": "B01",
+          "source_example_ids": [
+            "安定-01"
+          ],
+          "primary_need": {
+            "name": "安定欲求",
+            "id": "stability"
+          },
+          "secondary_need": {
+            "name": "秩序欲求",
+            "id": "order"
+          },
+          "tertiary_need": {
+            "name": "自律欲求",
+            "id": "autonomy"
+          }
         }
       },
       {
-        "text": "気になっていた場所へ行き、初めての店や道を試す。",
+        "text": "行ったことのない店や場所を軽く調べて、気が向いたら出かける",
         "scores": {
-          "stimulation": 0.6,
-          "exploration": 0.4
+          "autonomy": 0.1,
+          "exploration": 0.2,
+          "stimulation": 0.7
+        },
+        "meta": {
+          "choice_label": "B",
+          "score_total": 1.0,
+          "source_id": "B01",
+          "source_example_ids": [
+            "刺激-01"
+          ],
+          "primary_need": {
+            "name": "刺激欲求",
+            "id": "stimulation"
+          },
+          "secondary_need": {
+            "name": "探究欲求",
+            "id": "exploration"
+          },
+          "tertiary_need": {
+            "name": "自律欲求",
+            "id": "autonomy"
+          }
         }
       },
       {
-        "text": "作りかけの文章、絵、音楽、企画などに手を入れる。",
+        "text": "気になっていた本・動画・記事を見て、知らない分野を少しのぞく",
         "scores": {
-          "creation": 0.7,
-          "meaning": 0.3
+          "growth": 0.1,
+          "exploration": 0.7,
+          "stimulation": 0.2
+        },
+        "meta": {
+          "choice_label": "C",
+          "score_total": 1.0,
+          "source_id": "B01",
+          "source_example_ids": [
+            "探究-11"
+          ],
+          "primary_need": {
+            "name": "探究欲求",
+            "id": "exploration"
+          },
+          "secondary_need": {
+            "name": "刺激欲求",
+            "id": "stimulation"
+          },
+          "tertiary_need": {
+            "name": "成長欲求",
+            "id": "growth"
+          }
         }
       },
       {
-        "text": "家族や友人に連絡して、一緒に過ごす予定を軽く相談する。",
+        "text": "作りかけのものや、前から形にしたかったことに手をつける",
         "scores": {
-          "relationship": 0.6,
-          "autonomy": 0.2,
-          "stability": 0.2
+          "autonomy": 0.1,
+          "growth": 0.2,
+          "creation": 0.7
+        },
+        "meta": {
+          "choice_label": "D",
+          "score_total": 1.0,
+          "source_id": "B01",
+          "source_example_ids": [
+            "創造-06"
+          ],
+          "primary_need": {
+            "name": "創造欲求",
+            "id": "creation"
+          },
+          "secondary_need": {
+            "name": "成長欲求",
+            "id": "growth"
+          },
+          "tertiary_need": {
+            "name": "自律欲求",
+            "id": "autonomy"
+          }
         }
       }
-    ]
+    ],
+    "meta": {
+      "source_question_id": "Q01",
+      "question_type": "自然行動",
+      "scene": "予定のない休日・自由時間"
+    }
   },
   {
     "id": "q002",
-    "text": "新しいプロジェクトに参加した直後、最初に取りたい行動はどれか。",
+    "text": "初めての場所へ出かけるとき、近い考え方は？",
     "choices": [
       {
-        "text": "目的、期限、役割を確認して、全体の流れを整理する。",
+        "text": "帰り方や休める場所を先に見ておくと、落ち着いて楽しめる",
         "scores": {
-          "order": 0.6,
+          "stability": 0.7,
+          "exploration": 0.1,
+          "order": 0.2
+        },
+        "meta": {
+          "choice_label": "A",
+          "score_total": 1.0,
+          "source_id": "B02",
+          "source_example_ids": [
+            "安定-02"
+          ],
+          "primary_need": {
+            "name": "安定欲求",
+            "id": "stability"
+          },
+          "secondary_need": {
+            "name": "秩序欲求",
+            "id": "order"
+          },
+          "tertiary_need": {
+            "name": "探究欲求",
+            "id": "exploration"
+          }
+        }
+      },
+      {
+        "text": "集合時間や持ち物を先に確認して、当日の流れを見えるようにする",
+        "scores": {
           "stability": 0.2,
-          "influence": 0.2
+          "relationship": 0.1,
+          "order": 0.7
+        },
+        "meta": {
+          "choice_label": "B",
+          "score_total": 1.0,
+          "source_id": "B02",
+          "source_example_ids": [
+            "秩序-03"
+          ],
+          "primary_need": {
+            "name": "秩序欲求",
+            "id": "order"
+          },
+          "secondary_need": {
+            "name": "安定欲求",
+            "id": "stability"
+          },
+          "tertiary_need": {
+            "name": "関係欲求",
+            "id": "relationship"
+          }
         }
       },
       {
-        "text": "自分が伸ばせそうな技術や知識を見つけ、練習の予定を作る。",
+        "text": "予定通りに回るだけでなく、偶然見つけた寄り道も楽しみたい",
         "scores": {
-          "growth": 0.7,
-          "exploration": 0.3
+          "autonomy": 0.2,
+          "exploration": 0.1,
+          "stimulation": 0.7
+        },
+        "meta": {
+          "choice_label": "C",
+          "score_total": 1.0,
+          "source_id": "B02",
+          "source_example_ids": [
+            "刺激-07"
+          ],
+          "primary_need": {
+            "name": "刺激欲求",
+            "id": "stimulation"
+          },
+          "secondary_need": {
+            "name": "自律欲求",
+            "id": "autonomy"
+          },
+          "tertiary_need": {
+            "name": "探究欲求",
+            "id": "exploration"
+          }
         }
       },
       {
-        "text": "一緒に進める人に声をかけ、互いの得意なことを聞く。",
+        "text": "街並みや店を見ながら、なぜここにこういう場所があるのか気になる",
         "scores": {
-          "relationship": 0.7,
-          "recognition": 0.3
-        }
-      },
-      {
-        "text": "関係者に小さな改善案を出し、まず一つ試してみる。",
-        "scores": {
-          "influence": 0.6,
-          "creation": 0.2,
-          "growth": 0.2
+          "exploration": 0.7,
+          "stimulation": 0.1,
+          "meaning": 0.2
+        },
+        "meta": {
+          "choice_label": "D",
+          "score_total": 1.0,
+          "source_id": "B02",
+          "source_example_ids": [
+            "探究-03"
+          ],
+          "primary_need": {
+            "name": "探究欲求",
+            "id": "exploration"
+          },
+          "secondary_need": {
+            "name": "意味欲求",
+            "id": "meaning"
+          },
+          "tertiary_need": {
+            "name": "刺激欲求",
+            "id": "stimulation"
+          }
         }
       }
-    ]
+    ],
+    "meta": {
+      "source_question_id": "Q02",
+      "question_type": "自然行動",
+      "scene": "外出・旅行の計画"
+    }
   },
   {
     "id": "q003",
-    "text": "意見が分かれた会議で、自分が自然にしやすいことはどれか。",
+    "text": "新しい環境や初めての集まりに入るとき、まず意識しやすいことは？",
     "choices": [
       {
-        "text": "判断材料を集め、なぜ違いが出ているのかを確認する。",
+        "text": "安心していられる場所や、話しかけやすそうな人を見つける",
         "scores": {
-          "exploration": 0.6,
-          "order": 0.4
+          "stability": 0.7,
+          "relationship": 0.2,
+          "order": 0.1
+        },
+        "meta": {
+          "choice_label": "A",
+          "score_total": 1.0,
+          "source_id": "B03",
+          "source_example_ids": [
+            "安定-07"
+          ],
+          "primary_need": {
+            "name": "安定欲求",
+            "id": "stability"
+          },
+          "secondary_need": {
+            "name": "関係欲求",
+            "id": "relationship"
+          },
+          "tertiary_need": {
+            "name": "秩序欲求",
+            "id": "order"
+          }
         }
       },
       {
-        "text": "自分の案がどう役立つかを説明し、場を前に進める。",
+        "text": "小さな挨拶や雑談をして、その場に入りやすい空気を作る",
         "scores": {
-          "influence": 0.7,
-          "recognition": 0.3
+          "stability": 0.2,
+          "relationship": 0.7,
+          "influence": 0.1
+        },
+        "meta": {
+          "choice_label": "B",
+          "score_total": 1.0,
+          "source_id": "B03",
+          "source_example_ids": [
+            "関係-15"
+          ],
+          "primary_need": {
+            "name": "関係欲求",
+            "id": "relationship"
+          },
+          "secondary_need": {
+            "name": "安定欲求",
+            "id": "stability"
+          },
+          "tertiary_need": {
+            "name": "影響欲求",
+            "id": "influence"
+          }
         }
       },
       {
-        "text": "それぞれの不安や期待を聞き、話しやすい空気を作る。",
+        "text": "最初は疲れても、新しい雰囲気そのものを少し楽しむ",
         "scores": {
-          "relationship": 0.6,
-          "stability": 0.4
+          "stability": 0.1,
+          "exploration": 0.2,
+          "stimulation": 0.7
+        },
+        "meta": {
+          "choice_label": "C",
+          "score_total": 1.0,
+          "source_id": "B03",
+          "source_example_ids": [
+            "刺激-12"
+          ],
+          "primary_need": {
+            "name": "刺激欲求",
+            "id": "stimulation"
+          },
+          "secondary_need": {
+            "name": "探究欲求",
+            "id": "exploration"
+          },
+          "tertiary_need": {
+            "name": "安定欲求",
+            "id": "stability"
+          }
         }
       },
       {
-        "text": "いったん自分の考えを持ち帰り、納得できる形に整理する。",
+        "text": "何をどの順番でするのか、全体の流れを早めにつかみたい",
         "scores": {
-          "autonomy": 0.5,
-          "meaning": 0.3,
-          "order": 0.2
+          "stability": 0.2,
+          "exploration": 0.1,
+          "order": 0.7
+        },
+        "meta": {
+          "choice_label": "D",
+          "score_total": 1.0,
+          "source_id": "B03",
+          "source_example_ids": [
+            "秩序-08"
+          ],
+          "primary_need": {
+            "name": "秩序欲求",
+            "id": "order"
+          },
+          "secondary_need": {
+            "name": "安定欲求",
+            "id": "stability"
+          },
+          "tertiary_need": {
+            "name": "探究欲求",
+            "id": "exploration"
+          }
         }
       }
-    ]
+    ],
+    "meta": {
+      "source_question_id": "Q03",
+      "question_type": "自然行動",
+      "scene": "新しい環境・初参加"
+    }
   },
   {
     "id": "q004",
-    "text": "まとまった時間を使って何かを改善できるなら、どれを選ぶか。",
+    "text": "人から誘われたり予定を調整したりするとき、気になりやすいことは？",
     "choices": [
       {
-        "text": "毎日の作業手順を見直し、迷わず進められる形にする。",
+        "text": "楽しそうでも、翌日の負担や体力に無理がないかを考える",
         "scores": {
-          "order": 0.5,
-          "growth": 0.3,
-          "stability": 0.2
+          "stability": 0.7,
+          "autonomy": 0.2,
+          "relationship": 0.1
+        },
+        "meta": {
+          "choice_label": "A",
+          "score_total": 1.0,
+          "source_id": "B04",
+          "source_example_ids": [
+            "安定-10"
+          ],
+          "primary_need": {
+            "name": "安定欲求",
+            "id": "stability"
+          },
+          "secondary_need": {
+            "name": "自律欲求",
+            "id": "autonomy"
+          },
+          "tertiary_need": {
+            "name": "関係欲求",
+            "id": "relationship"
+          }
         }
       },
       {
-        "text": "自分で決めたテーマを深掘りし、納得できるまで調べる。",
+        "text": "細かく決められすぎるより、自分で調整できる余地がほしい",
         "scores": {
-          "autonomy": 0.4,
-          "exploration": 0.4,
-          "meaning": 0.2
+          "stability": 0.1,
+          "autonomy": 0.7,
+          "order": 0.2
+        },
+        "meta": {
+          "choice_label": "B",
+          "score_total": 1.0,
+          "source_id": "B04",
+          "source_example_ids": [
+            "自律-02"
+          ],
+          "primary_need": {
+            "name": "自律欲求",
+            "id": "autonomy"
+          },
+          "secondary_need": {
+            "name": "秩序欲求",
+            "id": "order"
+          },
+          "tertiary_need": {
+            "name": "安定欲求",
+            "id": "stability"
+          }
         }
       },
       {
-        "text": "人に見せられる成果物として、形や表現を磨き込む。",
+        "text": "自分の希望だけでなく、相手の都合や気分もかなり気にする",
         "scores": {
-          "creation": 0.5,
-          "recognition": 0.3,
-          "growth": 0.2
+          "stability": 0.2,
+          "autonomy": 0.1,
+          "relationship": 0.7
+        },
+        "meta": {
+          "choice_label": "C",
+          "score_total": 1.0,
+          "source_id": "B04",
+          "source_example_ids": [
+            "関係-03"
+          ],
+          "primary_need": {
+            "name": "関係欲求",
+            "id": "relationship"
+          },
+          "secondary_need": {
+            "name": "安定欲求",
+            "id": "stability"
+          },
+          "tertiary_need": {
+            "name": "自律欲求",
+            "id": "autonomy"
+          }
         }
       },
       {
-        "text": "新しい道具や表現方法を試して、作業に変化を入れる。",
+        "text": "その場の流れで予定が少し変わるのも、悪くないと思う",
         "scores": {
-          "stimulation": 0.4,
-          "creation": 0.4,
-          "exploration": 0.2
+          "autonomy": 0.1,
+          "relationship": 0.2,
+          "stimulation": 0.7
+        },
+        "meta": {
+          "choice_label": "D",
+          "score_total": 1.0,
+          "source_id": "B04",
+          "source_example_ids": [
+            "刺激-08"
+          ],
+          "primary_need": {
+            "name": "刺激欲求",
+            "id": "stimulation"
+          },
+          "secondary_need": {
+            "name": "関係欲求",
+            "id": "relationship"
+          },
+          "tertiary_need": {
+            "name": "自律欲求",
+            "id": "autonomy"
+          }
         }
       }
-    ]
+    ],
+    "meta": {
+      "source_question_id": "Q04",
+      "question_type": "自然行動",
+      "scene": "予定調整・誘いを受ける"
+    }
   },
   {
     "id": "q005",
-    "text": "次の一週間を自分らしく過ごすために、最も近い行動はどれか。",
+    "text": "買い物や流行りものに触れるとき、近い行動は？",
     "choices": [
       {
-        "text": "予定を詰め込みすぎず、休む時間と安心できる場所を確保する。",
+        "text": "失敗しにくい定番や、口コミの多いものを選びやすい",
         "scores": {
           "stability": 0.7,
-          "autonomy": 0.3
+          "relationship": 0.1,
+          "order": 0.2
+        },
+        "meta": {
+          "choice_label": "A",
+          "score_total": 1.0,
+          "source_id": "B05",
+          "source_example_ids": [
+            "安定-04"
+          ],
+          "primary_need": {
+            "name": "安定欲求",
+            "id": "stability"
+          },
+          "secondary_need": {
+            "name": "秩序欲求",
+            "id": "order"
+          },
+          "tertiary_need": {
+            "name": "関係欲求",
+            "id": "relationship"
+          }
         }
       },
       {
-        "text": "誰かの役に立つ小さな働きかけを決め、実際に動いてみる。",
+        "text": "流行っているという理由だけでは動かず、自分に合うかを考える",
         "scores": {
-          "influence": 0.5,
-          "relationship": 0.3,
+          "stability": 0.1,
+          "autonomy": 0.7,
           "meaning": 0.2
+        },
+        "meta": {
+          "choice_label": "B",
+          "score_total": 1.0,
+          "source_id": "B05",
+          "source_example_ids": [
+            "自律-05"
+          ],
+          "primary_need": {
+            "name": "自律欲求",
+            "id": "autonomy"
+          },
+          "secondary_need": {
+            "name": "意味欲求",
+            "id": "meaning"
+          },
+          "tertiary_need": {
+            "name": "安定欲求",
+            "id": "stability"
+          }
         }
       },
       {
-        "text": "普段選ばない予定を一つ入れ、気分が動く体験を作る。",
+        "text": "見慣れないものや変わったものに、つい目が行く",
         "scores": {
+          "exploration": 0.1,
           "stimulation": 0.7,
-          "autonomy": 0.3
+          "creation": 0.2
+        },
+        "meta": {
+          "choice_label": "C",
+          "score_total": 1.0,
+          "source_id": "B05",
+          "source_example_ids": [
+            "刺激-10"
+          ],
+          "primary_need": {
+            "name": "刺激欲求",
+            "id": "stimulation"
+          },
+          "secondary_need": {
+            "name": "創造欲求",
+            "id": "creation"
+          },
+          "tertiary_need": {
+            "name": "探究欲求",
+            "id": "exploration"
+          }
         }
       },
       {
-        "text": "一週間の中で、自分の考えや気持ちを形にする時間を作る。",
+        "text": "便利さだけでなく、背景や作り手の考えが感じられるものに惹かれる",
         "scores": {
-          "creation": 0.5,
-          "meaning": 0.3,
-          "autonomy": 0.2
+          "exploration": 0.2,
+          "creation": 0.1,
+          "meaning": 0.7
+        },
+        "meta": {
+          "choice_label": "D",
+          "score_total": 1.0,
+          "source_id": "B05",
+          "source_example_ids": [
+            "意味-02"
+          ],
+          "primary_need": {
+            "name": "意味欲求",
+            "id": "meaning"
+          },
+          "secondary_need": {
+            "name": "探究欲求",
+            "id": "exploration"
+          },
+          "tertiary_need": {
+            "name": "創造欲求",
+            "id": "creation"
+          }
         }
       }
-    ]
+    ],
+    "meta": {
+      "source_question_id": "Q05",
+      "question_type": "自然行動",
+      "scene": "買い物・流行・選ぶもの"
+    }
+  },
+  {
+    "id": "q006",
+    "text": "やることが多い課題や作業に入るとき、まずしがちなことは？",
+    "choices": [
+      {
+        "text": "最低限終わる形を先に確保してから、細部に入る",
+        "scores": {
+          "stability": 0.7,
+          "growth": 0.1,
+          "order": 0.2
+        },
+        "meta": {
+          "choice_label": "A",
+          "score_total": 1.0,
+          "source_id": "B06",
+          "source_example_ids": [
+            "安定-08"
+          ],
+          "primary_need": {
+            "name": "安定欲求",
+            "id": "stability"
+          },
+          "secondary_need": {
+            "name": "秩序欲求",
+            "id": "order"
+          },
+          "tertiary_need": {
+            "name": "成長欲求",
+            "id": "growth"
+          }
+        }
+      },
+      {
+        "text": "やることを一覧にして、全体量と優先順位を見えるようにする",
+        "scores": {
+          "stability": 0.2,
+          "growth": 0.1,
+          "order": 0.7
+        },
+        "meta": {
+          "choice_label": "B",
+          "score_total": 1.0,
+          "source_id": "B06",
+          "source_example_ids": [
+            "秩序-01"
+          ],
+          "primary_need": {
+            "name": "秩序欲求",
+            "id": "order"
+          },
+          "secondary_need": {
+            "name": "安定欲求",
+            "id": "stability"
+          },
+          "tertiary_need": {
+            "name": "成長欲求",
+            "id": "growth"
+          }
+        }
+      },
+      {
+        "text": "同じ作業でも、自分なりに進めやすい手順を組みたい",
+        "scores": {
+          "autonomy": 0.7,
+          "growth": 0.2,
+          "creation": 0.1
+        },
+        "meta": {
+          "choice_label": "C",
+          "score_total": 1.0,
+          "source_id": "B06",
+          "source_example_ids": [
+            "自律-03"
+          ],
+          "primary_need": {
+            "name": "自律欲求",
+            "id": "autonomy"
+          },
+          "secondary_need": {
+            "name": "成長欲求",
+            "id": "growth"
+          },
+          "tertiary_need": {
+            "name": "創造欲求",
+            "id": "creation"
+          }
+        }
+      },
+      {
+        "text": "少し難しい部分から、自分の力が伸びそうなところを探す",
+        "scores": {
+          "growth": 0.7,
+          "exploration": 0.2,
+          "recognition": 0.1
+        },
+        "meta": {
+          "choice_label": "D",
+          "score_total": 1.0,
+          "source_id": "B06",
+          "source_example_ids": [
+            "成長-01"
+          ],
+          "primary_need": {
+            "name": "成長欲求",
+            "id": "growth"
+          },
+          "secondary_need": {
+            "name": "探究欲求",
+            "id": "exploration"
+          },
+          "tertiary_need": {
+            "name": "評価欲求",
+            "id": "recognition"
+          }
+        }
+      }
+    ],
+    "meta": {
+      "source_question_id": "Q06",
+      "question_type": "自然行動",
+      "scene": "課題・仕事の始め方"
+    }
+  },
+  {
+    "id": "q007",
+    "text": "新しいことを学び始めるなら、入り口として近いものは？",
+    "choices": [
+      {
+        "text": "基礎から積み上げて、少しずつ上達を感じたい",
+        "scores": {
+          "stability": 0.1,
+          "growth": 0.7,
+          "order": 0.2
+        },
+        "meta": {
+          "choice_label": "A",
+          "score_total": 1.0,
+          "source_id": "B07",
+          "source_example_ids": [
+            "成長-03"
+          ],
+          "primary_need": {
+            "name": "成長欲求",
+            "id": "growth"
+          },
+          "secondary_need": {
+            "name": "秩序欲求",
+            "id": "order"
+          },
+          "tertiary_need": {
+            "name": "安定欲求",
+            "id": "stability"
+          }
+        }
+      },
+      {
+        "text": "まず全体像や仕組みを知って、何をしているのか納得したい",
+        "scores": {
+          "autonomy": 0.1,
+          "exploration": 0.7,
+          "order": 0.2
+        },
+        "meta": {
+          "choice_label": "B",
+          "score_total": 1.0,
+          "source_id": "B07",
+          "source_example_ids": [
+            "探究-07"
+          ],
+          "primary_need": {
+            "name": "探究欲求",
+            "id": "exploration"
+          },
+          "secondary_need": {
+            "name": "秩序欲求",
+            "id": "order"
+          },
+          "tertiary_need": {
+            "name": "自律欲求",
+            "id": "autonomy"
+          }
+        }
+      },
+      {
+        "text": "練習メニューや手順が整理されていると取り組みやすい",
+        "scores": {
+          "stability": 0.1,
+          "growth": 0.2,
+          "order": 0.7
+        },
+        "meta": {
+          "choice_label": "C",
+          "score_total": 1.0,
+          "source_id": "B07",
+          "source_example_ids": [
+            "秩序-06"
+          ],
+          "primary_need": {
+            "name": "秩序欲求",
+            "id": "order"
+          },
+          "secondary_need": {
+            "name": "成長欲求",
+            "id": "growth"
+          },
+          "tertiary_need": {
+            "name": "安定欲求",
+            "id": "stability"
+          }
+        }
+      },
+      {
+        "text": "自分なりの作品や成果物を作れる形から入ると楽しい",
+        "scores": {
+          "autonomy": 0.1,
+          "growth": 0.2,
+          "creation": 0.7
+        },
+        "meta": {
+          "choice_label": "D",
+          "score_total": 1.0,
+          "source_id": "B07",
+          "source_example_ids": [
+            "創造-01"
+          ],
+          "primary_need": {
+            "name": "創造欲求",
+            "id": "creation"
+          },
+          "secondary_need": {
+            "name": "成長欲求",
+            "id": "growth"
+          },
+          "tertiary_need": {
+            "name": "自律欲求",
+            "id": "autonomy"
+          }
+        }
+      }
+    ],
+    "meta": {
+      "source_question_id": "Q07",
+      "question_type": "自然行動",
+      "scene": "新しい技能・学習"
+    }
+  },
+  {
+    "id": "q008",
+    "text": "グループで方針を決める場面で、自然に意識しやすいことは？",
+    "choices": [
+      {
+        "text": "まず全員が話しやすい空気になっているかを見る",
+        "scores": {
+          "stability": 0.2,
+          "relationship": 0.7,
+          "influence": 0.1
+        },
+        "meta": {
+          "choice_label": "A",
+          "score_total": 1.0,
+          "source_id": "B11",
+          "source_example_ids": [
+            "関係-01"
+          ],
+          "primary_need": {
+            "name": "関係欲求",
+            "id": "relationship"
+          },
+          "secondary_need": {
+            "name": "安定欲求",
+            "id": "stability"
+          },
+          "tertiary_need": {
+            "name": "影響欲求",
+            "id": "influence"
+          }
+        }
+      },
+      {
+        "text": "多数派に流れる前に、自分の考えを一度は言葉にする",
+        "scores": {
+          "autonomy": 0.7,
+          "influence": 0.2,
+          "meaning": 0.1
+        },
+        "meta": {
+          "choice_label": "B",
+          "score_total": 1.0,
+          "source_id": "B11",
+          "source_example_ids": [
+            "自律-04"
+          ],
+          "primary_need": {
+            "name": "自律欲求",
+            "id": "autonomy"
+          },
+          "secondary_need": {
+            "name": "影響欲求",
+            "id": "influence"
+          },
+          "tertiary_need": {
+            "name": "意味欲求",
+            "id": "meaning"
+          }
+        }
+      },
+      {
+        "text": "話が動いていないなら、次に何を決めるかを提案する",
+        "scores": {
+          "relationship": 0.1,
+          "influence": 0.7,
+          "order": 0.2
+        },
+        "meta": {
+          "choice_label": "C",
+          "score_total": 1.0,
+          "source_id": "B11",
+          "source_example_ids": [
+            "影響-01"
+          ],
+          "primary_need": {
+            "name": "影響欲求",
+            "id": "influence"
+          },
+          "secondary_need": {
+            "name": "秩序欲求",
+            "id": "order"
+          },
+          "tertiary_need": {
+            "name": "関係欲求",
+            "id": "relationship"
+          }
+        }
+      },
+      {
+        "text": "意見を整理して、論点や決める順番を見えるようにする",
+        "scores": {
+          "exploration": 0.1,
+          "influence": 0.2,
+          "order": 0.7
+        },
+        "meta": {
+          "choice_label": "D",
+          "score_total": 1.0,
+          "source_id": "B11",
+          "source_example_ids": [
+            "秩序-02"
+          ],
+          "primary_need": {
+            "name": "秩序欲求",
+            "id": "order"
+          },
+          "secondary_need": {
+            "name": "影響欲求",
+            "id": "influence"
+          },
+          "tertiary_need": {
+            "name": "探究欲求",
+            "id": "exploration"
+          }
+        }
+      }
+    ],
+    "meta": {
+      "source_question_id": "Q08",
+      "question_type": "自然行動",
+      "scene": "グループで方針を決める"
+    }
+  },
+  {
+    "id": "q009",
+    "text": "努力や成果を人に見てもらったとき、特に心に残りやすいのは？",
+    "choices": [
+      {
+        "text": "ちゃんと見てくれていたとわかる、具体的な言葉をもらえたこと",
+        "scores": {
+          "growth": 0.1,
+          "relationship": 0.2,
+          "recognition": 0.7
+        },
+        "meta": {
+          "choice_label": "A",
+          "score_total": 1.0,
+          "source_id": "B14",
+          "source_example_ids": [
+            "評価-08"
+          ],
+          "primary_need": {
+            "name": "評価欲求",
+            "id": "recognition"
+          },
+          "secondary_need": {
+            "name": "関係欲求",
+            "id": "relationship"
+          },
+          "tertiary_need": {
+            "name": "成長欲求",
+            "id": "growth"
+          }
+        }
+      },
+      {
+        "text": "前より良くなった部分が、はっきりわかったこと",
+        "scores": {
+          "growth": 0.7,
+          "recognition": 0.2,
+          "order": 0.1
+        },
+        "meta": {
+          "choice_label": "B",
+          "score_total": 1.0,
+          "source_id": "B14",
+          "source_example_ids": [
+            "成長-02"
+          ],
+          "primary_need": {
+            "name": "成長欲求",
+            "id": "growth"
+          },
+          "secondary_need": {
+            "name": "評価欲求",
+            "id": "recognition"
+          },
+          "tertiary_need": {
+            "name": "秩序欲求",
+            "id": "order"
+          }
+        }
+      },
+      {
+        "text": "結果だけでなく、そこまでの過程もわかってもらえたこと",
+        "scores": {
+          "relationship": 0.7,
+          "recognition": 0.2,
+          "meaning": 0.1
+        },
+        "meta": {
+          "choice_label": "C",
+          "score_total": 1.0,
+          "source_id": "B14",
+          "source_example_ids": [
+            "関係-08"
+          ],
+          "primary_need": {
+            "name": "関係欲求",
+            "id": "relationship"
+          },
+          "secondary_need": {
+            "name": "評価欲求",
+            "id": "recognition"
+          },
+          "tertiary_need": {
+            "name": "意味欲求",
+            "id": "meaning"
+          }
+        }
+      },
+      {
+        "text": "人からの評価より、自分で納得できる形にできたこと",
+        "scores": {
+          "autonomy": 0.7,
+          "growth": 0.1,
+          "meaning": 0.2
+        },
+        "meta": {
+          "choice_label": "D",
+          "score_total": 1.0,
+          "source_id": "B14",
+          "source_example_ids": [
+            "自律-01"
+          ],
+          "primary_need": {
+            "name": "自律欲求",
+            "id": "autonomy"
+          },
+          "secondary_need": {
+            "name": "意味欲求",
+            "id": "meaning"
+          },
+          "tertiary_need": {
+            "name": "成長欲求",
+            "id": "growth"
+          }
+        }
+      }
+    ],
+    "meta": {
+      "source_question_id": "Q09",
+      "question_type": "自然行動",
+      "scene": "評価・フィードバック"
+    }
+  },
+  {
+    "id": "q010",
+    "text": "企画や役割を任されたとき、まず取りたくなる行動は？",
+    "choices": [
+      {
+        "text": "状況が少しでも良くなるように、自分から働きかける",
+        "scores": {
+          "relationship": 0.2,
+          "influence": 0.7,
+          "meaning": 0.1
+        },
+        "meta": {
+          "choice_label": "A",
+          "score_total": 1.0,
+          "source_id": "B15",
+          "source_example_ids": [
+            "影響-05"
+          ],
+          "primary_need": {
+            "name": "影響欲求",
+            "id": "influence"
+          },
+          "secondary_need": {
+            "name": "関係欲求",
+            "id": "relationship"
+          },
+          "tertiary_need": {
+            "name": "意味欲求",
+            "id": "meaning"
+          }
+        }
+      },
+      {
+        "text": "全体の流れや役割分担を整理して、進め方を整える",
+        "scores": {
+          "stability": 0.1,
+          "influence": 0.2,
+          "order": 0.7
+        },
+        "meta": {
+          "choice_label": "B",
+          "score_total": 1.0,
+          "source_id": "B15",
+          "source_example_ids": [
+            "秩序-10"
+          ],
+          "primary_need": {
+            "name": "秩序欲求",
+            "id": "order"
+          },
+          "secondary_need": {
+            "name": "影響欲求",
+            "id": "influence"
+          },
+          "tertiary_need": {
+            "name": "安定欲求",
+            "id": "stability"
+          }
+        }
+      },
+      {
+        "text": "関わる人が動きやすくなるように、間をつなぐ",
+        "scores": {
+          "stability": 0.1,
+          "relationship": 0.7,
+          "influence": 0.2
+        },
+        "meta": {
+          "choice_label": "C",
+          "score_total": 1.0,
+          "source_id": "B15",
+          "source_example_ids": [
+            "関係-12"
+          ],
+          "primary_need": {
+            "name": "関係欲求",
+            "id": "relationship"
+          },
+          "secondary_need": {
+            "name": "影響欲求",
+            "id": "influence"
+          },
+          "tertiary_need": {
+            "name": "安定欲求",
+            "id": "stability"
+          }
+        }
+      },
+      {
+        "text": "難しそうな部分にも、経験になると思って取り組む",
+        "scores": {
+          "growth": 0.7,
+          "recognition": 0.2,
+          "influence": 0.1
+        },
+        "meta": {
+          "choice_label": "D",
+          "score_total": 1.0,
+          "source_id": "B15",
+          "source_example_ids": [
+            "成長-08"
+          ],
+          "primary_need": {
+            "name": "成長欲求",
+            "id": "growth"
+          },
+          "secondary_need": {
+            "name": "評価欲求",
+            "id": "recognition"
+          },
+          "tertiary_need": {
+            "name": "影響欲求",
+            "id": "influence"
+          }
+        }
+      }
+    ],
+    "meta": {
+      "source_question_id": "Q10",
+      "question_type": "自然行動",
+      "scene": "役割・企画を任される"
+    }
+  },
+  {
+    "id": "q011",
+    "text": "何かを作ったり表現したりするとき、近い感覚は？",
+    "choices": [
+      {
+        "text": "頭の中にあるイメージが、少しずつ形になる過程が楽しい",
+        "scores": {
+          "growth": 0.2,
+          "creation": 0.7,
+          "meaning": 0.1
+        },
+        "meta": {
+          "choice_label": "A",
+          "score_total": 1.0,
+          "source_id": "B17",
+          "source_example_ids": [
+            "創造-11"
+          ],
+          "primary_need": {
+            "name": "創造欲求",
+            "id": "creation"
+          },
+          "secondary_need": {
+            "name": "成長欲求",
+            "id": "growth"
+          },
+          "tertiary_need": {
+            "name": "意味欲求",
+            "id": "meaning"
+          }
+        }
+      },
+      {
+        "text": "成果の形を指定されるより、自分なりの形で出せる方が力が出る",
+        "scores": {
+          "autonomy": 0.7,
+          "recognition": 0.1,
+          "creation": 0.2
+        },
+        "meta": {
+          "choice_label": "B",
+          "score_total": 1.0,
+          "source_id": "B17",
+          "source_example_ids": [
+            "自律-15"
+          ],
+          "primary_need": {
+            "name": "自律欲求",
+            "id": "autonomy"
+          },
+          "secondary_need": {
+            "name": "創造欲求",
+            "id": "creation"
+          },
+          "tertiary_need": {
+            "name": "評価欲求",
+            "id": "recognition"
+          }
+        }
+      },
+      {
+        "text": "作ったものをちゃんと見てもらえる場があると張り合いが出る",
+        "scores": {
+          "relationship": 0.1,
+          "recognition": 0.7,
+          "creation": 0.2
+        },
+        "meta": {
+          "choice_label": "C",
+          "score_total": 1.0,
+          "source_id": "B17",
+          "source_example_ids": [
+            "評価-04"
+          ],
+          "primary_need": {
+            "name": "評価欲求",
+            "id": "recognition"
+          },
+          "secondary_need": {
+            "name": "創造欲求",
+            "id": "creation"
+          },
+          "tertiary_need": {
+            "name": "関係欲求",
+            "id": "relationship"
+          }
+        }
+      },
+      {
+        "text": "言葉にしにくい感覚や考えを、何かの形で残したくなる",
+        "scores": {
+          "autonomy": 0.1,
+          "creation": 0.2,
+          "meaning": 0.7
+        },
+        "meta": {
+          "choice_label": "D",
+          "score_total": 1.0,
+          "source_id": "B17",
+          "source_example_ids": [
+            "意味-08"
+          ],
+          "primary_need": {
+            "name": "意味欲求",
+            "id": "meaning"
+          },
+          "secondary_need": {
+            "name": "創造欲求",
+            "id": "creation"
+          },
+          "tertiary_need": {
+            "name": "自律欲求",
+            "id": "autonomy"
+          }
+        }
+      }
+    ],
+    "meta": {
+      "source_question_id": "Q11",
+      "question_type": "自然行動",
+      "scene": "制作・表現"
+    }
+  },
+  {
+    "id": "q012",
+    "text": "大事な選択で迷ったとき、決め手になりやすいものは？",
+    "choices": [
+      {
+        "text": "自分が大事にしたい価値観に照らして、納得できるか",
+        "scores": {
+          "autonomy": 0.2,
+          "growth": 0.1,
+          "meaning": 0.7
+        },
+        "meta": {
+          "choice_label": "A",
+          "score_total": 1.0,
+          "source_id": "B22",
+          "source_example_ids": [
+            "意味-04"
+          ],
+          "primary_need": {
+            "name": "意味欲求",
+            "id": "meaning"
+          },
+          "secondary_need": {
+            "name": "自律欲求",
+            "id": "autonomy"
+          },
+          "tertiary_need": {
+            "name": "成長欲求",
+            "id": "growth"
+          }
+        }
+      },
+      {
+        "text": "途中で困ったときの逃げ道や、現実的な安全圏があるか",
+        "scores": {
+          "stability": 0.7,
+          "autonomy": 0.1,
+          "order": 0.2
+        },
+        "meta": {
+          "choice_label": "B",
+          "score_total": 1.0,
+          "source_id": "B22",
+          "source_example_ids": [
+            "安定-05"
+          ],
+          "primary_need": {
+            "name": "安定欲求",
+            "id": "stability"
+          },
+          "secondary_need": {
+            "name": "秩序欲求",
+            "id": "order"
+          },
+          "tertiary_need": {
+            "name": "自律欲求",
+            "id": "autonomy"
+          }
+        }
+      },
+      {
+        "text": "人に決められた感覚ではなく、自分で選んだ感覚が残るか",
+        "scores": {
+          "stability": 0.1,
+          "autonomy": 0.7,
+          "meaning": 0.2
+        },
+        "meta": {
+          "choice_label": "C",
+          "score_total": 1.0,
+          "source_id": "B22",
+          "source_example_ids": [
+            "自律-08"
+          ],
+          "primary_need": {
+            "name": "自律欲求",
+            "id": "autonomy"
+          },
+          "secondary_need": {
+            "name": "意味欲求",
+            "id": "meaning"
+          },
+          "tertiary_need": {
+            "name": "安定欲求",
+            "id": "stability"
+          }
+        }
+      },
+      {
+        "text": "少し背伸びして、自分を成長させられそうな選択か",
+        "scores": {
+          "growth": 0.7,
+          "recognition": 0.1,
+          "meaning": 0.2
+        },
+        "meta": {
+          "choice_label": "D",
+          "score_total": 1.0,
+          "source_id": "B22",
+          "source_example_ids": [
+            "成長-09"
+          ],
+          "primary_need": {
+            "name": "成長欲求",
+            "id": "growth"
+          },
+          "secondary_need": {
+            "name": "意味欲求",
+            "id": "meaning"
+          },
+          "tertiary_need": {
+            "name": "評価欲求",
+            "id": "recognition"
+          }
+        }
+      }
+    ],
+    "meta": {
+      "source_question_id": "Q12",
+      "question_type": "自然行動",
+      "scene": "選択・価値観で迷う"
+    }
+  },
+  {
+    "id": "q013",
+    "text": "グループ活動で、特にしんどさを感じやすいのは？",
+    "choices": [
+      {
+        "text": "何を決めればいいのか曖昧なまま、話だけが進むこと",
+        "scores": {
+          "stability": 0.2,
+          "influence": 0.1,
+          "order": 0.7
+        },
+        "meta": {
+          "choice_label": "A",
+          "score_total": 1.0,
+          "source_id": "B11",
+          "source_example_ids": [
+            "秩序-02"
+          ],
+          "primary_need": {
+            "name": "秩序欲求",
+            "id": "order"
+          },
+          "secondary_need": {
+            "name": "安定欲求",
+            "id": "stability"
+          },
+          "tertiary_need": {
+            "name": "影響欲求",
+            "id": "influence"
+          }
+        }
+      },
+      {
+        "text": "自分の意見をほとんど聞かれずに、流れだけで決まること",
+        "scores": {
+          "autonomy": 0.7,
+          "relationship": 0.1,
+          "influence": 0.2
+        },
+        "meta": {
+          "choice_label": "B",
+          "score_total": 1.0,
+          "source_id": "B11",
+          "source_example_ids": [
+            "自律-12"
+          ],
+          "primary_need": {
+            "name": "自律欲求",
+            "id": "autonomy"
+          },
+          "secondary_need": {
+            "name": "影響欲求",
+            "id": "influence"
+          },
+          "tertiary_need": {
+            "name": "関係欲求",
+            "id": "relationship"
+          }
+        }
+      },
+      {
+        "text": "頑張った部分が、誰にも気づかれないまま終わること",
+        "scores": {
+          "growth": 0.1,
+          "relationship": 0.2,
+          "recognition": 0.7
+        },
+        "meta": {
+          "choice_label": "C",
+          "score_total": 1.0,
+          "source_id": "B11",
+          "source_example_ids": [
+            "評価-01"
+          ],
+          "primary_need": {
+            "name": "評価欲求",
+            "id": "recognition"
+          },
+          "secondary_need": {
+            "name": "関係欲求",
+            "id": "relationship"
+          },
+          "tertiary_need": {
+            "name": "成長欲求",
+            "id": "growth"
+          }
+        }
+      },
+      {
+        "text": "場の空気が悪くなり、そこにいづらくなること",
+        "scores": {
+          "stability": 0.2,
+          "autonomy": 0.1,
+          "relationship": 0.7
+        },
+        "meta": {
+          "choice_label": "D",
+          "score_total": 1.0,
+          "source_id": "B11",
+          "source_example_ids": [
+            "関係-06"
+          ],
+          "primary_need": {
+            "name": "関係欲求",
+            "id": "relationship"
+          },
+          "secondary_need": {
+            "name": "安定欲求",
+            "id": "stability"
+          },
+          "tertiary_need": {
+            "name": "自律欲求",
+            "id": "autonomy"
+          }
+        }
+      }
+    ],
+    "meta": {
+      "source_question_id": "Q13",
+      "question_type": "嫌な違和感",
+      "scene": "グループ活動"
+    }
+  },
+  {
+    "id": "q014",
+    "text": "指示を受けて動く場面で、引っかかりやすいのは？",
+    "choices": [
+      {
+        "text": "目的や理由がわからないまま、とりあえず従うこと",
+        "scores": {
+          "autonomy": 0.7,
+          "exploration": 0.2,
+          "meaning": 0.1
+        },
+        "meta": {
+          "choice_label": "A",
+          "score_total": 1.0,
+          "source_id": "B09",
+          "source_example_ids": [
+            "自律-07"
+          ],
+          "primary_need": {
+            "name": "自律欲求",
+            "id": "autonomy"
+          },
+          "secondary_need": {
+            "name": "探究欲求",
+            "id": "exploration"
+          },
+          "tertiary_need": {
+            "name": "意味欲求",
+            "id": "meaning"
+          }
+        }
+      },
+      {
+        "text": "手順が散らかっていて、何からやればいいか見えないこと",
+        "scores": {
+          "stability": 0.2,
+          "exploration": 0.1,
+          "order": 0.7
+        },
+        "meta": {
+          "choice_label": "B",
+          "score_total": 1.0,
+          "source_id": "B09",
+          "source_example_ids": [
+            "秩序-05"
+          ],
+          "primary_need": {
+            "name": "秩序欲求",
+            "id": "order"
+          },
+          "secondary_need": {
+            "name": "安定欲求",
+            "id": "stability"
+          },
+          "tertiary_need": {
+            "name": "探究欲求",
+            "id": "exploration"
+          }
+        }
+      },
+      {
+        "text": "なぜその順番なのか気になるのに、確認する余地がないこと",
+        "scores": {
+          "autonomy": 0.2,
+          "exploration": 0.7,
+          "order": 0.1
+        },
+        "meta": {
+          "choice_label": "C",
+          "score_total": 1.0,
+          "source_id": "B09",
+          "source_example_ids": [
+            "探究-07"
+          ],
+          "primary_need": {
+            "name": "探究欲求",
+            "id": "exploration"
+          },
+          "secondary_need": {
+            "name": "自律欲求",
+            "id": "autonomy"
+          },
+          "tertiary_need": {
+            "name": "秩序欲求",
+            "id": "order"
+          }
+        }
+      },
+      {
+        "text": "失敗したときの影響範囲がわからないまま本番に入ること",
+        "scores": {
+          "stability": 0.7,
+          "exploration": 0.1,
+          "order": 0.2
+        },
+        "meta": {
+          "choice_label": "D",
+          "score_total": 1.0,
+          "source_id": "B09",
+          "source_example_ids": [
+            "安定-11"
+          ],
+          "primary_need": {
+            "name": "安定欲求",
+            "id": "stability"
+          },
+          "secondary_need": {
+            "name": "秩序欲求",
+            "id": "order"
+          },
+          "tertiary_need": {
+            "name": "探究欲求",
+            "id": "exploration"
+          }
+        }
+      }
+    ],
+    "meta": {
+      "source_question_id": "Q14",
+      "question_type": "嫌な違和感",
+      "scene": "指示・ルール・作業"
+    }
+  },
+  {
+    "id": "q015",
+    "text": "勉強や練習を続ける中で、やる気が落ちやすいのは？",
+    "choices": [
+      {
+        "text": "いくらやっても、前よりできるようになった感覚がないこと",
+        "scores": {
+          "growth": 0.7,
+          "recognition": 0.2,
+          "meaning": 0.1
+        },
+        "meta": {
+          "choice_label": "A",
+          "score_total": 1.0,
+          "source_id": "B07",
+          "source_example_ids": [
+            "成長-15"
+          ],
+          "primary_need": {
+            "name": "成長欲求",
+            "id": "growth"
+          },
+          "secondary_need": {
+            "name": "評価欲求",
+            "id": "recognition"
+          },
+          "tertiary_need": {
+            "name": "意味欲求",
+            "id": "meaning"
+          }
+        }
+      },
+      {
+        "text": "努力しても、見ている人にほとんど伝わらないこと",
+        "scores": {
+          "growth": 0.1,
+          "relationship": 0.2,
+          "recognition": 0.7
+        },
+        "meta": {
+          "choice_label": "B",
+          "score_total": 1.0,
+          "source_id": "B07",
+          "source_example_ids": [
+            "評価-02"
+          ],
+          "primary_need": {
+            "name": "評価欲求",
+            "id": "recognition"
+          },
+          "secondary_need": {
+            "name": "関係欲求",
+            "id": "relationship"
+          },
+          "tertiary_need": {
+            "name": "成長欲求",
+            "id": "growth"
+          }
+        }
+      },
+      {
+        "text": "ただ暗記や反復だけで、仕組みが見えてこないこと",
+        "scores": {
+          "growth": 0.2,
+          "exploration": 0.7,
+          "order": 0.1
+        },
+        "meta": {
+          "choice_label": "C",
+          "score_total": 1.0,
+          "source_id": "B07",
+          "source_example_ids": [
+            "探究-05"
+          ],
+          "primary_need": {
+            "name": "探究欲求",
+            "id": "exploration"
+          },
+          "secondary_need": {
+            "name": "成長欲求",
+            "id": "growth"
+          },
+          "tertiary_need": {
+            "name": "秩序欲求",
+            "id": "order"
+          }
+        }
+      },
+      {
+        "text": "何のために続けているのか、自分の中でつながらないこと",
+        "scores": {
+          "autonomy": 0.1,
+          "growth": 0.2,
+          "meaning": 0.7
+        },
+        "meta": {
+          "choice_label": "D",
+          "score_total": 1.0,
+          "source_id": "B07",
+          "source_example_ids": [
+            "意味-01"
+          ],
+          "primary_need": {
+            "name": "意味欲求",
+            "id": "meaning"
+          },
+          "secondary_need": {
+            "name": "成長欲求",
+            "id": "growth"
+          },
+          "tertiary_need": {
+            "name": "自律欲求",
+            "id": "autonomy"
+          }
+        }
+      }
+    ],
+    "meta": {
+      "source_question_id": "Q15",
+      "question_type": "嫌な違和感",
+      "scene": "学習・練習の継続"
+    }
+  },
+  {
+    "id": "q016",
+    "text": "外出や旅行で、地味にストレスになりやすいのは？",
+    "choices": [
+      {
+        "text": "休める場所や帰る手段が見えないまま動くこと",
+        "scores": {
+          "stability": 0.7,
+          "autonomy": 0.1,
+          "order": 0.2
+        },
+        "meta": {
+          "choice_label": "A",
+          "score_total": 1.0,
+          "source_id": "B02",
+          "source_example_ids": [
+            "安定-02"
+          ],
+          "primary_need": {
+            "name": "安定欲求",
+            "id": "stability"
+          },
+          "secondary_need": {
+            "name": "秩序欲求",
+            "id": "order"
+          },
+          "tertiary_need": {
+            "name": "自律欲求",
+            "id": "autonomy"
+          }
+        }
+      },
+      {
+        "text": "集合時間や持ち物が曖昧で、当日になって慌てること",
+        "scores": {
+          "stability": 0.2,
+          "relationship": 0.1,
+          "order": 0.7
+        },
+        "meta": {
+          "choice_label": "B",
+          "score_total": 1.0,
+          "source_id": "B02",
+          "source_example_ids": [
+            "秩序-03"
+          ],
+          "primary_need": {
+            "name": "秩序欲求",
+            "id": "order"
+          },
+          "secondary_need": {
+            "name": "安定欲求",
+            "id": "stability"
+          },
+          "tertiary_need": {
+            "name": "関係欲求",
+            "id": "relationship"
+          }
+        }
+      },
+      {
+        "text": "全部が予定通りすぎて、偶然の寄り道がまったくないこと",
+        "scores": {
+          "autonomy": 0.2,
+          "exploration": 0.1,
+          "stimulation": 0.7
+        },
+        "meta": {
+          "choice_label": "C",
+          "score_total": 1.0,
+          "source_id": "B02",
+          "source_example_ids": [
+            "刺激-07"
+          ],
+          "primary_need": {
+            "name": "刺激欲求",
+            "id": "stimulation"
+          },
+          "secondary_need": {
+            "name": "自律欲求",
+            "id": "autonomy"
+          },
+          "tertiary_need": {
+            "name": "探究欲求",
+            "id": "exploration"
+          }
+        }
+      },
+      {
+        "text": "自分のペースで見たいところを見られないこと",
+        "scores": {
+          "autonomy": 0.7,
+          "stimulation": 0.2,
+          "meaning": 0.1
+        },
+        "meta": {
+          "choice_label": "D",
+          "score_total": 1.0,
+          "source_id": "B02",
+          "source_example_ids": [
+            "自律-13"
+          ],
+          "primary_need": {
+            "name": "自律欲求",
+            "id": "autonomy"
+          },
+          "secondary_need": {
+            "name": "刺激欲求",
+            "id": "stimulation"
+          },
+          "tertiary_need": {
+            "name": "意味欲求",
+            "id": "meaning"
+          }
+        }
+      }
+    ],
+    "meta": {
+      "source_question_id": "Q16",
+      "question_type": "嫌な違和感",
+      "scene": "外出・旅行"
+    }
+  },
+  {
+    "id": "q017",
+    "text": "人と話していて、少し引っかかりやすいのは？",
+    "choices": [
+      {
+        "text": "相手の考えの背景を聞く前に、表面的な結論だけで終わること",
+        "scores": {
+          "exploration": 0.7,
+          "relationship": 0.2,
+          "meaning": 0.1
+        },
+        "meta": {
+          "choice_label": "A",
+          "score_total": 1.0,
+          "source_id": "B10",
+          "source_example_ids": [
+            "探究-04"
+          ],
+          "primary_need": {
+            "name": "探究欲求",
+            "id": "exploration"
+          },
+          "secondary_need": {
+            "name": "関係欲求",
+            "id": "relationship"
+          },
+          "tertiary_need": {
+            "name": "意味欲求",
+            "id": "meaning"
+          }
+        }
+      },
+      {
+        "text": "こちらが場を良くしようとしても、空気が硬いまま変わらないこと",
+        "scores": {
+          "stability": 0.1,
+          "relationship": 0.7,
+          "influence": 0.2
+        },
+        "meta": {
+          "choice_label": "B",
+          "score_total": 1.0,
+          "source_id": "B10",
+          "source_example_ids": [
+            "関係-05"
+          ],
+          "primary_need": {
+            "name": "関係欲求",
+            "id": "relationship"
+          },
+          "secondary_need": {
+            "name": "影響欲求",
+            "id": "influence"
+          },
+          "tertiary_need": {
+            "name": "安定欲求",
+            "id": "stability"
+          }
+        }
+      },
+      {
+        "text": "改善案を出せそうなのに、ただ愚痴で終わってしまうこと",
+        "scores": {
+          "growth": 0.2,
+          "influence": 0.7,
+          "order": 0.1
+        },
+        "meta": {
+          "choice_label": "C",
+          "score_total": 1.0,
+          "source_id": "B10",
+          "source_example_ids": [
+            "影響-03"
+          ],
+          "primary_need": {
+            "name": "影響欲求",
+            "id": "influence"
+          },
+          "secondary_need": {
+            "name": "成長欲求",
+            "id": "growth"
+          },
+          "tertiary_need": {
+            "name": "秩序欲求",
+            "id": "order"
+          }
+        }
+      },
+      {
+        "text": "ちゃんと考えて話したのに、軽く流されること",
+        "scores": {
+          "autonomy": 0.1,
+          "relationship": 0.2,
+          "recognition": 0.7
+        },
+        "meta": {
+          "choice_label": "D",
+          "score_total": 1.0,
+          "source_id": "B10",
+          "source_example_ids": [
+            "評価-06"
+          ],
+          "primary_need": {
+            "name": "評価欲求",
+            "id": "recognition"
+          },
+          "secondary_need": {
+            "name": "関係欲求",
+            "id": "relationship"
+          },
+          "tertiary_need": {
+            "name": "自律欲求",
+            "id": "autonomy"
+          }
+        }
+      }
+    ],
+    "meta": {
+      "source_question_id": "Q17",
+      "question_type": "嫌な違和感",
+      "scene": "対話・人の考えを聞く"
+    }
+  },
+  {
+    "id": "q018",
+    "text": "何かを作ったり発表したりした後、もやっとしやすいのは？",
+    "choices": [
+      {
+        "text": "自分の中のイメージを、うまく形にできないまま終わること",
+        "scores": {
+          "growth": 0.2,
+          "creation": 0.7,
+          "meaning": 0.1
+        },
+        "meta": {
+          "choice_label": "A",
+          "score_total": 1.0,
+          "source_id": "B17",
+          "source_example_ids": [
+            "創造-11"
+          ],
+          "primary_need": {
+            "name": "創造欲求",
+            "id": "creation"
+          },
+          "secondary_need": {
+            "name": "成長欲求",
+            "id": "growth"
+          },
+          "tertiary_need": {
+            "name": "意味欲求",
+            "id": "meaning"
+          }
+        }
+      },
+      {
+        "text": "完成度よりも、誰にも見てもらえなかったこと",
+        "scores": {
+          "relationship": 0.1,
+          "recognition": 0.7,
+          "creation": 0.2
+        },
+        "meta": {
+          "choice_label": "B",
+          "score_total": 1.0,
+          "source_id": "B17",
+          "source_example_ids": [
+            "評価-04"
+          ],
+          "primary_need": {
+            "name": "評価欲求",
+            "id": "recognition"
+          },
+          "secondary_need": {
+            "name": "創造欲求",
+            "id": "creation"
+          },
+          "tertiary_need": {
+            "name": "関係欲求",
+            "id": "relationship"
+          }
+        }
+      },
+      {
+        "text": "次に良くできそうな点が見えないまま終わること",
+        "scores": {
+          "growth": 0.7,
+          "recognition": 0.1,
+          "order": 0.2
+        },
+        "meta": {
+          "choice_label": "C",
+          "score_total": 1.0,
+          "source_id": "B17",
+          "source_example_ids": [
+            "成長-13"
+          ],
+          "primary_need": {
+            "name": "成長欲求",
+            "id": "growth"
+          },
+          "secondary_need": {
+            "name": "秩序欲求",
+            "id": "order"
+          },
+          "tertiary_need": {
+            "name": "評価欲求",
+            "id": "recognition"
+          }
+        }
+      },
+      {
+        "text": "形にはなったけれど、自分にとって何を表したかったのか残らないこと",
+        "scores": {
+          "autonomy": 0.1,
+          "creation": 0.2,
+          "meaning": 0.7
+        },
+        "meta": {
+          "choice_label": "D",
+          "score_total": 1.0,
+          "source_id": "B17",
+          "source_example_ids": [
+            "意味-08"
+          ],
+          "primary_need": {
+            "name": "意味欲求",
+            "id": "meaning"
+          },
+          "secondary_need": {
+            "name": "創造欲求",
+            "id": "creation"
+          },
+          "tertiary_need": {
+            "name": "自律欲求",
+            "id": "autonomy"
+          }
+        }
+      }
+    ],
+    "meta": {
+      "source_question_id": "Q18",
+      "question_type": "嫌な違和感",
+      "scene": "制作・成果物"
+    }
+  },
+  {
+    "id": "q019",
+    "text": "ルールや決まりごとに触れたとき、違和感が残りやすいのは？",
+    "choices": [
+      {
+        "text": "意味が通らないのに、そのまま従うことを求められること",
+        "scores": {
+          "autonomy": 0.7,
+          "exploration": 0.1,
+          "meaning": 0.2
+        },
+        "meta": {
+          "choice_label": "A",
+          "score_total": 1.0,
+          "source_id": "B23",
+          "source_example_ids": [
+            "自律-14"
+          ],
+          "primary_need": {
+            "name": "自律欲求",
+            "id": "autonomy"
+          },
+          "secondary_need": {
+            "name": "意味欲求",
+            "id": "meaning"
+          },
+          "tertiary_need": {
+            "name": "探究欲求",
+            "id": "exploration"
+          }
+        }
+      },
+      {
+        "text": "例外や判断基準が曖昧で、人によって扱いが変わること",
+        "scores": {
+          "stability": 0.2,
+          "recognition": 0.1,
+          "order": 0.7
+        },
+        "meta": {
+          "choice_label": "B",
+          "score_total": 1.0,
+          "source_id": "B23",
+          "source_example_ids": [
+            "秩序-11"
+          ],
+          "primary_need": {
+            "name": "秩序欲求",
+            "id": "order"
+          },
+          "secondary_need": {
+            "name": "安定欲求",
+            "id": "stability"
+          },
+          "tertiary_need": {
+            "name": "評価欲求",
+            "id": "recognition"
+          }
+        }
+      },
+      {
+        "text": "その決まりが何を守るためのものか見えないこと",
+        "scores": {
+          "exploration": 0.2,
+          "order": 0.1,
+          "meaning": 0.7
+        },
+        "meta": {
+          "choice_label": "C",
+          "score_total": 1.0,
+          "source_id": "B23",
+          "source_example_ids": [
+            "意味-10"
+          ],
+          "primary_need": {
+            "name": "意味欲求",
+            "id": "meaning"
+          },
+          "secondary_need": {
+            "name": "探究欲求",
+            "id": "exploration"
+          },
+          "tertiary_need": {
+            "name": "秩序欲求",
+            "id": "order"
+          }
+        }
+      },
+      {
+        "text": "変えた方が良さそうなのに、誰も動かそうとしないこと",
+        "scores": {
+          "autonomy": 0.1,
+          "growth": 0.2,
+          "influence": 0.7
+        },
+        "meta": {
+          "choice_label": "D",
+          "score_total": 1.0,
+          "source_id": "B23",
+          "source_example_ids": [
+            "影響-06"
+          ],
+          "primary_need": {
+            "name": "影響欲求",
+            "id": "influence"
+          },
+          "secondary_need": {
+            "name": "成長欲求",
+            "id": "growth"
+          },
+          "tertiary_need": {
+            "name": "自律欲求",
+            "id": "autonomy"
+          }
+        }
+      }
+    ],
+    "meta": {
+      "source_question_id": "Q19",
+      "question_type": "嫌な違和感",
+      "scene": "規則・組織"
+    }
+  },
+  {
+    "id": "q020",
+    "text": "納得できない情報や気になる話を聞いたとき、落ち着かなさが残るのは？",
+    "choices": [
+      {
+        "text": "根拠を確かめる前に、雰囲気だけで判断が広がること",
+        "scores": {
+          "stability": 0.2,
+          "exploration": 0.7,
+          "order": 0.1
+        },
+        "meta": {
+          "choice_label": "A",
+          "score_total": 1.0,
+          "source_id": "B09",
+          "source_example_ids": [
+            "探究-12"
+          ],
+          "primary_need": {
+            "name": "探究欲求",
+            "id": "exploration"
+          },
+          "secondary_need": {
+            "name": "安定欲求",
+            "id": "stability"
+          },
+          "tertiary_need": {
+            "name": "秩序欲求",
+            "id": "order"
+          }
+        }
+      },
+      {
+        "text": "説明が散らかっていて、何が主張なのかわからないこと",
+        "scores": {
+          "stability": 0.1,
+          "exploration": 0.2,
+          "order": 0.7
+        },
+        "meta": {
+          "choice_label": "B",
+          "score_total": 1.0,
+          "source_id": "B09",
+          "source_example_ids": [
+            "秩序-02"
+          ],
+          "primary_need": {
+            "name": "秩序欲求",
+            "id": "order"
+          },
+          "secondary_need": {
+            "name": "探究欲求",
+            "id": "exploration"
+          },
+          "tertiary_need": {
+            "name": "安定欲求",
+            "id": "stability"
+          }
+        }
+      },
+      {
+        "text": "確かな情報がないのに、すぐ行動を迫られること",
+        "scores": {
+          "stability": 0.7,
+          "autonomy": 0.1,
+          "order": 0.2
+        },
+        "meta": {
+          "choice_label": "C",
+          "score_total": 1.0,
+          "source_id": "B09",
+          "source_example_ids": [
+            "安定-12"
+          ],
+          "primary_need": {
+            "name": "安定欲求",
+            "id": "stability"
+          },
+          "secondary_need": {
+            "name": "秩序欲求",
+            "id": "order"
+          },
+          "tertiary_need": {
+            "name": "自律欲求",
+            "id": "autonomy"
+          }
+        }
+      },
+      {
+        "text": "面白そうな話なのに、深掘りする前に話題が終わること",
+        "scores": {
+          "exploration": 0.2,
+          "relationship": 0.1,
+          "stimulation": 0.7
+        },
+        "meta": {
+          "choice_label": "D",
+          "score_total": 1.0,
+          "source_id": "B09",
+          "source_example_ids": [
+            "刺激-14"
+          ],
+          "primary_need": {
+            "name": "刺激欲求",
+            "id": "stimulation"
+          },
+          "secondary_need": {
+            "name": "探究欲求",
+            "id": "exploration"
+          },
+          "tertiary_need": {
+            "name": "関係欲求",
+            "id": "relationship"
+          }
+        }
+      }
+    ],
+    "meta": {
+      "source_question_id": "Q20",
+      "question_type": "嫌な違和感",
+      "scene": "情報判断・疑問"
+    }
+  },
+  {
+    "id": "q021",
+    "text": "役割を頼まれたとき、引っかかりやすいのは？",
+    "choices": [
+      {
+        "text": "引き受ける範囲を自分で決められないまま、責任だけ増えること",
+        "scores": {
+          "stability": 0.2,
+          "autonomy": 0.7,
+          "influence": 0.1
+        },
+        "meta": {
+          "choice_label": "A",
+          "score_total": 1.0,
+          "source_id": "B15",
+          "source_example_ids": [
+            "自律-10"
+          ],
+          "primary_need": {
+            "name": "自律欲求",
+            "id": "autonomy"
+          },
+          "secondary_need": {
+            "name": "安定欲求",
+            "id": "stability"
+          },
+          "tertiary_need": {
+            "name": "影響欲求",
+            "id": "influence"
+          }
+        }
+      },
+      {
+        "text": "自分が動けば改善できそうなのに、任せてもらえないこと",
+        "scores": {
+          "growth": 0.1,
+          "recognition": 0.2,
+          "influence": 0.7
+        },
+        "meta": {
+          "choice_label": "B",
+          "score_total": 1.0,
+          "source_id": "B15",
+          "source_example_ids": [
+            "影響-02"
+          ],
+          "primary_need": {
+            "name": "影響欲求",
+            "id": "influence"
+          },
+          "secondary_need": {
+            "name": "評価欲求",
+            "id": "recognition"
+          },
+          "tertiary_need": {
+            "name": "成長欲求",
+            "id": "growth"
+          }
+        }
+      },
+      {
+        "text": "人の間をつなぐ役目ばかりで、自分の余裕がなくなること",
+        "scores": {
+          "stability": 0.2,
+          "autonomy": 0.1,
+          "relationship": 0.7
+        },
+        "meta": {
+          "choice_label": "C",
+          "score_total": 1.0,
+          "source_id": "B15",
+          "source_example_ids": [
+            "関係-12"
+          ],
+          "primary_need": {
+            "name": "関係欲求",
+            "id": "relationship"
+          },
+          "secondary_need": {
+            "name": "安定欲求",
+            "id": "stability"
+          },
+          "tertiary_need": {
+            "name": "自律欲求",
+            "id": "autonomy"
+          }
+        }
+      },
+      {
+        "text": "難しい役割をこなしても、成果や工夫が見えにくいこと",
+        "scores": {
+          "growth": 0.2,
+          "recognition": 0.7,
+          "influence": 0.1
+        },
+        "meta": {
+          "choice_label": "D",
+          "score_total": 1.0,
+          "source_id": "B15",
+          "source_example_ids": [
+            "評価-05"
+          ],
+          "primary_need": {
+            "name": "評価欲求",
+            "id": "recognition"
+          },
+          "secondary_need": {
+            "name": "成長欲求",
+            "id": "growth"
+          },
+          "tertiary_need": {
+            "name": "影響欲求",
+            "id": "influence"
+          }
+        }
+      }
+    ],
+    "meta": {
+      "source_question_id": "Q21",
+      "question_type": "嫌な違和感",
+      "scene": "役割分担・依頼"
+    }
+  },
+  {
+    "id": "q022",
+    "text": "自由時間の使い方で、後から少しもったいなく感じやすいのは？",
+    "choices": [
+      {
+        "text": "何となく楽しかったけれど、何も残らなかったように感じること",
+        "scores": {
+          "growth": 0.2,
+          "creation": 0.1,
+          "meaning": 0.7
+        },
+        "meta": {
+          "choice_label": "A",
+          "score_total": 1.0,
+          "source_id": "B01",
+          "source_example_ids": [
+            "意味-05"
+          ],
+          "primary_need": {
+            "name": "意味欲求",
+            "id": "meaning"
+          },
+          "secondary_need": {
+            "name": "成長欲求",
+            "id": "growth"
+          },
+          "tertiary_need": {
+            "name": "創造欲求",
+            "id": "creation"
+          }
+        }
+      },
+      {
+        "text": "新しいことが何もなく、ただ同じ流れで一日が終わること",
+        "scores": {
+          "growth": 0.1,
+          "stimulation": 0.7,
+          "creation": 0.2
+        },
+        "meta": {
+          "choice_label": "B",
+          "score_total": 1.0,
+          "source_id": "B01",
+          "source_example_ids": [
+            "刺激-04"
+          ],
+          "primary_need": {
+            "name": "刺激欲求",
+            "id": "stimulation"
+          },
+          "secondary_need": {
+            "name": "創造欲求",
+            "id": "creation"
+          },
+          "tertiary_need": {
+            "name": "成長欲求",
+            "id": "growth"
+          }
+        }
+      },
+      {
+        "text": "休むつもりが、結局あまり回復できないまま終わること",
+        "scores": {
+          "stability": 0.7,
+          "autonomy": 0.1,
+          "order": 0.2
+        },
+        "meta": {
+          "choice_label": "C",
+          "score_total": 1.0,
+          "source_id": "B01",
+          "source_example_ids": [
+            "安定-06"
+          ],
+          "primary_need": {
+            "name": "安定欲求",
+            "id": "stability"
+          },
+          "secondary_need": {
+            "name": "秩序欲求",
+            "id": "order"
+          },
+          "tertiary_need": {
+            "name": "自律欲求",
+            "id": "autonomy"
+          }
+        }
+      },
+      {
+        "text": "少しでも進めたいことがあったのに、手をつけないまま終わること",
+        "scores": {
+          "autonomy": 0.1,
+          "growth": 0.2,
+          "creation": 0.7
+        },
+        "meta": {
+          "choice_label": "D",
+          "score_total": 1.0,
+          "source_id": "B01",
+          "source_example_ids": [
+            "創造-06"
+          ],
+          "primary_need": {
+            "name": "創造欲求",
+            "id": "creation"
+          },
+          "secondary_need": {
+            "name": "成長欲求",
+            "id": "growth"
+          },
+          "tertiary_need": {
+            "name": "自律欲求",
+            "id": "autonomy"
+          }
+        }
+      }
+    ],
+    "meta": {
+      "source_question_id": "Q22",
+      "question_type": "嫌な違和感",
+      "scene": "時間の使い方・日常"
+    }
+  },
+  {
+    "id": "q023",
+    "text": "人付き合いの中で、疲れとして残りやすいのは？",
+    "choices": [
+      {
+        "text": "相手に合わせ続けて、自分の時間がなくなること",
+        "scores": {
+          "stability": 0.2,
+          "autonomy": 0.7,
+          "relationship": 0.1
+        },
+        "meta": {
+          "choice_label": "A",
+          "score_total": 1.0,
+          "source_id": "B04",
+          "source_example_ids": [
+            "自律-06"
+          ],
+          "primary_need": {
+            "name": "自律欲求",
+            "id": "autonomy"
+          },
+          "secondary_need": {
+            "name": "安定欲求",
+            "id": "stability"
+          },
+          "tertiary_need": {
+            "name": "関係欲求",
+            "id": "relationship"
+          }
+        }
+      },
+      {
+        "text": "相手に迷惑をかけすぎていないか、後から気になり続けること",
+        "scores": {
+          "stability": 0.7,
+          "relationship": 0.2,
+          "order": 0.1
+        },
+        "meta": {
+          "choice_label": "B",
+          "score_total": 1.0,
+          "source_id": "B04",
+          "source_example_ids": [
+            "安定-14"
+          ],
+          "primary_need": {
+            "name": "安定欲求",
+            "id": "stability"
+          },
+          "secondary_need": {
+            "name": "関係欲求",
+            "id": "relationship"
+          },
+          "tertiary_need": {
+            "name": "秩序欲求",
+            "id": "order"
+          }
+        }
+      },
+      {
+        "text": "一緒にいるのに、気持ちや近況を共有できないこと",
+        "scores": {
+          "stability": 0.1,
+          "relationship": 0.7,
+          "meaning": 0.2
+        },
+        "meta": {
+          "choice_label": "C",
+          "score_total": 1.0,
+          "source_id": "B04",
+          "source_example_ids": [
+            "関係-02"
+          ],
+          "primary_need": {
+            "name": "関係欲求",
+            "id": "relationship"
+          },
+          "secondary_need": {
+            "name": "意味欲求",
+            "id": "meaning"
+          },
+          "tertiary_need": {
+            "name": "安定欲求",
+            "id": "stability"
+          }
+        }
+      },
+      {
+        "text": "場を良くできそうなのに、何も働きかけられないこと",
+        "scores": {
+          "relationship": 0.2,
+          "recognition": 0.1,
+          "influence": 0.7
+        },
+        "meta": {
+          "choice_label": "D",
+          "score_total": 1.0,
+          "source_id": "B04",
+          "source_example_ids": [
+            "影響-04"
+          ],
+          "primary_need": {
+            "name": "影響欲求",
+            "id": "influence"
+          },
+          "secondary_need": {
+            "name": "関係欲求",
+            "id": "relationship"
+          },
+          "tertiary_need": {
+            "name": "評価欲求",
+            "id": "recognition"
+          }
+        }
+      }
+    ],
+    "meta": {
+      "source_question_id": "Q23",
+      "question_type": "嫌な違和感",
+      "scene": "人付き合い・距離感"
+    }
+  },
+  {
+    "id": "q024",
+    "text": "考えをまとめたり何かを作ったりするとき、止まりやすいのは？",
+    "choices": [
+      {
+        "text": "完成形を指定されすぎて、自分なりの出し方ができないこと",
+        "scores": {
+          "autonomy": 0.7,
+          "recognition": 0.1,
+          "creation": 0.2
+        },
+        "meta": {
+          "choice_label": "A",
+          "score_total": 1.0,
+          "source_id": "B17",
+          "source_example_ids": [
+            "自律-15"
+          ],
+          "primary_need": {
+            "name": "自律欲求",
+            "id": "autonomy"
+          },
+          "secondary_need": {
+            "name": "創造欲求",
+            "id": "creation"
+          },
+          "tertiary_need": {
+            "name": "評価欲求",
+            "id": "recognition"
+          }
+        }
+      },
+      {
+        "text": "材料や情報が散らかっていて、形にする前に迷子になること",
+        "scores": {
+          "stability": 0.1,
+          "order": 0.7,
+          "creation": 0.2
+        },
+        "meta": {
+          "choice_label": "B",
+          "score_total": 1.0,
+          "source_id": "B17",
+          "source_example_ids": [
+            "秩序-13"
+          ],
+          "primary_need": {
+            "name": "秩序欲求",
+            "id": "order"
+          },
+          "secondary_need": {
+            "name": "創造欲求",
+            "id": "creation"
+          },
+          "tertiary_need": {
+            "name": "安定欲求",
+            "id": "stability"
+          }
+        }
+      },
+      {
+        "text": "うまく説明できない考えを、図や例えに落とし込めないこと",
+        "scores": {
+          "exploration": 0.2,
+          "creation": 0.7,
+          "meaning": 0.1
+        },
+        "meta": {
+          "choice_label": "C",
+          "score_total": 1.0,
+          "source_id": "B17",
+          "source_example_ids": [
+            "創造-14"
+          ],
+          "primary_need": {
+            "name": "創造欲求",
+            "id": "creation"
+          },
+          "secondary_need": {
+            "name": "探究欲求",
+            "id": "exploration"
+          },
+          "tertiary_need": {
+            "name": "意味欲求",
+            "id": "meaning"
+          }
+        }
+      },
+      {
+        "text": "作っているうちに出てきた疑問を、調べる余裕がないこと",
+        "scores": {
+          "autonomy": 0.1,
+          "exploration": 0.7,
+          "creation": 0.2
+        },
+        "meta": {
+          "choice_label": "D",
+          "score_total": 1.0,
+          "source_id": "B17",
+          "source_example_ids": [
+            "探究-08"
+          ],
+          "primary_need": {
+            "name": "探究欲求",
+            "id": "exploration"
+          },
+          "secondary_need": {
+            "name": "創造欲求",
+            "id": "creation"
+          },
+          "tertiary_need": {
+            "name": "自律欲求",
+            "id": "autonomy"
+          }
+        }
+      }
+    ],
+    "meta": {
+      "source_question_id": "Q24",
+      "question_type": "嫌な違和感",
+      "scene": "制作・思考の進め方"
+    }
+  },
+  {
+    "id": "q025",
+    "text": "自分が良いと思ったものを誰かに話すとき、近い感覚は？",
+    "choices": [
+      {
+        "text": "相手にも楽しんでもらえそうなら、自然に教えたくなる",
+        "scores": {
+          "relationship": 0.7,
+          "recognition": 0.2,
+          "stimulation": 0.1
+        },
+        "meta": {
+          "choice_label": "A",
+          "score_total": 1.0,
+          "source_id": "B05",
+          "source_example_ids": [
+            "関係-10"
+          ],
+          "primary_need": {
+            "name": "関係欲求",
+            "id": "relationship"
+          },
+          "secondary_need": {
+            "name": "評価欲求",
+            "id": "recognition"
+          },
+          "tertiary_need": {
+            "name": "刺激欲求",
+            "id": "stimulation"
+          }
+        }
+      },
+      {
+        "text": "自分のおすすめが役に立ったり、行動のきっかけになると嬉しい",
+        "scores": {
+          "relationship": 0.2,
+          "recognition": 0.1,
+          "influence": 0.7
+        },
+        "meta": {
+          "choice_label": "B",
+          "score_total": 1.0,
+          "source_id": "B05",
+          "source_example_ids": [
+            "影響-07"
+          ],
+          "primary_need": {
+            "name": "影響欲求",
+            "id": "influence"
+          },
+          "secondary_need": {
+            "name": "関係欲求",
+            "id": "relationship"
+          },
+          "tertiary_need": {
+            "name": "評価欲求",
+            "id": "recognition"
+          }
+        }
+      },
+      {
+        "text": "自分の見つけ方やこだわりまで伝わると嬉しい",
+        "scores": {
+          "recognition": 0.7,
+          "creation": 0.1,
+          "meaning": 0.2
+        },
+        "meta": {
+          "choice_label": "C",
+          "score_total": 1.0,
+          "source_id": "B05",
+          "source_example_ids": [
+            "評価-07"
+          ],
+          "primary_need": {
+            "name": "評価欲求",
+            "id": "recognition"
+          },
+          "secondary_need": {
+            "name": "意味欲求",
+            "id": "meaning"
+          },
+          "tertiary_need": {
+            "name": "創造欲求",
+            "id": "creation"
+          }
+        }
+      },
+      {
+        "text": "話しているうちに、別の面白そうなものにも広げたくなる",
+        "scores": {
+          "exploration": 0.2,
+          "relationship": 0.1,
+          "stimulation": 0.7
+        },
+        "meta": {
+          "choice_label": "D",
+          "score_total": 1.0,
+          "source_id": "B05",
+          "source_example_ids": [
+            "刺激-14"
+          ],
+          "primary_need": {
+            "name": "刺激欲求",
+            "id": "stimulation"
+          },
+          "secondary_need": {
+            "name": "探究欲求",
+            "id": "exploration"
+          },
+          "tertiary_need": {
+            "name": "関係欲求",
+            "id": "relationship"
+          }
+        }
+      }
+    ],
+    "meta": {
+      "source_question_id": "Q25",
+      "question_type": "自然行動",
+      "scene": "趣味や良かったものの共有"
+    }
+  },
+  {
+    "id": "q026",
+    "text": "ちょっとしたイベントや遊びを考えるなら、近い発想は？",
+    "choices": [
+      {
+        "text": "いつもと違う要素を一つ入れて、少し新鮮にしたい",
+        "scores": {
+          "relationship": 0.1,
+          "stimulation": 0.7,
+          "creation": 0.2
+        },
+        "meta": {
+          "choice_label": "A",
+          "score_total": 1.0,
+          "source_id": "B18",
+          "source_example_ids": [
+            "刺激-04"
+          ],
+          "primary_need": {
+            "name": "刺激欲求",
+            "id": "stimulation"
+          },
+          "secondary_need": {
+            "name": "創造欲求",
+            "id": "creation"
+          },
+          "tertiary_need": {
+            "name": "関係欲求",
+            "id": "relationship"
+          }
+        }
+      },
+      {
+        "text": "その場に合うルールや小道具を足して、自分たちらしい形にしたい",
+        "scores": {
+          "relationship": 0.2,
+          "stimulation": 0.1,
+          "creation": 0.7
+        },
+        "meta": {
+          "choice_label": "B",
+          "score_total": 1.0,
+          "source_id": "B18",
+          "source_example_ids": [
+            "創造-03"
+          ],
+          "primary_need": {
+            "name": "創造欲求",
+            "id": "creation"
+          },
+          "secondary_need": {
+            "name": "関係欲求",
+            "id": "relationship"
+          },
+          "tertiary_need": {
+            "name": "刺激欲求",
+            "id": "stimulation"
+          }
+        }
+      },
+      {
+        "text": "参加する人が入りやすく、置いていかれない流れにしたい",
+        "scores": {
+          "stability": 0.2,
+          "relationship": 0.7,
+          "order": 0.1
+        },
+        "meta": {
+          "choice_label": "C",
+          "score_total": 1.0,
+          "source_id": "B18",
+          "source_example_ids": [
+            "関係-07"
+          ],
+          "primary_need": {
+            "name": "関係欲求",
+            "id": "relationship"
+          },
+          "secondary_need": {
+            "name": "安定欲求",
+            "id": "stability"
+          },
+          "tertiary_need": {
+            "name": "秩序欲求",
+            "id": "order"
+          }
+        }
+      },
+      {
+        "text": "あとから思い出せるような、ちょっとした意味や物語がほしい",
+        "scores": {
+          "stimulation": 0.1,
+          "creation": 0.2,
+          "meaning": 0.7
+        },
+        "meta": {
+          "choice_label": "D",
+          "score_total": 1.0,
+          "source_id": "B18",
+          "source_example_ids": [
+            "意味-07"
+          ],
+          "primary_need": {
+            "name": "意味欲求",
+            "id": "meaning"
+          },
+          "secondary_need": {
+            "name": "創造欲求",
+            "id": "creation"
+          },
+          "tertiary_need": {
+            "name": "刺激欲求",
+            "id": "stimulation"
+          }
+        }
+      }
+    ],
+    "meta": {
+      "source_question_id": "Q26",
+      "question_type": "自然行動",
+      "scene": "イベント・遊びの作り方"
+    }
+  },
+  {
+    "id": "q027",
+    "text": "何かがうまくいかなかった後、次に取りやすい動きは？",
+    "choices": [
+      {
+        "text": "原因を見て、次はどうすれば良くなるか試したくなる",
+        "scores": {
+          "growth": 0.7,
+          "exploration": 0.2,
+          "influence": 0.1
+        },
+        "meta": {
+          "choice_label": "A",
+          "score_total": 1.0,
+          "source_id": "B20",
+          "source_example_ids": [
+            "成長-04"
+          ],
+          "primary_need": {
+            "name": "成長欲求",
+            "id": "growth"
+          },
+          "secondary_need": {
+            "name": "探究欲求",
+            "id": "exploration"
+          },
+          "tertiary_need": {
+            "name": "影響欲求",
+            "id": "influence"
+          }
+        }
+      },
+      {
+        "text": "同じ失敗が起きないように、手順や共有方法を整える",
+        "scores": {
+          "stability": 0.2,
+          "influence": 0.1,
+          "order": 0.7
+        },
+        "meta": {
+          "choice_label": "B",
+          "score_total": 1.0,
+          "source_id": "B20",
+          "source_example_ids": [
+            "秩序-14"
+          ],
+          "primary_need": {
+            "name": "秩序欲求",
+            "id": "order"
+          },
+          "secondary_need": {
+            "name": "安定欲求",
+            "id": "stability"
+          },
+          "tertiary_need": {
+            "name": "影響欲求",
+            "id": "influence"
+          }
+        }
+      },
+      {
+        "text": "関わった人が次に動きやすくなるよう、改善案を出す",
+        "scores": {
+          "growth": 0.1,
+          "relationship": 0.2,
+          "influence": 0.7
+        },
+        "meta": {
+          "choice_label": "C",
+          "score_total": 1.0,
+          "source_id": "B20",
+          "source_example_ids": [
+            "影響-03"
+          ],
+          "primary_need": {
+            "name": "影響欲求",
+            "id": "influence"
+          },
+          "secondary_need": {
+            "name": "関係欲求",
+            "id": "relationship"
+          },
+          "tertiary_need": {
+            "name": "成長欲求",
+            "id": "growth"
+          }
+        }
+      },
+      {
+        "text": "どこが良くてどこが惜しかったのか、具体的に言語化したい",
+        "scores": {
+          "growth": 0.2,
+          "exploration": 0.1,
+          "recognition": 0.7
+        },
+        "meta": {
+          "choice_label": "D",
+          "score_total": 1.0,
+          "source_id": "B20",
+          "source_example_ids": [
+            "評価-08"
+          ],
+          "primary_need": {
+            "name": "評価欲求",
+            "id": "recognition"
+          },
+          "secondary_need": {
+            "name": "成長欲求",
+            "id": "growth"
+          },
+          "tertiary_need": {
+            "name": "探究欲求",
+            "id": "exploration"
+          }
+        }
+      }
+    ],
+    "meta": {
+      "source_question_id": "Q27",
+      "question_type": "自然行動",
+      "scene": "改善・振り返り"
+    }
+  },
+  {
+    "id": "q028",
+    "text": "自分の成果を人前に出すとき、力が入りやすいのは？",
+    "choices": [
+      {
+        "text": "見た人に、頑張ったところや工夫がちゃんと伝わること",
+        "scores": {
+          "relationship": 0.1,
+          "recognition": 0.7,
+          "creation": 0.2
+        },
+        "meta": {
+          "choice_label": "A",
+          "score_total": 1.0,
+          "source_id": "B14",
+          "source_example_ids": [
+            "評価-04"
+          ],
+          "primary_need": {
+            "name": "評価欲求",
+            "id": "recognition"
+          },
+          "secondary_need": {
+            "name": "創造欲求",
+            "id": "creation"
+          },
+          "tertiary_need": {
+            "name": "関係欲求",
+            "id": "relationship"
+          }
+        }
+      },
+      {
+        "text": "聞いた人の考えや行動が、少しでも変わること",
+        "scores": {
+          "recognition": 0.2,
+          "influence": 0.7,
+          "meaning": 0.1
+        },
+        "meta": {
+          "choice_label": "B",
+          "score_total": 1.0,
+          "source_id": "B14",
+          "source_example_ids": [
+            "影響-05"
+          ],
+          "primary_need": {
+            "name": "影響欲求",
+            "id": "influence"
+          },
+          "secondary_need": {
+            "name": "評価欲求",
+            "id": "recognition"
+          },
+          "tertiary_need": {
+            "name": "意味欲求",
+            "id": "meaning"
+          }
+        }
+      },
+      {
+        "text": "自分らしい見せ方や構成で、伝わる形にすること",
+        "scores": {
+          "autonomy": 0.2,
+          "recognition": 0.1,
+          "creation": 0.7
+        },
+        "meta": {
+          "choice_label": "C",
+          "score_total": 1.0,
+          "source_id": "B14",
+          "source_example_ids": [
+            "創造-14"
+          ],
+          "primary_need": {
+            "name": "創造欲求",
+            "id": "creation"
+          },
+          "secondary_need": {
+            "name": "自律欲求",
+            "id": "autonomy"
+          },
+          "tertiary_need": {
+            "name": "評価欲求",
+            "id": "recognition"
+          }
+        }
+      },
+      {
+        "text": "その成果が自分にとって何につながるのか、説明できること",
+        "scores": {
+          "growth": 0.2,
+          "recognition": 0.1,
+          "meaning": 0.7
+        },
+        "meta": {
+          "choice_label": "D",
+          "score_total": 1.0,
+          "source_id": "B14",
+          "source_example_ids": [
+            "意味-01"
+          ],
+          "primary_need": {
+            "name": "意味欲求",
+            "id": "meaning"
+          },
+          "secondary_need": {
+            "name": "成長欲求",
+            "id": "growth"
+          },
+          "tertiary_need": {
+            "name": "評価欲求",
+            "id": "recognition"
+          }
+        }
+      }
+    ],
+    "meta": {
+      "source_question_id": "Q28",
+      "question_type": "自然行動",
+      "scene": "発表・見せる場"
+    }
+  },
+  {
+    "id": "q029",
+    "text": "作品や文化に触れたとき、物足りなさとして残りやすいのは？",
+    "choices": [
+      {
+        "text": "きれいだけれど、背景や思想があまり感じられないこと",
+        "scores": {
+          "exploration": 0.2,
+          "creation": 0.1,
+          "meaning": 0.7
+        },
+        "meta": {
+          "choice_label": "A",
+          "score_total": 1.0,
+          "source_id": "B21",
+          "source_example_ids": [
+            "意味-02"
+          ],
+          "primary_need": {
+            "name": "意味欲求",
+            "id": "meaning"
+          },
+          "secondary_need": {
+            "name": "探究欲求",
+            "id": "exploration"
+          },
+          "tertiary_need": {
+            "name": "創造欲求",
+            "id": "creation"
+          }
+        }
+      },
+      {
+        "text": "面白そうなのに、型通りで新鮮さがないこと",
+        "scores": {
+          "exploration": 0.1,
+          "stimulation": 0.7,
+          "creation": 0.2
+        },
+        "meta": {
+          "choice_label": "B",
+          "score_total": 1.0,
+          "source_id": "B21",
+          "source_example_ids": [
+            "刺激-10"
+          ],
+          "primary_need": {
+            "name": "刺激欲求",
+            "id": "stimulation"
+          },
+          "secondary_need": {
+            "name": "創造欲求",
+            "id": "creation"
+          },
+          "tertiary_need": {
+            "name": "探究欲求",
+            "id": "exploration"
+          }
+        }
+      },
+      {
+        "text": "作り手の工夫や表現の意図が見えにくいこと",
+        "scores": {
+          "exploration": 0.7,
+          "recognition": 0.1,
+          "creation": 0.2
+        },
+        "meta": {
+          "choice_label": "C",
+          "score_total": 1.0,
+          "source_id": "B21",
+          "source_example_ids": [
+            "探究-06"
+          ],
+          "primary_need": {
+            "name": "探究欲求",
+            "id": "exploration"
+          },
+          "secondary_need": {
+            "name": "創造欲求",
+            "id": "creation"
+          },
+          "tertiary_need": {
+            "name": "評価欲求",
+            "id": "recognition"
+          }
+        }
+      },
+      {
+        "text": "自分でも何か作りたくなる感覚まで届かないこと",
+        "scores": {
+          "stimulation": 0.2,
+          "creation": 0.7,
+          "meaning": 0.1
+        },
+        "meta": {
+          "choice_label": "D",
+          "score_total": 1.0,
+          "source_id": "B21",
+          "source_example_ids": [
+            "創造-02"
+          ],
+          "primary_need": {
+            "name": "創造欲求",
+            "id": "creation"
+          },
+          "secondary_need": {
+            "name": "刺激欲求",
+            "id": "stimulation"
+          },
+          "tertiary_need": {
+            "name": "意味欲求",
+            "id": "meaning"
+          }
+        }
+      }
+    ],
+    "meta": {
+      "source_question_id": "Q29",
+      "question_type": "嫌な違和感",
+      "scene": "趣味・文化に触れる"
+    }
+  },
+  {
+    "id": "q030",
+    "text": "チームや場が停滞しているとき、特にもどかしいのは？",
+    "choices": [
+      {
+        "text": "少し働きかければ変わりそうなのに、誰も動かないこと",
+        "scores": {
+          "growth": 0.2,
+          "relationship": 0.1,
+          "influence": 0.7
+        },
+        "meta": {
+          "choice_label": "A",
+          "score_total": 1.0,
+          "source_id": "B15",
+          "source_example_ids": [
+            "影響-06"
+          ],
+          "primary_need": {
+            "name": "影響欲求",
+            "id": "influence"
+          },
+          "secondary_need": {
+            "name": "成長欲求",
+            "id": "growth"
+          },
+          "tertiary_need": {
+            "name": "関係欲求",
+            "id": "relationship"
+          }
+        }
+      },
+      {
+        "text": "必要な工夫や貢献が、表からほとんど見えないこと",
+        "scores": {
+          "relationship": 0.1,
+          "recognition": 0.7,
+          "influence": 0.2
+        },
+        "meta": {
+          "choice_label": "B",
+          "score_total": 1.0,
+          "source_id": "B15",
+          "source_example_ids": [
+            "評価-05"
+          ],
+          "primary_need": {
+            "name": "評価欲求",
+            "id": "recognition"
+          },
+          "secondary_need": {
+            "name": "影響欲求",
+            "id": "influence"
+          },
+          "tertiary_need": {
+            "name": "関係欲求",
+            "id": "relationship"
+          }
+        }
+      },
+      {
+        "text": "みんなが遠慮して、本音や困りごとを出せないこと",
+        "scores": {
+          "stability": 0.2,
+          "relationship": 0.7,
+          "influence": 0.1
+        },
+        "meta": {
+          "choice_label": "C",
+          "score_total": 1.0,
+          "source_id": "B15",
+          "source_example_ids": [
+            "関係-05"
+          ],
+          "primary_need": {
+            "name": "関係欲求",
+            "id": "relationship"
+          },
+          "secondary_need": {
+            "name": "安定欲求",
+            "id": "stability"
+          },
+          "tertiary_need": {
+            "name": "影響欲求",
+            "id": "influence"
+          }
+        }
+      },
+      {
+        "text": "自分の判断で動ける余地がなく、待つしかないこと",
+        "scores": {
+          "stability": 0.1,
+          "autonomy": 0.7,
+          "influence": 0.2
+        },
+        "meta": {
+          "choice_label": "D",
+          "score_total": 1.0,
+          "source_id": "B15",
+          "source_example_ids": [
+            "自律-10"
+          ],
+          "primary_need": {
+            "name": "自律欲求",
+            "id": "autonomy"
+          },
+          "secondary_need": {
+            "name": "影響欲求",
+            "id": "influence"
+          },
+          "tertiary_need": {
+            "name": "安定欲求",
+            "id": "stability"
+          }
+        }
+      }
+    ],
+    "meta": {
+      "source_question_id": "Q30",
+      "question_type": "嫌な違和感",
+      "scene": "チームの停滞"
+    }
   }
 ]
