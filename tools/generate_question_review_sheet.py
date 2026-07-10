@@ -87,11 +87,12 @@ def parse_review_notes() -> dict[str, list[str]]:
         if not line.startswith("| q"):
             continue
         cells = [cell.strip() for cell in line.strip().strip("|").split("|")]
-        if len(cells) < 7:
+        if len(cells) < 9:
             continue
-        question_id, current, issue, suggestion, target, priority, note = cells[:7]
+        question_id, current, issue, suggestion, adopted, target, priority, status, note = cells[:9]
         notes.setdefault(question_id, []).append(
-            f"- 既存指摘（{priority} / {target}）: {issue}<br>修正案: {suggestion}<br>備考: {note}"
+            f"- 既存指摘（{priority} / {target} / {status}）: {issue}<br>"
+            f"修正案: {suggestion}<br>採用文: {adopted}<br>備考: {note}"
         )
     return notes
 
