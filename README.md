@@ -55,3 +55,28 @@ docs/
 - 採点ロジックの検証用テストデータ作成
 - GitHub Pages公開設定
 - レーダーチャートなどの可視化追加
+
+## 質問候補データの生成
+
+`tools/convert_questions_csv_to_json.py` は、`docs/motivector_question_draft_v1_long.csv` を読み込み、`data/questions_draft_v1.json` を生成する変換スクリプトである。`question_id` ごとに選択肢をまとめ、`data/questions.json` と互換のある構造へ変換する。CSV内の日本語欲求名は、スクリプト内の固定マッピングで `data/desires.json` の英語idへ変換する。
+
+実行例は以下である。
+
+```bash
+python tools/convert_questions_csv_to_json.py
+```
+
+この環境で `python` が使えない場合は、利用可能なPython実行ファイルに置き換える。
+
+## 質問候補データの検証
+
+`tools/validate_questions_json.py` は、`data/questions_draft_v1.json` を読み込み、質問数、選択肢数、必須フィールド、未定義の欲求id、配点先数、合計配点、`max_possible_score`、欲求間の偏りを検証するスクリプトである。エラーがある場合は終了コード1を返す。警告のみの場合は終了コード0である。
+
+実行例は以下である。
+
+```bash
+python tools/validate_questions_json.py
+```
+
+`data/questions_draft_v1.json` は本番投入前の候補データである。アプリ本体が読み込む `data/questions.json` へ反映する前に、必ず変換結果と検証結果を確認する必要がある。
+
