@@ -96,3 +96,9 @@ python -m http.server 8000
 
 この環境では `python` コマンドが未検出の場合があるため、必要に応じて `py`、`python3`、またはバンドル済みPython実行ファイルに置き換える。
 
+## draft質問文面レビュー
+
+`docs/question_review_notes.md` は、draft質問をブラウザで確認して見つけた違和感を記録する場所である。直接 `data/questions_draft_v1.json` を修正する前に、このファイルへ修正候補を残す。
+
+`data/questions_draft_v1.json` はCSVから再生成される可能性があるため、修正元をCSV、変換スクリプト、生成後JSONのどれにするかを決めてから反映する必要がある。
+
