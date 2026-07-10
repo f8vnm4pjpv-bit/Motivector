@@ -23,6 +23,14 @@
           "creation": 0.7,
           "meaning": 0.3
         }
+      },
+      {
+        "text": "家族や友人に連絡して、一緒に過ごす予定を軽く相談する。",
+        "scores": {
+          "relationship": 0.6,
+          "autonomy": 0.2,
+          "stability": 0.2
+        }
       }
     ]
   },
@@ -51,6 +59,14 @@
           "relationship": 0.7,
           "recognition": 0.3
         }
+      },
+      {
+        "text": "関係者に小さな改善案を出し、まず一つ試してみる。",
+        "scores": {
+          "influence": 0.6,
+          "creation": 0.2,
+          "growth": 0.2
+        }
       }
     ]
   },
@@ -77,6 +93,14 @@
         "scores": {
           "relationship": 0.6,
           "stability": 0.4
+        }
+      },
+      {
+        "text": "いったん自分の考えを持ち帰り、納得できる形に整理する。",
+        "scores": {
+          "autonomy": 0.5,
+          "meaning": 0.3,
+          "order": 0.2
         }
       }
     ]
@@ -108,6 +132,14 @@
           "recognition": 0.3,
           "growth": 0.2
         }
+      },
+      {
+        "text": "新しい道具や表現方法を試して、作業に変化を入れる。",
+        "scores": {
+          "stimulation": 0.4,
+          "creation": 0.4,
+          "exploration": 0.2
+        }
       }
     ]
   },
@@ -135,6 +167,14 @@
         "scores": {
           "stimulation": 0.7,
           "autonomy": 0.3
+        }
+      },
+      {
+        "text": "一週間の中で、自分の考えや気持ちを形にする時間を作る。",
+        "scores": {
+          "creation": 0.5,
+          "meaning": 0.3,
+          "autonomy": 0.2
         }
       }
     ]

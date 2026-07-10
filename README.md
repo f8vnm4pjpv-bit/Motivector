@@ -115,3 +115,9 @@ python tools/generate_question_review_sheet.py
 `docs/question_review_sheet.md` は、質問文と選択肢の粒度、文体、抽象度、主配点との対応を確認するためのレビュー支援ファイルである。レビュー後は `docs/question_review_notes.md` に修正候補を集約し、修正元を決めた上で元CSVへ反映する流れである。
 
 `data/questions_draft_v1.json` は生成物であるため、直接修正しない。
+
+## sampleデータの確認
+
+`data/questions.json` のsampleデータは、UI確認でdraftと比較しやすいように5問すべてを4択に揃えている。本番候補データは `data/questions_draft_v1.json` である。
+
+通常確認は `index.html`、draft確認は `index.html?dataset=draft` を使う。

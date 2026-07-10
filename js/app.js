@@ -101,6 +101,14 @@
             "creation": 0.7,
             "meaning": 0.3
           }
+        },
+        {
+          "text": "\u5bb6\u65cf\u3084\u53cb\u4eba\u306b\u9023\u7d61\u3057\u3066\u3001\u4e00\u7dd2\u306b\u904e\u3054\u3059\u4e88\u5b9a\u3092\u8efd\u304f\u76f8\u8ac7\u3059\u308b\u3002",
+          "scores": {
+            "relationship": 0.6,
+            "autonomy": 0.2,
+            "stability": 0.2
+          }
         }
       ]
     },
@@ -129,6 +137,14 @@
             "relationship": 0.7,
             "recognition": 0.3
           }
+        },
+        {
+          "text": "\u95a2\u4fc2\u8005\u306b\u5c0f\u3055\u306a\u6539\u5584\u6848\u3092\u51fa\u3057\u3001\u307e\u305a\u4e00\u3064\u8a66\u3057\u3066\u307f\u308b\u3002",
+          "scores": {
+            "influence": 0.6,
+            "creation": 0.2,
+            "growth": 0.2
+          }
         }
       ]
     },
@@ -155,6 +171,14 @@
           "scores": {
             "relationship": 0.6,
             "stability": 0.4
+          }
+        },
+        {
+          "text": "\u3044\u3063\u305f\u3093\u81ea\u5206\u306e\u8003\u3048\u3092\u6301\u3061\u5e30\u308a\u3001\u7d0d\u5f97\u3067\u304d\u308b\u5f62\u306b\u6574\u7406\u3059\u308b\u3002",
+          "scores": {
+            "autonomy": 0.5,
+            "meaning": 0.3,
+            "order": 0.2
           }
         }
       ]
@@ -186,6 +210,14 @@
             "recognition": 0.3,
             "growth": 0.2
           }
+        },
+        {
+          "text": "\u65b0\u3057\u3044\u9053\u5177\u3084\u8868\u73fe\u65b9\u6cd5\u3092\u8a66\u3057\u3066\u3001\u4f5c\u696d\u306b\u5909\u5316\u3092\u5165\u308c\u308b\u3002",
+          "scores": {
+            "stimulation": 0.4,
+            "creation": 0.4,
+            "exploration": 0.2
+          }
         }
       ]
     },
@@ -213,6 +245,14 @@
           "scores": {
             "stimulation": 0.7,
             "autonomy": 0.3
+          }
+        },
+        {
+          "text": "\u4e00\u9031\u9593\u306e\u4e2d\u3067\u3001\u81ea\u5206\u306e\u8003\u3048\u3084\u6c17\u6301\u3061\u3092\u5f62\u306b\u3059\u308b\u6642\u9593\u3092\u4f5c\u308b\u3002",
+          "scores": {
+            "creation": 0.5,
+            "meaning": 0.3,
+            "autonomy": 0.2
           }
         }
       ]
