@@ -2,76 +2,223 @@
   "use strict";
 
   var app = document.getElementById("app");
+  var DATASETS = {
+    sample: "data/questions.json",
+    draft: "data/questions_draft_v1.json"
+  };
   var state = {
     desires: [],
     questions: [],
     answers: [],
-    currentIndex: 0
+    currentIndex: 0,
+    dataset: "sample",
+    requestedDataset: "sample",
+    validationReport: null,
+    dataWarning: ""
   };
 
-  // file://でJSON fetchが制限される環境向けの最小フォールバックである。GitHub Pagesではdata/*.jsonを読み込む。
+  // file://でJSON fetchが制限される環境向けのsampleフォールバックである。draftの30問は二重管理しない。
   var fallbackData = {
-    desires: [
-      { id: "stability", name: "安定欲求", description: "不安定さや喪失を避け、安心していられる状態を保ちたい欲求である。" },
-      { id: "autonomy", name: "自律欲求", description: "自分の意思で選び、自分のペースで動きたい欲求である。" },
-      { id: "growth", name: "成長欲求", description: "できることを増やし、能力や成果を高めたい欲求である。" },
-      { id: "exploration", name: "探究欲求", description: "未知のものを知り、仕組みを理解したい欲求である。" },
-      { id: "relationship", name: "関係欲求", description: "人とのつながりを保ち、受け入れられていたい欲求である。" },
-      { id: "recognition", name: "評価欲求", description: "自分の価値や努力を認められたい欲求である。" },
-      { id: "influence", name: "影響欲求", description: "自分の働きかけによって、周囲や状況に変化を起こしたい欲求である。" },
-      { id: "order", name: "秩序欲求", description: "情報や環境を整理し、見通しのよい状態にしたい欲求である。" },
-      { id: "stimulation", name: "刺激欲求", description: "新しさ、面白さ、変化、楽しさを求める欲求である。" },
-      { id: "creation", name: "創造欲求", description: "考えや感覚を形にし、何かを生み出したい欲求である。" },
-      { id: "meaning", name: "意味欲求", description: "出来事や行動に、物語、美学、思想、存在理由を見出したい欲求である。" }
-    ],
-    questions: [
-      {
-        id: "q001",
-        text: "休日の午前中に予定が空いたとき、まず何をするか。",
-        choices: [
-          { text: "部屋や持ち物を整えて、落ち着いて過ごせる状態にする。", scores: { stability: 0.6, order: 0.4 } },
-          { text: "気になっていた場所へ行き、初めての店や道を試す。", scores: { stimulation: 0.6, exploration: 0.4 } },
-          { text: "作りかけの文章、絵、音楽、企画などに手を入れる。", scores: { creation: 0.7, meaning: 0.3 } }
-        ]
-      },
-      {
-        id: "q002",
-        text: "新しいプロジェクトに参加した直後、最初に取りたい行動はどれか。",
-        choices: [
-          { text: "目的、期限、役割を確認して、全体の流れを整理する。", scores: { order: 0.6, stability: 0.2, influence: 0.2 } },
-          { text: "自分が伸ばせそうな技術や知識を見つけ、練習の予定を作る。", scores: { growth: 0.7, exploration: 0.3 } },
-          { text: "一緒に進める人に声をかけ、互いの得意なことを聞く。", scores: { relationship: 0.7, recognition: 0.3 } }
-        ]
-      },
-      {
-        id: "q003",
-        text: "意見が分かれた会議で、自分が自然にしやすいことはどれか。",
-        choices: [
-          { text: "判断材料を集め、なぜ違いが出ているのかを確認する。", scores: { exploration: 0.6, order: 0.4 } },
-          { text: "自分の案がどう役立つかを説明し、場を前に進める。", scores: { influence: 0.7, recognition: 0.3 } },
-          { text: "それぞれの不安や期待を聞き、話しやすい空気を作る。", scores: { relationship: 0.6, stability: 0.4 } }
-        ]
-      },
-      {
-        id: "q004",
-        text: "まとまった時間を使って何かを改善できるなら、どれを選ぶか。",
-        choices: [
-          { text: "毎日の作業手順を見直し、迷わず進められる形にする。", scores: { order: 0.5, growth: 0.3, stability: 0.2 } },
-          { text: "自分で決めたテーマを深掘りし、納得できるまで調べる。", scores: { autonomy: 0.4, exploration: 0.4, meaning: 0.2 } },
-          { text: "人に見せられる成果物として、形や表現を磨き込む。", scores: { creation: 0.5, recognition: 0.3, growth: 0.2 } }
-        ]
-      },
-      {
-        id: "q005",
-        text: "次の一週間を自分らしく過ごすために、最も近い行動はどれか。",
-        choices: [
-          { text: "予定を詰め込みすぎず、休む時間と安心できる場所を確保する。", scores: { stability: 0.7, autonomy: 0.3 } },
-          { text: "誰かの役に立つ小さな働きかけを決め、実際に動いてみる。", scores: { influence: 0.5, relationship: 0.3, meaning: 0.2 } },
-          { text: "普段選ばない予定を一つ入れ、気分が動く体験を作る。", scores: { stimulation: 0.7, autonomy: 0.3 } }
-        ]
-      }
-    ]
-  };
+  "desires": [
+    {
+      "id": "stability",
+      "name": "\u5b89\u5b9a\u6b32\u6c42",
+      "description": "\u4e0d\u5b89\u5b9a\u3055\u3084\u55aa\u5931\u3092\u907f\u3051\u3001\u5b89\u5fc3\u3057\u3066\u3044\u3089\u308c\u308b\u72b6\u614b\u3092\u4fdd\u3061\u305f\u3044\u6b32\u6c42\u3067\u3042\u308b\u3002"
+    },
+    {
+      "id": "autonomy",
+      "name": "\u81ea\u5f8b\u6b32\u6c42",
+      "description": "\u81ea\u5206\u306e\u610f\u601d\u3067\u9078\u3073\u3001\u81ea\u5206\u306e\u30da\u30fc\u30b9\u3067\u52d5\u304d\u305f\u3044\u6b32\u6c42\u3067\u3042\u308b\u3002"
+    },
+    {
+      "id": "growth",
+      "name": "\u6210\u9577\u6b32\u6c42",
+      "description": "\u3067\u304d\u308b\u3053\u3068\u3092\u5897\u3084\u3057\u3001\u80fd\u529b\u3084\u6210\u679c\u3092\u9ad8\u3081\u305f\u3044\u6b32\u6c42\u3067\u3042\u308b\u3002"
+    },
+    {
+      "id": "exploration",
+      "name": "\u63a2\u7a76\u6b32\u6c42",
+      "description": "\u672a\u77e5\u306e\u3082\u306e\u3092\u77e5\u308a\u3001\u4ed5\u7d44\u307f\u3092\u7406\u89e3\u3057\u305f\u3044\u6b32\u6c42\u3067\u3042\u308b\u3002"
+    },
+    {
+      "id": "relationship",
+      "name": "\u95a2\u4fc2\u6b32\u6c42",
+      "description": "\u4eba\u3068\u306e\u3064\u306a\u304c\u308a\u3092\u4fdd\u3061\u3001\u53d7\u3051\u5165\u308c\u3089\u308c\u3066\u3044\u305f\u3044\u6b32\u6c42\u3067\u3042\u308b\u3002"
+    },
+    {
+      "id": "recognition",
+      "name": "\u8a55\u4fa1\u6b32\u6c42",
+      "description": "\u81ea\u5206\u306e\u4fa1\u5024\u3084\u52aa\u529b\u3092\u8a8d\u3081\u3089\u308c\u305f\u3044\u6b32\u6c42\u3067\u3042\u308b\u3002"
+    },
+    {
+      "id": "influence",
+      "name": "\u5f71\u97ff\u6b32\u6c42",
+      "description": "\u81ea\u5206\u306e\u50cd\u304d\u304b\u3051\u306b\u3088\u3063\u3066\u3001\u5468\u56f2\u3084\u72b6\u6cc1\u306b\u5909\u5316\u3092\u8d77\u3053\u3057\u305f\u3044\u6b32\u6c42\u3067\u3042\u308b\u3002"
+    },
+    {
+      "id": "order",
+      "name": "\u79e9\u5e8f\u6b32\u6c42",
+      "description": "\u60c5\u5831\u3084\u74b0\u5883\u3092\u6574\u7406\u3057\u3001\u898b\u901a\u3057\u306e\u3088\u3044\u72b6\u614b\u306b\u3057\u305f\u3044\u6b32\u6c42\u3067\u3042\u308b\u3002"
+    },
+    {
+      "id": "stimulation",
+      "name": "\u523a\u6fc0\u6b32\u6c42",
+      "description": "\u65b0\u3057\u3055\u3001\u9762\u767d\u3055\u3001\u5909\u5316\u3001\u697d\u3057\u3055\u3092\u6c42\u3081\u308b\u6b32\u6c42\u3067\u3042\u308b\u3002"
+    },
+    {
+      "id": "creation",
+      "name": "\u5275\u9020\u6b32\u6c42",
+      "description": "\u8003\u3048\u3084\u611f\u899a\u3092\u5f62\u306b\u3057\u3001\u4f55\u304b\u3092\u751f\u307f\u51fa\u3057\u305f\u3044\u6b32\u6c42\u3067\u3042\u308b\u3002"
+    },
+    {
+      "id": "meaning",
+      "name": "\u610f\u5473\u6b32\u6c42",
+      "description": "\u51fa\u6765\u4e8b\u3084\u884c\u52d5\u306b\u3001\u7269\u8a9e\u3001\u7f8e\u5b66\u3001\u601d\u60f3\u3001\u5b58\u5728\u7406\u7531\u3092\u898b\u51fa\u3057\u305f\u3044\u6b32\u6c42\u3067\u3042\u308b\u3002"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q001",
+      "text": "\u4f11\u65e5\u306e\u5348\u524d\u4e2d\u306b\u4e88\u5b9a\u304c\u7a7a\u3044\u305f\u3068\u304d\u3001\u307e\u305a\u4f55\u3092\u3059\u308b\u304b\u3002",
+      "choices": [
+        {
+          "text": "\u90e8\u5c4b\u3084\u6301\u3061\u7269\u3092\u6574\u3048\u3066\u3001\u843d\u3061\u7740\u3044\u3066\u904e\u3054\u305b\u308b\u72b6\u614b\u306b\u3059\u308b\u3002",
+          "scores": {
+            "stability": 0.6,
+            "order": 0.4
+          }
+        },
+        {
+          "text": "\u6c17\u306b\u306a\u3063\u3066\u3044\u305f\u5834\u6240\u3078\u884c\u304d\u3001\u521d\u3081\u3066\u306e\u5e97\u3084\u9053\u3092\u8a66\u3059\u3002",
+          "scores": {
+            "stimulation": 0.6,
+            "exploration": 0.4
+          }
+        },
+        {
+          "text": "\u4f5c\u308a\u304b\u3051\u306e\u6587\u7ae0\u3001\u7d75\u3001\u97f3\u697d\u3001\u4f01\u753b\u306a\u3069\u306b\u624b\u3092\u5165\u308c\u308b\u3002",
+          "scores": {
+            "creation": 0.7,
+            "meaning": 0.3
+          }
+        }
+      ]
+    },
+    {
+      "id": "q002",
+      "text": "\u65b0\u3057\u3044\u30d7\u30ed\u30b8\u30a7\u30af\u30c8\u306b\u53c2\u52a0\u3057\u305f\u76f4\u5f8c\u3001\u6700\u521d\u306b\u53d6\u308a\u305f\u3044\u884c\u52d5\u306f\u3069\u308c\u304b\u3002",
+      "choices": [
+        {
+          "text": "\u76ee\u7684\u3001\u671f\u9650\u3001\u5f79\u5272\u3092\u78ba\u8a8d\u3057\u3066\u3001\u5168\u4f53\u306e\u6d41\u308c\u3092\u6574\u7406\u3059\u308b\u3002",
+          "scores": {
+            "order": 0.6,
+            "stability": 0.2,
+            "influence": 0.2
+          }
+        },
+        {
+          "text": "\u81ea\u5206\u304c\u4f38\u3070\u305b\u305d\u3046\u306a\u6280\u8853\u3084\u77e5\u8b58\u3092\u898b\u3064\u3051\u3001\u7df4\u7fd2\u306e\u4e88\u5b9a\u3092\u4f5c\u308b\u3002",
+          "scores": {
+            "growth": 0.7,
+            "exploration": 0.3
+          }
+        },
+        {
+          "text": "\u4e00\u7dd2\u306b\u9032\u3081\u308b\u4eba\u306b\u58f0\u3092\u304b\u3051\u3001\u4e92\u3044\u306e\u5f97\u610f\u306a\u3053\u3068\u3092\u805e\u304f\u3002",
+          "scores": {
+            "relationship": 0.7,
+            "recognition": 0.3
+          }
+        }
+      ]
+    },
+    {
+      "id": "q003",
+      "text": "\u610f\u898b\u304c\u5206\u304b\u308c\u305f\u4f1a\u8b70\u3067\u3001\u81ea\u5206\u304c\u81ea\u7136\u306b\u3057\u3084\u3059\u3044\u3053\u3068\u306f\u3069\u308c\u304b\u3002",
+      "choices": [
+        {
+          "text": "\u5224\u65ad\u6750\u6599\u3092\u96c6\u3081\u3001\u306a\u305c\u9055\u3044\u304c\u51fa\u3066\u3044\u308b\u306e\u304b\u3092\u78ba\u8a8d\u3059\u308b\u3002",
+          "scores": {
+            "exploration": 0.6,
+            "order": 0.4
+          }
+        },
+        {
+          "text": "\u81ea\u5206\u306e\u6848\u304c\u3069\u3046\u5f79\u7acb\u3064\u304b\u3092\u8aac\u660e\u3057\u3001\u5834\u3092\u524d\u306b\u9032\u3081\u308b\u3002",
+          "scores": {
+            "influence": 0.7,
+            "recognition": 0.3
+          }
+        },
+        {
+          "text": "\u305d\u308c\u305e\u308c\u306e\u4e0d\u5b89\u3084\u671f\u5f85\u3092\u805e\u304d\u3001\u8a71\u3057\u3084\u3059\u3044\u7a7a\u6c17\u3092\u4f5c\u308b\u3002",
+          "scores": {
+            "relationship": 0.6,
+            "stability": 0.4
+          }
+        }
+      ]
+    },
+    {
+      "id": "q004",
+      "text": "\u307e\u3068\u307e\u3063\u305f\u6642\u9593\u3092\u4f7f\u3063\u3066\u4f55\u304b\u3092\u6539\u5584\u3067\u304d\u308b\u306a\u3089\u3001\u3069\u308c\u3092\u9078\u3076\u304b\u3002",
+      "choices": [
+        {
+          "text": "\u6bce\u65e5\u306e\u4f5c\u696d\u624b\u9806\u3092\u898b\u76f4\u3057\u3001\u8ff7\u308f\u305a\u9032\u3081\u3089\u308c\u308b\u5f62\u306b\u3059\u308b\u3002",
+          "scores": {
+            "order": 0.5,
+            "growth": 0.3,
+            "stability": 0.2
+          }
+        },
+        {
+          "text": "\u81ea\u5206\u3067\u6c7a\u3081\u305f\u30c6\u30fc\u30de\u3092\u6df1\u6398\u308a\u3057\u3001\u7d0d\u5f97\u3067\u304d\u308b\u307e\u3067\u8abf\u3079\u308b\u3002",
+          "scores": {
+            "autonomy": 0.4,
+            "exploration": 0.4,
+            "meaning": 0.2
+          }
+        },
+        {
+          "text": "\u4eba\u306b\u898b\u305b\u3089\u308c\u308b\u6210\u679c\u7269\u3068\u3057\u3066\u3001\u5f62\u3084\u8868\u73fe\u3092\u78e8\u304d\u8fbc\u3080\u3002",
+          "scores": {
+            "creation": 0.5,
+            "recognition": 0.3,
+            "growth": 0.2
+          }
+        }
+      ]
+    },
+    {
+      "id": "q005",
+      "text": "\u6b21\u306e\u4e00\u9031\u9593\u3092\u81ea\u5206\u3089\u3057\u304f\u904e\u3054\u3059\u305f\u3081\u306b\u3001\u6700\u3082\u8fd1\u3044\u884c\u52d5\u306f\u3069\u308c\u304b\u3002",
+      "choices": [
+        {
+          "text": "\u4e88\u5b9a\u3092\u8a70\u3081\u8fbc\u307f\u3059\u304e\u305a\u3001\u4f11\u3080\u6642\u9593\u3068\u5b89\u5fc3\u3067\u304d\u308b\u5834\u6240\u3092\u78ba\u4fdd\u3059\u308b\u3002",
+          "scores": {
+            "stability": 0.7,
+            "autonomy": 0.3
+          }
+        },
+        {
+          "text": "\u8ab0\u304b\u306e\u5f79\u306b\u7acb\u3064\u5c0f\u3055\u306a\u50cd\u304d\u304b\u3051\u3092\u6c7a\u3081\u3001\u5b9f\u969b\u306b\u52d5\u3044\u3066\u307f\u308b\u3002",
+          "scores": {
+            "influence": 0.5,
+            "relationship": 0.3,
+            "meaning": 0.2
+          }
+        },
+        {
+          "text": "\u666e\u6bb5\u9078\u3070\u306a\u3044\u4e88\u5b9a\u3092\u4e00\u3064\u5165\u308c\u3001\u6c17\u5206\u304c\u52d5\u304f\u4f53\u9a13\u3092\u4f5c\u308b\u3002",
+          "scores": {
+            "stimulation": 0.7,
+            "autonomy": 0.3
+          }
+        }
+      ]
+    }
+  ]
+};
 
   function escapeHtml(value) {
     return String(value)
@@ -86,6 +233,18 @@
     return Number(value || 0).toFixed(3);
   }
 
+  function getRequestedDataset() {
+    var params = new URLSearchParams(window.location.search);
+    var dataset = params.get("dataset") || "sample";
+
+    if (!Object.prototype.hasOwnProperty.call(DATASETS, dataset)) {
+      console.warn("Unknown dataset '" + dataset + "'. Falling back to sample.");
+      return "sample";
+    }
+
+    return dataset;
+  }
+
   function fetchJson(path) {
     return fetch(path).then(function (response) {
       if (!response.ok) {
@@ -96,25 +255,39 @@
   }
 
   function loadData() {
-    if (window.location.protocol === "file:") {
-      console.info("file://直開きのため、フォールバックデータを使う状態である。");
-      return Promise.resolve(fallbackData);
-    }
+    var requestedDataset = getRequestedDataset();
+    var questionsPath = DATASETS[requestedDataset];
 
     return Promise.all([
       fetchJson("data/desires.json"),
-      fetchJson("data/questions.json")
+      fetchJson(questionsPath)
     ]).then(function (results) {
       return {
         desires: results[0],
-        questions: results[1]
+        questions: results[1],
+        dataset: requestedDataset,
+        requestedDataset: requestedDataset,
+        warning: ""
+      };
+    }).catch(function (error) {
+      var warning = "質問データのfetchに失敗したため、sampleフォールバックを使う状態である。";
+      if (requestedDataset === "draft") {
+        warning = "dataset=draftはfile://直開きでは読めない場合があるため、sampleフォールバックを使う状態である。";
+      }
+      console.warn(warning, error);
+      return {
+        desires: fallbackData.desires,
+        questions: fallbackData.questions,
+        dataset: "sample",
+        requestedDataset: requestedDataset,
+        warning: warning
       };
     });
   }
 
   function runValidation(data) {
     if (!window.MotivectorValidation) {
-      return;
+      return null;
     }
 
     var report = window.MotivectorValidation.validateData(data.desires, data.questions);
@@ -129,10 +302,30 @@
       console.info("検証エラーはない状態である。");
     }
     console.groupEnd();
+    return report;
+  }
+
+  function renderStatus() {
+    var errors = state.validationReport ? state.validationReport.errors.length : 0;
+    var warnings = state.validationReport ? state.validationReport.warnings.length : 0;
+    var datasetText = "Dataset: " + state.dataset;
+    if (state.requestedDataset !== state.dataset) {
+      datasetText += " (requested: " + state.requestedDataset + ")";
+    }
+
+    var warningHtml = state.dataWarning ? '<span class="status-warning">' + escapeHtml(state.dataWarning) + '</span>' : "";
+    return [
+      '<div class="status-strip">',
+      '<span>' + escapeHtml(datasetText) + '</span>',
+      '<span>Validation: ' + errors + ' errors, ' + warnings + ' warnings</span>',
+      warningHtml,
+      '</div>'
+    ].join("");
   }
 
   function renderTitle() {
     app.innerHTML = [
+      renderStatus(),
       '<p class="eyebrow">Motivector</p>',
       "<h1>ココロの成分表</h1>",
       '<p class="lead">行動の選び方から、今どの欲求が表れやすいかを仮に見るための初期版である。</p>',
@@ -153,6 +346,7 @@
     }).join("");
 
     app.innerHTML = [
+      renderStatus(),
       '<div class="question-meta">',
       "<span>質問 " + (state.currentIndex + 1) + " / " + state.questions.length + "</span>",
       "<span>" + escapeHtml(question.id) + "</span>",
@@ -202,6 +396,7 @@
     }).join("");
 
     app.innerHTML = [
+      renderStatus(),
       '<p class="eyebrow">結果</p>',
       "<h1>ココロの成分表</h1>",
       '<p class="lead">' + escapeHtml(resultText) + "</p>",
@@ -222,7 +417,10 @@
 
   loadData()
     .then(function (data) {
-      runValidation(data);
+      state.dataset = data.dataset;
+      state.requestedDataset = data.requestedDataset;
+      state.dataWarning = data.warning;
+      state.validationReport = runValidation(data);
       state.desires = data.desires;
       state.questions = data.questions;
       renderTitle();

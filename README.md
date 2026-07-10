@@ -80,3 +80,19 @@ python tools/validate_questions_json.py
 
 `data/questions_draft_v1.json` は本番投入前の候補データである。アプリ本体が読み込む `data/questions.json` へ反映する前に、必ず変換結果と検証結果を確認する必要がある。
 
+## データセット切り替え
+
+通常確認では `index.html` または `index.html?dataset=sample` を開く。これは `data/questions.json` を読み込む確認方法である。
+
+本番質問候補を確認する場合は `index.html?dataset=draft` を開く。これは `data/questions_draft_v1.json` を読み込む開発用モードである。未知の `dataset` が指定された場合は `sample` にフォールバックする。
+
+`file://` 直開きでは、ブラウザの制限によってdraftデータを読み込めない場合がある。その場合はsampleフォールバックに落ちるため、draft確認はローカルサーバーまたはGitHub Pages上で行う必要がある。
+
+Pythonが使える環境では、以下のようにローカルサーバーを起動できる。
+
+```bash
+python -m http.server 8000
+```
+
+この環境では `python` コマンドが未検出の場合があるため、必要に応じて `py`、`python3`、またはバンドル済みPython実行ファイルに置き換える。
+

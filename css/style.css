@@ -42,6 +42,20 @@ button {
   box-shadow: 0 16px 40px rgba(31, 41, 51, 0.08);
 }
 
+
+.status-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  margin: 0 0 18px;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.status-warning {
+  color: #b45309;
+}
+
 .eyebrow {
   margin: 0 0 8px;
   color: var(--accent);
