@@ -102,3 +102,16 @@ python -m http.server 8000
 
 `data/questions_draft_v1.json` はCSVから再生成される可能性があるため、修正元をCSV、変換スクリプト、生成後JSONのどれにするかを決めてから反映する必要がある。
 
+## draft質問レビューシート
+
+`tools/generate_question_review_sheet.py` は、`docs/motivector_question_draft_v1_long.csv` から全30問のレビュー用Markdownを生成するスクリプトである。出力先は `docs/question_review_sheet.md` である。
+
+実行例は以下である。
+
+```bash
+python tools/generate_question_review_sheet.py
+```
+
+`docs/question_review_sheet.md` は、質問文と選択肢の粒度、文体、抽象度、主配点との対応を確認するためのレビュー支援ファイルである。レビュー後は `docs/question_review_notes.md` に修正候補を集約し、修正元を決めた上で元CSVへ反映する流れである。
+
+`data/questions_draft_v1.json` は生成物であるため、直接修正しない。
