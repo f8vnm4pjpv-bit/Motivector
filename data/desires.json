@@ -2,56 +2,56 @@
   {
     "id": "stability",
     "name": "安定欲求",
-    "description": "不安定さや喪失を避け、安心していられる状態を保ちたい欲求である。"
+    "description": "不安定さや喪失を避け、安心していられる状態を保ちたい欲求です。"
   },
   {
     "id": "autonomy",
     "name": "自律欲求",
-    "description": "自分の意思で選び、自分のペースで動きたい欲求である。"
+    "description": "自分の意思で選び、自分のペースで動きたい欲求です。"
   },
   {
     "id": "growth",
     "name": "成長欲求",
-    "description": "できることを増やし、能力や成果を高めたい欲求である。"
+    "description": "できることを増やし、能力や成果を高めたい欲求です。"
   },
   {
     "id": "exploration",
     "name": "探究欲求",
-    "description": "未知のものを知り、仕組みを理解したい欲求である。"
+    "description": "未知のものを知り、仕組みを理解したい欲求です。"
   },
   {
     "id": "relationship",
     "name": "関係欲求",
-    "description": "人とのつながりを保ち、受け入れられていたい欲求である。"
+    "description": "人とのつながりを保ち、受け入れられていたい欲求です。"
   },
   {
     "id": "recognition",
     "name": "評価欲求",
-    "description": "自分の価値や努力を認められたい欲求である。"
+    "description": "自分の価値や努力を認められたい欲求です。"
   },
   {
     "id": "influence",
     "name": "影響欲求",
-    "description": "自分の働きかけによって、周囲や状況に変化を起こしたい欲求である。"
+    "description": "自分の働きかけによって、周囲や状況に変化を起こしたい欲求です。"
   },
   {
     "id": "order",
     "name": "秩序欲求",
-    "description": "情報や環境を整理し、見通しのよい状態にしたい欲求である。"
+    "description": "情報や環境を整理し、見通しのよい状態にしたい欲求です。"
   },
   {
     "id": "stimulation",
     "name": "刺激欲求",
-    "description": "新しさ、面白さ、変化、楽しさを求める欲求である。"
+    "description": "新しさ、面白さ、変化、楽しさを求める欲求です。"
   },
   {
     "id": "creation",
     "name": "創造欲求",
-    "description": "考えや感覚を形にし、何かを生み出したい欲求である。"
+    "description": "考えや感覚を形にし、何かを生み出したい欲求です。"
   },
   {
     "id": "meaning",
     "name": "意味欲求",
-    "description": "出来事や行動に、物語、美学、思想、存在理由を見出したい欲求である。"
+    "description": "出来事や行動に、物語、美学、思想、存在理由を見出したい欲求です。"
   }
 ]

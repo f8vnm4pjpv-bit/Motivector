@@ -24,57 +24,57 @@
     {
       "id": "stability",
       "name": "\u5b89\u5b9a\u6b32\u6c42",
-      "description": "\u4e0d\u5b89\u5b9a\u3055\u3084\u55aa\u5931\u3092\u907f\u3051\u3001\u5b89\u5fc3\u3057\u3066\u3044\u3089\u308c\u308b\u72b6\u614b\u3092\u4fdd\u3061\u305f\u3044\u6b32\u6c42\u3067\u3042\u308b\u3002"
+      "description": "\u4e0d\u5b89\u5b9a\u3055\u3084\u55aa\u5931\u3092\u907f\u3051\u3001\u5b89\u5fc3\u3057\u3066\u3044\u3089\u308c\u308b\u72b6\u614b\u3092\u4fdd\u3061\u305f\u3044\u6b32\u6c42\u3067\u3059\u3002"
     },
     {
       "id": "autonomy",
       "name": "\u81ea\u5f8b\u6b32\u6c42",
-      "description": "\u81ea\u5206\u306e\u610f\u601d\u3067\u9078\u3073\u3001\u81ea\u5206\u306e\u30da\u30fc\u30b9\u3067\u52d5\u304d\u305f\u3044\u6b32\u6c42\u3067\u3042\u308b\u3002"
+      "description": "\u81ea\u5206\u306e\u610f\u601d\u3067\u9078\u3073\u3001\u81ea\u5206\u306e\u30da\u30fc\u30b9\u3067\u52d5\u304d\u305f\u3044\u6b32\u6c42\u3067\u3059\u3002"
     },
     {
       "id": "growth",
       "name": "\u6210\u9577\u6b32\u6c42",
-      "description": "\u3067\u304d\u308b\u3053\u3068\u3092\u5897\u3084\u3057\u3001\u80fd\u529b\u3084\u6210\u679c\u3092\u9ad8\u3081\u305f\u3044\u6b32\u6c42\u3067\u3042\u308b\u3002"
+      "description": "\u3067\u304d\u308b\u3053\u3068\u3092\u5897\u3084\u3057\u3001\u80fd\u529b\u3084\u6210\u679c\u3092\u9ad8\u3081\u305f\u3044\u6b32\u6c42\u3067\u3059\u3002"
     },
     {
       "id": "exploration",
       "name": "\u63a2\u7a76\u6b32\u6c42",
-      "description": "\u672a\u77e5\u306e\u3082\u306e\u3092\u77e5\u308a\u3001\u4ed5\u7d44\u307f\u3092\u7406\u89e3\u3057\u305f\u3044\u6b32\u6c42\u3067\u3042\u308b\u3002"
+      "description": "\u672a\u77e5\u306e\u3082\u306e\u3092\u77e5\u308a\u3001\u4ed5\u7d44\u307f\u3092\u7406\u89e3\u3057\u305f\u3044\u6b32\u6c42\u3067\u3059\u3002"
     },
     {
       "id": "relationship",
       "name": "\u95a2\u4fc2\u6b32\u6c42",
-      "description": "\u4eba\u3068\u306e\u3064\u306a\u304c\u308a\u3092\u4fdd\u3061\u3001\u53d7\u3051\u5165\u308c\u3089\u308c\u3066\u3044\u305f\u3044\u6b32\u6c42\u3067\u3042\u308b\u3002"
+      "description": "\u4eba\u3068\u306e\u3064\u306a\u304c\u308a\u3092\u4fdd\u3061\u3001\u53d7\u3051\u5165\u308c\u3089\u308c\u3066\u3044\u305f\u3044\u6b32\u6c42\u3067\u3059\u3002"
     },
     {
       "id": "recognition",
       "name": "\u8a55\u4fa1\u6b32\u6c42",
-      "description": "\u81ea\u5206\u306e\u4fa1\u5024\u3084\u52aa\u529b\u3092\u8a8d\u3081\u3089\u308c\u305f\u3044\u6b32\u6c42\u3067\u3042\u308b\u3002"
+      "description": "\u81ea\u5206\u306e\u4fa1\u5024\u3084\u52aa\u529b\u3092\u8a8d\u3081\u3089\u308c\u305f\u3044\u6b32\u6c42\u3067\u3059\u3002"
     },
     {
       "id": "influence",
       "name": "\u5f71\u97ff\u6b32\u6c42",
-      "description": "\u81ea\u5206\u306e\u50cd\u304d\u304b\u3051\u306b\u3088\u3063\u3066\u3001\u5468\u56f2\u3084\u72b6\u6cc1\u306b\u5909\u5316\u3092\u8d77\u3053\u3057\u305f\u3044\u6b32\u6c42\u3067\u3042\u308b\u3002"
+      "description": "\u81ea\u5206\u306e\u50cd\u304d\u304b\u3051\u306b\u3088\u3063\u3066\u3001\u5468\u56f2\u3084\u72b6\u6cc1\u306b\u5909\u5316\u3092\u8d77\u3053\u3057\u305f\u3044\u6b32\u6c42\u3067\u3059\u3002"
     },
     {
       "id": "order",
       "name": "\u79e9\u5e8f\u6b32\u6c42",
-      "description": "\u60c5\u5831\u3084\u74b0\u5883\u3092\u6574\u7406\u3057\u3001\u898b\u901a\u3057\u306e\u3088\u3044\u72b6\u614b\u306b\u3057\u305f\u3044\u6b32\u6c42\u3067\u3042\u308b\u3002"
+      "description": "\u60c5\u5831\u3084\u74b0\u5883\u3092\u6574\u7406\u3057\u3001\u898b\u901a\u3057\u306e\u3088\u3044\u72b6\u614b\u306b\u3057\u305f\u3044\u6b32\u6c42\u3067\u3059\u3002"
     },
     {
       "id": "stimulation",
       "name": "\u523a\u6fc0\u6b32\u6c42",
-      "description": "\u65b0\u3057\u3055\u3001\u9762\u767d\u3055\u3001\u5909\u5316\u3001\u697d\u3057\u3055\u3092\u6c42\u3081\u308b\u6b32\u6c42\u3067\u3042\u308b\u3002"
+      "description": "\u65b0\u3057\u3055\u3001\u9762\u767d\u3055\u3001\u5909\u5316\u3001\u697d\u3057\u3055\u3092\u6c42\u3081\u308b\u6b32\u6c42\u3067\u3059\u3002"
     },
     {
       "id": "creation",
       "name": "\u5275\u9020\u6b32\u6c42",
-      "description": "\u8003\u3048\u3084\u611f\u899a\u3092\u5f62\u306b\u3057\u3001\u4f55\u304b\u3092\u751f\u307f\u51fa\u3057\u305f\u3044\u6b32\u6c42\u3067\u3042\u308b\u3002"
+      "description": "\u8003\u3048\u3084\u611f\u899a\u3092\u5f62\u306b\u3057\u3001\u4f55\u304b\u3092\u751f\u307f\u51fa\u3057\u305f\u3044\u6b32\u6c42\u3067\u3059\u3002"
     },
     {
       "id": "meaning",
       "name": "\u610f\u5473\u6b32\u6c42",
-      "description": "\u51fa\u6765\u4e8b\u3084\u884c\u52d5\u306b\u3001\u7269\u8a9e\u3001\u7f8e\u5b66\u3001\u601d\u60f3\u3001\u5b58\u5728\u7406\u7531\u3092\u898b\u51fa\u3057\u305f\u3044\u6b32\u6c42\u3067\u3042\u308b\u3002"
+      "description": "\u51fa\u6765\u4e8b\u3084\u884c\u52d5\u306b\u3001\u7269\u8a9e\u3001\u7f8e\u5b66\u3001\u601d\u60f3\u3001\u5b58\u5728\u7406\u7531\u3092\u898b\u51fa\u3057\u305f\u3044\u6b32\u6c42\u3067\u3059\u3002"
     }
   ],
   "questions": [
@@ -291,7 +291,7 @@
   function fetchJson(path) {
     return fetch(path).then(function (response) {
       if (!response.ok) {
-        throw new Error(path + "を読み込めない状態である。");
+        throw new Error(path + "を読み込めない状態です。");
       }
       return response.json();
     });
@@ -315,7 +315,7 @@
         console.error("Failed to load Motivector dataset over HTTP(S).", error);
         throw error;
       }
-      var warning = "質問データのfetchに失敗したため、sampleフォールバックを使う状態である。";
+      var warning = "質問データのfetchに失敗したため、sampleフォールバックを使っています。";
       console.warn(warning, error);
       return {
         desires: fallbackData.desires,
@@ -340,7 +340,7 @@
     if (report.errors.length) {
       console.error(report.errors);
     } else {
-      console.info("検証エラーはない状態である。");
+      console.info("検証エラーはありません。");
     }
     console.groupEnd();
     return report;
@@ -380,7 +380,7 @@
       "<h1>ココロの成分表</h1>",
       '<div class="intro-facts"><span class="intro-fact">' + escapeHtml(questionLabel) + "</span>" + timeHtml + "</div>",
       '<p class="lead">深く考えすぎず、今の自分に近い選択肢を選んでください。</p>',
-      '<p class="notice">この結果は性格や能力を断定するものではなく、今回の回答から欲求の表れ方を整理したものである。</p>',
+      '<p class="notice">この結果は性格や能力を断定するものではなく、今回の回答から欲求の表れ方を整理したものです。</p>',
       '<button class="primary-button" type="button" id="start-button">診断を開始する</button>'
     ].join("");
     document.getElementById("start-button").addEventListener("click", function () {
@@ -507,10 +507,10 @@
       '<p class="section-note">' + escapeHtml(window.MotivectorResultText.buildBottomIntroduction()) + "</p>",
       '<div class="low-needs">' + renderBottomNeeds(model.bottomTwo) + "</div></section>",
       '<section class="result-section" aria-labelledby="balance-title"><h2 id="balance-title">11成分のバランス</h2>',
-      '<p class="section-note">棒の長さは、今回の設問の中で各成分がどの程度表れたかを示す。ほかの人との比較ではなく、回答をこの診断内で整理した値である。</p>',
+      '<p class="section-note">棒の長さは、今回の設問の中で各成分がどの程度表れたかを示しています。ほかの人との比較ではなく、回答をこの診断内で整理した値です。</p>',
       '<div class="balance-chart">' + renderBalanceBars(model.rankedNeeds) + "</div></section>",
       '<details class="score-details"><summary>詳しいスコアを見る</summary>',
-      '<p class="section-note">成分比率は、11成分のnormalized_scoreを合計1として見たときの相対的な割合である。</p>',
+      '<p class="section-note">成分比率は、11成分のnormalized_scoreを合計1として見たときの相対的な割合です。</p>',
       '<div class="score-detail-list">' + renderScoreDetails(model.rankedNeeds) + "</div></details>",
       '<button class="secondary-button restart-button" type="button" id="restart-button">もう一度診断する</button>'
     ].join("");
@@ -523,7 +523,7 @@
 
   function renderError(error) {
     resetAppClass();
-    app.innerHTML = '<p class="error">データの読み込みに失敗した状態である。' + escapeHtml(error.message) + "</p>";
+    app.innerHTML = '<p class="error">データの読み込みに失敗しました。' + escapeHtml(error.message) + "</p>";
   }
 
   loadData().then(function (data) {
