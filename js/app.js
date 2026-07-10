@@ -311,6 +311,10 @@
         warning: ""
       };
     }).catch(function (error) {
+      if (window.location.protocol !== "file:") {
+        console.error("Failed to load Motivector dataset over HTTP(S).", error);
+        throw error;
+      }
       var warning = "質問データのfetchに失敗したため、sampleフォールバックを使う状態である。";
       console.warn(warning, error);
       return {

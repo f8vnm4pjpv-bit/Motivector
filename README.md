@@ -29,6 +29,10 @@ http://localhost:8000/index.html?dataset=production
 
 GitHub Pagesで公開予定である。自前サーバーやサーバーサイド処理、npm、外部ビルドツールは使用しない。
 
+## GitHub Pages と dataset 指定
+GitHub Pages のプロジェクトページ配下で動作するよう、HTML、CSS、JavaScript、JSON はリポジトリ名を含まない相対パスを前提とする。ドメインルート基準のパスは使用しない。
+
+URLに `dataset` 指定がない通常アクセスではproductionを使用し、`data/questions.json` の30問・120選択肢を読み込む。`?dataset=sample` は `data/questions_sample.json` の5問・20選択肢、`?dataset=draft` は `data/questions_draft_v1.json` の30問・120選択肢を読み込む。未知の `dataset` はproductionへフォールバックし、コンソールへ警告を出す。
 ## データファイルの役割
 
 - `data/desires.json`: 11欲求の `id`、名称、説明を管理する。
