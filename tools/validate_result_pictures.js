@@ -75,6 +75,11 @@ if (JSON.stringify([...effectIds].sort()) !== JSON.stringify(expectedImageIds)) 
 internalIds.forEach((primaryId) => {
   internalIds.forEach((secondaryId) => {
     const imagePath = resultPictures.buildPath(primaryId, secondaryId);
+    const displayName = resultPictures.buildDisplayName(primaryId, secondaryId);
+    if (!displayName) {
+      errors.push(`${primaryId} + ${secondaryId}: display name is missing`);
+    }
+
     const fileName = path.basename(imagePath);
     const match = filePattern.exec(fileName);
 
@@ -91,6 +96,19 @@ internalIds.forEach((primaryId) => {
   });
 });
 
+const displayNameCases = [
+  ["stability", "growth", "一歩ずつ育つ「よりどころヤドカリ」"],
+  ["creation", "stimulation", "変化を楽しむ「かたちタコ」"],
+  ["meaning", "relationship", "つながりを大切にする「ものがたりクジラ」"]
+];
+
+displayNameCases.forEach(([primaryId, secondaryId, expected]) => {
+  const actual = resultPictures.buildDisplayName(primaryId, secondaryId);
+  if (actual !== expected) {
+    errors.push(`${primaryId} + ${secondaryId}: display name ${actual}, expected ${expected}`);
+  }
+});
+
 if (errors.length) {
   console.error("Result picture validation failed:");
   errors.forEach((error) => console.error(`  - ${error}`));
@@ -100,4 +118,4 @@ if (errors.length) {
 console.log(`Result pictures: ${files.length} valid PNG files`);
 console.log(`Character IDs: ${[...characterIds].sort().join(", ")}`);
 console.log(`Effect IDs: ${[...effectIds].sort().join(", ")}`);
-console.log("All 11 x 11 result picture combinations and JavaScript ID mappings are valid.");
+console.log("All 11 x 11 result picture combinations, ID mappings, and display names are valid.");

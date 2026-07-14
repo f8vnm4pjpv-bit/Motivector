@@ -497,23 +497,23 @@ summary:focus-visible {
 }
 
 .result-visual-caption {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 6px 10px;
+  display: grid;
+  gap: 4px;
   margin-top: 14px;
-  color: var(--muted);
-  font-size: 0.94rem;
-  line-height: 1.6;
   text-align: center;
 }
 
-.result-visual-caption strong {
+.result-character-name {
   color: var(--text);
+  font-size: clamp(1.15rem, 3vw, 1.45rem);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
 }
 
-.result-visual-separator {
-  color: var(--accent);
+.result-character-components {
+  color: var(--muted);
+  font-size: 0.86rem;
+  line-height: 1.6;
 }
 
 .result-visual-fallback {
@@ -527,6 +527,17 @@ summary:focus-visible {
   margin: 14px 0 0;
   color: var(--muted);
   font-size: 0.94rem;
+}
+
+.start-caution a {
+  color: var(--primary-dark);
+  font-weight: 700;
+  text-underline-offset: 3px;
+}
+
+.start-caution a:focus-visible {
+  outline: 3px solid rgba(180, 83, 9, 0.35);
+  outline-offset: 3px;
 }
 
 .result-caution {

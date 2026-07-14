@@ -381,7 +381,7 @@
       '<div class="intro-facts"><span class="intro-fact">' + escapeHtml(questionLabel) + "</span>" + timeHtml + "</div>",
       '<p class="lead">深く考えすぎず、今の自分に近い選択肢を選んでください。</p>',
       '<p class="notice">この結果は性格や能力を断定するものではなく、今回の回答から欲求の表れ方を整理したものです。</p>',
-      '<p class="start-caution">Motivectorは、独自の分類に基づく自己理解支援コンテンツです。医学的・心理学的診断や、学術的に確立された心理検査ではありません。</p>',
+      '<p class="start-caution">Motivectorは、独自の分類に基づく自己理解支援コンテンツです。医学的・心理学的診断や、学術的に確立された心理検査ではありません。診断を始める前に、<a href="notice.html">ご利用にあたって</a>をご確認ください。</p>',
       '<button class="primary-button" type="button" id="start-button">診断を開始する</button>'
     ].join("");
     document.getElementById("start-button").addEventListener("click", function () {
@@ -443,13 +443,16 @@
   }
   function renderTopNeeds(topThree) {
     return topThree.map(function (need, index) {
+      var detailHtml = index === 0
+        ? '<p class="need-result-text">' + escapeHtml(window.MotivectorResultText.buildTopNeedText(need)) + "</p>"
+        : "";
       return [
         '<article class="top-need-card">',
         '<div class="need-heading"><span class="rank-badge">' + (index + 1) + "位</span>",
         "<h3>" + escapeHtml(need.name) + "</h3>",
         '<strong class="need-score">今回の回答での表れ方: ' + formatPercent(need.normalized_score) + "</strong></div>",
         '<p class="need-description">' + escapeHtml(need.description) + "</p>",
-        '<p class="need-result-text">' + escapeHtml(window.MotivectorResultText.buildTopNeedText(need)) + "</p>",
+        detailHtml,
         "</article>"
       ].join("");
     }).join("");
@@ -462,7 +465,6 @@
         '<div class="need-heading compact"><h3>' + escapeHtml(need.name) + "</h3>",
         '<strong class="need-score">今回の回答での表れ方: ' + formatPercent(need.normalized_score) + "</strong></div>",
         '<p class="need-description">' + escapeHtml(need.description) + "</p>",
-        '<p class="need-result-text">' + escapeHtml(window.MotivectorResultText.buildBottomNeedText(need)) + "</p>",
         "</article>"
       ].join("");
     }).join("");
@@ -499,8 +501,10 @@
       return "";
     }
 
-    var altText = primaryNeed.name + "を主成分、" + secondaryNeed.name
-      + "を副成分としたMotivectorキャラクター";
+    var displayName = window.MotivectorResultPictures.buildDisplayName(primaryNeed.id, secondaryNeed.id)
+      || primaryNeed.name;
+    var altText = displayName + "。" + primaryNeed.name + "と" + secondaryNeed.name
+      + "を反映したMotivectorキャラクター";
 
     return [
       '<figure class="result-visual">',
@@ -509,9 +513,8 @@
       '<p class="result-visual-fallback" id="result-visual-fallback" hidden>組み合わせ画像を表示できませんでした。</p>',
       "</div>",
       '<figcaption class="result-visual-caption">',
-      "<span><strong>1位：</strong>" + escapeHtml(primaryNeed.name) + "のキャラクター</span>",
-      '<span class="result-visual-separator" aria-hidden="true">＋</span>',
-      "<span><strong>2位：</strong>" + escapeHtml(secondaryNeed.name) + "のエフェクト</span>",
+      '<strong class="result-character-name">' + escapeHtml(displayName) + "</strong>",
+      '<span class="result-character-components">' + escapeHtml(primaryNeed.name) + " × " + escapeHtml(secondaryNeed.name) + "</span>",
       "</figcaption>",
       "</figure>"
     ].join("");

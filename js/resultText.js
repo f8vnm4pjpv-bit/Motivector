@@ -23,15 +23,11 @@
   }
 
   function buildTopNeedText(need) {
-    return "今回の回答で比較的強く表れた成分です。" + (TOP_MESSAGES[need.id] || "状況によって表れ方は変わる傾向があります。");
+    return TOP_MESSAGES[need.id] || "状況によって表れ方は変わる傾向があります。";
   }
 
   function buildBottomIntroduction() {
-    return "ここに表示される成分は、存在しない、能力が低い、短所という意味ではありません。今回の設問では、ほかの成分より相対的に優先されにくかったものです。状況や役割によって表れ方は変わります。";
-  }
-
-  function buildBottomNeedText(need) {
-    return "今回の回答では、" + need.name + "はほかの成分より前面に出にくかった成分です。必要性がないという意味ではなく、状況によって優先度は変わります。";
+    return "ほかの成分より前面に出にくかった成分です。必要性がないという意味ではなく、状況によって優先度は変わります。";
   }
 
   function buildResultText(topDesires) {
@@ -42,7 +38,6 @@
     buildTopIntroduction: buildTopIntroduction,
     buildTopNeedText: buildTopNeedText,
     buildBottomIntroduction: buildBottomIntroduction,
-    buildBottomNeedText: buildBottomNeedText,
     buildResultText: buildResultText
   };
 })();
