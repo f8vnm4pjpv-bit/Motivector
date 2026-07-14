@@ -1,140 +1,164 @@
-# Motivector / ココロの成分表
+# ココロの成分表 Motivector
 
-Motivectorは、行動の選び方から11の欲求成分の表れ方を整理する静的Webアプリである。
+## 診断を試す
 
-## 現在の開発段階
+[ココロの成分表 Motivectorを開く](https://f8vnm4pjpv-bit.github.io/Motivector/index.html)
 
-HTML、CSS、JavaScriptのみで動く本番候補版である。通常版には、試験回答と文面レビューを経た30問・各4択を反映している。診断結果は性格、能力、人口平均との差を断定するものではなく、今回の回答を診断内で整理した値である。
+## プロジェクト概要
 
-キャラクターやタイプ名を使った表示は将来候補であり、現時点では未実装である。
+「ココロの成分表 Motivector」は、質問への回答から11種類の欲求成分の表れ方を比較し、自分の考え方や行動傾向を振り返るためのコンテンツです。
 
-## 実行方法
+医学的・心理学的な診断や、学術的に確立された心理検査ではありません。独自に整理した分類と計算方法を用いた自己理解支援コンテンツとして、HTML、CSS、JavaScriptで動作する静的WebアプリをGitHub Pagesで公開しています。
 
-GitHub Pages上では `data/` 配下のJSONを読み込む。ローカルでは、ブラウザのfetch制限を避けるためHTTPサーバーを使う。
+## 使い方
+
+1. [公開中の診断ページ](https://f8vnm4pjpv-bit.github.io/Motivector/index.html)を開きます。
+2. 各質問で、今の自分に最も近い選択肢を選びます。
+3. 選択すると次の質問へ進むため、最後まで回答します。前の質問へ戻って回答を選び直すこともできます。
+4. 結果画面で、11種類の欲求成分の表れ方や上位・下位の傾向を確認します。
+5. 1位の欲求に対応するキャラクターと、2位の欲求に対応するエフェクトを組み合わせた結果画像と名前を確認します。
+
+正解・不正解はありません。深く考えすぎず、回答時点の感覚に近いものを選んでください。
+
+## 診断できる成分
+
+- 安定欲求
+- 自律欲求
+- 成長欲求
+- 探究欲求
+- 関係欲求
+- 評価欲求
+- 影響欲求
+- 秩序欲求
+- 刺激欲求
+- 創造欲求
+- 意味欲求
+
+各成分の高低は、人としての優劣、能力の有無、正常・異常を示すものではありません。
+
+## 結果表示
+
+結果画面では、次の内容を確認できます。
+
+- 比較的強く表れた上位3成分
+- 比較的前面に出にくかった下位2成分
+- 11成分すべての表れ方を示す横棒
+- 各欲求の説明
+- raw score、最大可能スコア、normalized score、成分比率の詳細表示
+- 1位の欲求に対応するキャラクター
+- 2位の欲求に対応するエフェクト
+- 1位と2位の組み合わせから生成されるキャラクター名
+
+キャラクター画像は、11キャラクターと11エフェクトの全121通りから、結果に該当する1枚を表示します。同点の場合は、`data/desires.json` の定義順を使う既存の順位決定ルールに従います。
+
+## ローカルで実行する
+
+このリポジトリはビルド不要で、実行時のパッケージインストールも必要ありません。JSONの読み込みを正しく動作させるため、`file://` で直接開かず、簡易HTTPサーバーを使用してください。
 
 ```bash
+git clone https://github.com/f8vnm4pjpv-bit/Motivector.git
+cd Motivector
 python -m http.server 8000
 ```
 
-この環境で `python` が使えない場合は、`py`、`python3`、または利用可能なPython実行ファイルへ置き換える。
-
-通常版は以下で確認する。
+ブラウザで次のURLを開きます。
 
 ```text
-http://localhost:8000/index.html
-http://localhost:8000/index.html?dataset=production
+http://localhost:8000/
 ```
 
-## 公開方針
+環境によっては、`python` を `python3` または `py` に置き換えてください。
 
-GitHub Pagesで公開予定である。自前サーバーやサーバーサイド処理、npm、外部ビルドツールは使用しない。
+## ディレクトリ構造
 
-## GitHub Pages と dataset 指定
-GitHub Pages のプロジェクトページ配下で動作するよう、HTML、CSS、JavaScript、JSON はリポジトリ名を含まない相対パスを前提とする。ドメインルート基準のパスは使用しない。
+```text
+Motivector/
+├─ index.html                 # 診断のメインページ
+├─ notice.html                # 利用上の注意・免責事項
+├─ css/
+│  └─ style.css               # 画面デザインとレスポンシブ表示
+├─ js/
+│  ├─ app.js                  # 診断進行と画面描画
+│  ├─ scoring.js              # 採点と順位モデル
+│  ├─ resultText.js           # 結果説明文
+│  ├─ resultPictures.js       # 結果画像、キャラクター名、ID変換
+│  └─ validation.js           # 読み込み時のデータ検証
+├─ data/
+│  ├─ desires.json            # 11欲求の名称と説明
+│  ├─ questions.json          # 通常公開用の質問
+│  ├─ questions_sample.json   # 動作確認用の質問
+│  └─ questions_draft_v1.json # 編集・検証中の質問
+├─ pictures/                  # 結果用の組み合わせ画像121枚
+├─ tools/                     # データ・採点・画像の検証スクリプト
+├─ docs/                      # 元データ、仕様、レビュー資料
+└─ README.md
+```
 
-URLに `dataset` 指定がない通常アクセスではproductionを使用し、`data/questions.json` の30問・120選択肢を読み込む。`?dataset=sample` は `data/questions_sample.json` の5問・20選択肢、`?dataset=draft` は `data/questions_draft_v1.json` の30問・120選択肢を読み込む。未知の `dataset` はproductionへフォールバックし、コンソールへ警告を出す。
-## データファイルの役割
+## 質問データセット
 
-- `data/desires.json`: 11欲求の `id`、名称、説明を管理する。
-- `data/questions.json`: 通常版の30問・120選択肢である。
-- `data/questions_sample.json`: UIと動作確認用の5問・20選択肢である。
-- `data/questions_draft_v1.json`: 元CSVから再生成した本番候補の確認用データである。
+URLの `dataset` パラメーターで、開発・確認用のデータセットを切り替えられます。
 
-各質問は `id`、`text`、`choices` を持つ。各選択肢は `text` と `scores` を持ち、`scores` のキーは `desires.json` の欲求idと一致する必要がある。
-
-## データセット切り替え
-
-| URL | dataset | 読み込み先 | 内容 |
+| 指定 | ファイル | 設問・選択肢 | 用途 |
 | --- | --- | --- | --- |
-| `index.html` | production | `data/questions.json` | 通常版30問 |
-| `index.html?dataset=production` | production | `data/questions.json` | 通常版30問 |
-| `index.html?dataset=sample` | sample | `data/questions_sample.json` | 動作確認用5問 |
-| `index.html?dataset=draft` | draft | `data/questions_draft_v1.json` | CSV再生成後の確認用30問 |
+| 指定なし、`production` | `data/questions.json` | 30問・120選択肢 | 通常公開用 |
+| `sample` | `data/questions_sample.json` | 5問・20選択肢 | UIと動作確認用 |
+| `draft` | `data/questions_draft_v1.json` | 30問・120選択肢 | 編集・検証中の候補 |
 
-未知の `dataset` はproductionへフォールバックし、コンソールへ警告を出す。`file://` 直開きでJSONのfetchに失敗した場合は、`js/app.js` 内の5問sampleフォールバックを使う。この場合、画面には実際のdatasetと要求されたdatasetを表示する。productionとdraftの30問は `app.js` へ埋め込まない。
+例：
 
-## 採点方式
+```text
+http://localhost:8000/index.html?dataset=sample
+```
 
-- `raw_score`: 回答で得た点数の合計である。
-- `max_possible_score`: 各欲求が理論上取りうる最大点である。
-- `normalized_score`: `raw_score / max_possible_score` である。
-- `component_ratio`: `normalized_score / sum(normalized_score)` である。
+未知の値を指定した場合はproductionへフォールバックします。`file://` でJSONを読み込めない場合には、`js/app.js` 内の5問のsampleフォールバックが使われますが、通常の確認にはHTTPサーバーを使用してください。
 
-一般利用者向けの主要表示と11成分の横棒には `normalized_score` を使う。`component_ratio` は、11成分のnormalized scoreを合計1として見た相対比率として、折りたたみ式の詳細スコア内だけに補助表示する。
+## 技術構成
 
-結果画面は、上位3成分、相対的に前面へ出にくかった2成分、11成分すべての横棒、折りたたみ式の詳細スコアの順で表示する。11成分は値が近くなりやすいため、円グラフは採用していない。
+- HTML
+- CSS
+- JavaScript（外部フレームワークなし）
+- JSON
+- GitHub Pages
 
-上位3と下位2は `normalized_score` で選出する。同点の場合は `data/desires.json` の定義順を優先し、上位と下位が重複しないようにする。
+回答内容と結果はブラウザ上で計算され、現在の実装ではサーバーへ送信・保存されません。詳細は[利用上の注意・免責事項](./notice.html)をご確認ください。
 
-## 本番質問への昇格
+## 開発・検証
 
-`tools/promote_questions.py` は、`data/questions_draft_v1.json` を `data/desires.json` と照合し、質問構造と配点を検証する。エラーがない場合だけ `data/questions.json` へコピーし、質問数、選択肢数、出力一致を報告する。
+代表的な検証コマンドは次のとおりです。PythonとNode.jsは開発時の検証にのみ使用し、アプリの閲覧には必要ありません。
 
 ```bash
-python tools/promote_questions.py
+python tools/validate_questions_json.py
+python tools/validate_pages_dataset_paths.py
+node tools/validate_navigation_scoring.js
+node tools/validate_result_pictures.js
 ```
 
-`data/questions_sample.json` は昇格対象ではなく、動作確認用として保持する。
+それぞれ、質問データの形式、GitHub Pages向け相対パスとデータセット、画面遷移と採点、121枚の結果画像・ID変換・キャラクター名を検証します。
 
-## 質問候補データの生成
-
-`tools/convert_questions_csv_to_json.py` は、正本である `docs/motivector_question_draft_v1_long.csv` を読み込み、`data/questions_draft_v1.json` を生成する。
+質問候補のCSVをJSONへ変換する場合は、次を実行します。
 
 ```bash
 python tools/convert_questions_csv_to_json.py
 ```
 
-生成後は検証とブラウザ確認を行い、問題がなければ昇格スクリプトを実行する。
-
-## 質問候補データの検証
-
-`tools/validate_questions_json.py` は、質問数、選択肢数、必須フィールド、未定義の欲求id、配点先数、合計配点、`max_possible_score` の偏りを検証する。エラーがある場合は終了コード1を返す。
+検証済みのdraftを通常公開用データへ反映する場合は、次を実行します。
 
 ```bash
-python tools/validate_questions_json.py
+python tools/promote_questions.py
 ```
 
-アプリ起動時にも `js/validation.js` が読み込んだdatasetを検証し、結果を画面とコンソールへ出力する。
+## 利用上の注意・免責事項
 
-## draft質問レビュー
+- 本コンテンツは、医学的・心理学的な診断、治療方針の提示、専門家による心理検査を行うものではありません。
+- 結果は、回答時点での傾向を独自の分類と方法で可視化した参考情報です。固定的な人格、能力、適性、健康状態などを確定するものではありません。
+- 回答時の状況、環境、経験、気分などによって、結果は変化する可能性があります。上位・下位の欲求に良い・悪いという評価はありません。
+- 内容や結果について、正確性、完全性、妥当性、再現性、特定目的への適合性を保証するものではありません。進学、就職、医療、治療などの重要な判断を結果だけに基づいて行わないでください。
+- 心理学、哲学、社会科学などで使われる、または類似する用語を含みますが、Motivector内で独自に整理・定義しています。学術分野における厳密な定義や理論と一致するとは限りません。
+- 他者を評価、選別、診断する目的での利用は想定していません。
+- 法令上免除することのできない責任を除き、本コンテンツの利用または利用不能によって生じた損害について、作成者は責任を負いません。
 
-`docs/question_review_notes.md` は、人がブラウザで確認して見つけた文面上の違和感と反映状況を記録する。`data/questions_draft_v1.json` は生成物であるため直接修正せず、正本のCSVへ反映して再生成する。
+詳しくは[利用上の注意・免責事項](./notice.html)をご確認ください。
 
-`tools/generate_question_review_sheet.py` は、元CSVから全30問のレビュー用 `docs/question_review_sheet.md` を生成する。
+## 利用条件
 
-```bash
-python tools/generate_question_review_sheet.py
-```
-
-## ディレクトリ構成
-
-```text
-index.html
-README.md
-css/
-  style.css
-js/
-  app.js
-  scoring.js
-  resultText.js
-  validation.js
-data/
-  desires.json
-  questions.json
-  questions_sample.json
-  questions_draft_v1.json
-tools/
-  convert_questions_csv_to_json.py
-  generate_question_review_sheet.py
-  promote_questions.py
-  validate_questions_json.py
-docs/
-  元CSV、Excel、仕様書、レビュー記録
-```
-
-## 今後の作業候補
-
-- 回答サンプルを増やした質問・配点バランスの検証
-- 欲求説明と結果文の継続的な文面調整
-- 上位・下位の組み合わせを使うキャラクター機能の設計
-- GitHub Pages公開設定
+LICENSEファイルは設けていません。文章、設問、分類、画像、デザイン、プログラムなどの利用条件は、[利用上の注意・免責事項](./notice.html)をご確認ください。
