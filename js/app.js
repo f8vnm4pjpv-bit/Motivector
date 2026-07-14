@@ -381,6 +381,7 @@
       '<div class="intro-facts"><span class="intro-fact">' + escapeHtml(questionLabel) + "</span>" + timeHtml + "</div>",
       '<p class="lead">深く考えすぎず、今の自分に近い選択肢を選んでください。</p>',
       '<p class="notice">この結果は性格や能力を断定するものではなく、今回の回答から欲求の表れ方を整理したものです。</p>',
+      '<p class="start-caution">Motivectorは、独自の分類に基づく自己理解支援コンテンツです。医学的・心理学的診断や、学術的に確立された心理検査ではありません。</p>',
       '<button class="primary-button" type="button" id="start-button">診断を開始する</button>'
     ].join("");
     document.getElementById("start-button").addEventListener("click", function () {
@@ -493,14 +494,63 @@
     }).join("");
   }
 
+  function renderResultVisual(primaryNeed, secondaryNeed) {
+    if (!primaryNeed || !secondaryNeed) {
+      return "";
+    }
+
+    var altText = primaryNeed.name + "を主成分、" + secondaryNeed.name
+      + "を副成分としたMotivectorキャラクター";
+
+    return [
+      '<figure class="result-visual">',
+      '<div class="result-visual-stage">',
+      '<img class="result-visual-image" id="result-visual-image" alt="' + escapeHtml(altText) + '">',
+      '<p class="result-visual-fallback" id="result-visual-fallback" hidden>組み合わせ画像を表示できませんでした。</p>',
+      "</div>",
+      '<figcaption class="result-visual-caption">',
+      "<span><strong>1位：</strong>" + escapeHtml(primaryNeed.name) + "のキャラクター</span>",
+      '<span class="result-visual-separator" aria-hidden="true">＋</span>',
+      "<span><strong>2位：</strong>" + escapeHtml(secondaryNeed.name) + "のエフェクト</span>",
+      "</figcaption>",
+      "</figure>"
+    ].join("");
+  }
+
+  function setupResultVisual(primaryNeed, secondaryNeed, imagePath) {
+    var image = document.getElementById("result-visual-image");
+    var fallback = document.getElementById("result-visual-fallback");
+
+    if (!image || !imagePath) {
+      return;
+    }
+
+    image.addEventListener("error", function () {
+      console.warn("結果画像を読み込めませんでした。", {
+        primaryNeedId: primaryNeed.id,
+        secondaryNeedId: secondaryNeed.id,
+        imagePath: imagePath
+      });
+      image.hidden = true;
+      if (fallback) {
+        fallback.hidden = false;
+      }
+    });
+    image.src = imagePath;
+  }
+
   function renderResult() {
     var scores = window.MotivectorScoring.scoreAnswers(state.desires, state.questions, buildSelectedAnswers());
     var model = window.MotivectorScoring.buildResultModel(state.desires, scores);
+    var primaryNeed = model.topThree[0];
+    var secondaryNeed = model.topThree[1];
+    var resultPicturePath = window.MotivectorResultPictures.buildPath(primaryNeed.id, secondaryNeed.id);
     app.className = "card result-view";
     app.innerHTML = [
       renderStatus(),
       '<header class="result-header"><p class="eyebrow">診断結果</p><h1>今回のココロの成分表</h1>',
       '<p class="lead">' + escapeHtml(window.MotivectorResultText.buildTopIntroduction(model.topThree)) + "</p></header>",
+      renderResultVisual(primaryNeed, secondaryNeed),
       '<section class="result-section" aria-labelledby="top-needs-title"><h2 id="top-needs-title">あなたを動かしやすい3つの成分</h2>',
       '<div class="top-needs">' + renderTopNeeds(model.topThree) + "</div></section>",
       '<section class="result-section low-needs-section" aria-labelledby="low-needs-title"><h2 id="low-needs-title">今回、前面には出にくかった成分</h2>',
@@ -512,8 +562,11 @@
       '<details class="score-details"><summary>詳しいスコアを見る</summary>',
       '<p class="section-note">成分比率は、11成分のnormalized_scoreを合計1として見たときの相対的な割合です。</p>',
       '<div class="score-detail-list">' + renderScoreDetails(model.rankedNeeds) + "</div></details>",
+      '<section class="result-caution" aria-labelledby="result-caution-title"><h2 id="result-caution-title">結果についての注意</h2>',
+      '<p>結果は、回答時点で表れた傾向を示す参考情報です。欲求の高低は、人としての優劣や能力の有無を示すものではありません。結果は、状況、環境、経験、気分などによって変化する可能性があります。</p></section>',
       '<button class="secondary-button restart-button" type="button" id="restart-button">もう一度診断する</button>'
     ].join("");
+    setupResultVisual(primaryNeed, secondaryNeed, resultPicturePath);
     document.getElementById("restart-button").addEventListener("click", function () {
       state.answers = [];
       state.currentIndex = 0;
